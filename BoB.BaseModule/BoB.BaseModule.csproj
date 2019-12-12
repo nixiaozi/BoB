@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BoB.UseBus\BoB.UseBus.csproj" />
+    <PackageReference Include="Autofac" Version="4.9.4" />
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,12 @@ namespace BoB.BaseModule
 {
     public class BaseModule:Module,IBaseModule
     {
+        protected override void Load(ContainerBuilder builder)
+        {
+            //builder.RegisterAdapter
+            base.Load(builder);
+        }
+
         protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry, IComponentRegistration registration)
         {
             
@@ -17,19 +23,20 @@ namespace BoB.BaseModule
         }
 
 
-        public new void Configure(IComponentRegistry componentRegistry)
-        {
-            base.Configure(componentRegistry);
-        }
-
+        
+        /// <summary>
+        /// AttachToRegistrationSource 这个方法会在Configure调用
+        /// </summary>
+        /// <param name="componentRegistry"></param>
+        /// <param name="registrationSource"></param>
         protected override void AttachToRegistrationSource(IComponentRegistry componentRegistry, IRegistrationSource registrationSource)
         {
             base.AttachToRegistrationSource(componentRegistry, registrationSource);
         }
 
-        protected override void Load(ContainerBuilder builder)
+        public new void Configure(IComponentRegistry componentRegistry)
         {
-            base.Load(builder);
+            base.Configure(componentRegistry);
         }
 
     }

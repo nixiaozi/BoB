@@ -16,6 +16,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Microsoft.AspNetCore.Diagnostics">
       <HintPath>..\Lib\Microsoft.AspNetCore.Diagnostics.dll</HintPath>
     </Reference>

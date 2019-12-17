@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using BoB.BaseModule;
+using BoB.UseBus.Register;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -20,10 +21,7 @@ namespace BoB.UseBus.Startup
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public virtual void ConfigureServices(IServiceCollection services)
         {
-
-            var containerBuilder = new ContainerBuilder();
-            containerBuilder.RegisterModule<BaseModule.BaseModule>();
-            containerBuilder.Build();
+            BaseRegister.RegisterConfigureServices(services);
             //return new AutofacServiceProvider(container);
         }
 

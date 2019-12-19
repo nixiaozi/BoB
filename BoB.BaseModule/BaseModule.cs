@@ -24,8 +24,17 @@ namespace BoB.BaseModule
                    .WithMetadata("Name", "Open File");
 
 
-            builder.RegisterDecorator(typeof(LoggingDecorator), typeof(ICommandHandler));
-            builder.RegisterDecorator(typeof(DiagnosticDecorator), typeof(ICommandHandler));
+            builder.RegisterType<SaveCommandHandler>()
+                    .As<ICommandHandler>();
+            builder.RegisterType<OpenCommandHandler>()
+                   .As<ICommandHandler>();
+
+
+
+
+            builder.RegisterDecorator<LoggingDecorator, ICommandHandler>(); //装饰器是这样会重写RegisterType
+            // builder.RegisterDecorator<DiagnosticDecorator, ICommandHandler>();
+
 
 
             builder.RegisterAdapter<Meta<ICommand>, ToolbarButton>(

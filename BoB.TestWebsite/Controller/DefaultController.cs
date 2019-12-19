@@ -18,13 +18,15 @@ namespace BoB.TestWebsite.Controller
         public ITestService _testService;
         public ToolbarButton _toolbar;
         public IEnumerable<ToolbarButton> _toolbarButtons;
+        public IEnumerable<ICommandHandler> _commandHandlers;
 
         public DefaultController(ITestService testService,ToolbarButton toolbar,
-            IEnumerable<ToolbarButton> toolbarButtons)
+            IEnumerable<ToolbarButton> toolbarButtons, IEnumerable<ICommandHandler> commandHandlers)
         {
             _testService = testService;
             _toolbar = toolbar;
             _toolbarButtons = toolbarButtons;
+            _commandHandlers = commandHandlers;
         }
         
         [HttpGet]
@@ -32,7 +34,8 @@ namespace BoB.TestWebsite.Controller
         {
             _testService.SayHello();
             _toolbar.Click();
-            _toolbarButtons.Where(s => s.CommandText == "Save File").FirstOrDefault().Click();  //使用保存按钮的点击事件
+            _toolbarButtons.ToList().ForEach(s => s.Click()); //使用保存按钮的点击事件
+            _commandHandlers.ToList().ForEach(s => s.Todo());
         }
 
     }

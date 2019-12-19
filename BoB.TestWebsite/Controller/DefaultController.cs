@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BoB.BaseModule;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Autofac;
-using BoB.BaseModule.Test.AdaptersandDecorators;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace BoB.TestWebsite.Controller
 {
@@ -15,18 +7,16 @@ namespace BoB.TestWebsite.Controller
     [ApiController]
     public class DefaultController : ControllerBase
     {
-        public ITestService _testService;
-        // public ToolbarButton _toolbar;
-        public DefaultController(ITestService testService)
+
+        public DefaultController()
         {
-            _testService = testService;
+            
         }
         
         [HttpGet]
         public void Index()
         {
-            _testService.SayHello();
-
+            
         }
 
     }

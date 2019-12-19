@@ -43,13 +43,7 @@ namespace BoB.UseBus.Startup
             app.UseRouting();
 
            
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapGet("/", async context =>
-            //    {
-            //        await context.Response.WriteAsync("Hello World!");
-            //    });
-            //});
+            
         }
     }
 }

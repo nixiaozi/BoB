@@ -23,6 +23,10 @@ namespace BoB.BaseModule
                    .As<ICommand>()
                    .WithMetadata("Name", "Open File");
 
+            builder.RegisterAdapter<Meta<ICommand>, ToolbarButton>(
+                cmd => new ToolbarButton(cmd.Value, (string)cmd.Metadata["Name"]));
+
+
 
             builder.RegisterType<SaveCommandHandler>()
                     .As<ICommandHandler>();
@@ -37,10 +41,11 @@ namespace BoB.BaseModule
 
 
 
-            builder.RegisterAdapter<Meta<ICommand>, ToolbarButton>(
-                cmd => new ToolbarButton(cmd.Value, (string)cmd.Metadata["Name"]));
+            builder.RegisterAssemblyTypes(this.ThisAssembly).Where(t => t.Name.EndsWith("Service"))
+                    .AsImplementedInterfaces();
+            //builder.RegisterType<TestService>().As<ITestService>();
 
-            builder.RegisterType<TestService>().As<ITestService>();
+
 
             // builder.Build(); Build() or Update() can only be called once on a ContainerBuilder
 

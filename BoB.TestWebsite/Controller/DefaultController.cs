@@ -16,17 +16,23 @@ namespace BoB.TestWebsite.Controller
     public class DefaultController : ControllerBase
     {
         public ITestService _testService;
-        // public ToolbarButton _toolbar;
-        public DefaultController(ITestService testService)
+        public ToolbarButton _toolbar;
+        public IEnumerable<ToolbarButton> _toolbarButtons;
+
+        public DefaultController(ITestService testService,ToolbarButton toolbar,
+            IEnumerable<ToolbarButton> toolbarButtons)
         {
             _testService = testService;
+            _toolbar = toolbar;
+            _toolbarButtons = toolbarButtons;
         }
         
         [HttpGet]
         public void Index()
         {
             _testService.SayHello();
-
+            _toolbar.Click();
+            _toolbarButtons.Where(s => s.CommandText == "Save File").FirstOrDefault().Click();  //使用保存按钮的点击事件
         }
 
     }

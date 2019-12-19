@@ -23,6 +23,11 @@ namespace BoB.BaseModule
                    .As<ICommand>()
                    .WithMetadata("Name", "Open File");
 
+
+            builder.RegisterDecorator(typeof(LoggingDecorator), typeof(ICommandHandler));
+            builder.RegisterDecorator(typeof(DiagnosticDecorator), typeof(ICommandHandler));
+
+
             builder.RegisterAdapter<Meta<ICommand>, ToolbarButton>(
                 cmd => new ToolbarButton(cmd.Value, (string)cmd.Metadata["Name"]));
 

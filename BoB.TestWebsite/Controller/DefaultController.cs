@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using BoB.BaseModule;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Autofac;
+using BoB.BaseModule.Test.AdaptersandDecorators;
 
 namespace BoB.TestWebsite.Controller
 {
@@ -14,6 +16,7 @@ namespace BoB.TestWebsite.Controller
     public class DefaultController : ControllerBase
     {
         public ITestService _testService;
+        // public ToolbarButton _toolbar;
         public DefaultController(ITestService testService)
         {
             _testService = testService;
@@ -23,6 +26,7 @@ namespace BoB.TestWebsite.Controller
         public void Index()
         {
             _testService.SayHello();
+
         }
 
     }

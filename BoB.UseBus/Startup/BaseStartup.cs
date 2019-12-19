@@ -21,8 +21,14 @@ namespace BoB.UseBus.Startup
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public virtual void ConfigureServices(IServiceCollection services)
         {
-            BaseRegister.RegisterConfigureServices(services);
-            //return new AutofacServiceProvider(container);
+            
+            
+        }
+
+
+        public virtual void ConfigureContainer(ContainerBuilder builder)
+        {
+            BaseRegister.RegisterConfigureContainer(builder);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

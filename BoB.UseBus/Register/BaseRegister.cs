@@ -9,16 +9,17 @@ namespace BoB.UseBus.Register
 {
     public static class BaseRegister
     {
-        public static void RegisterConfigureServices(IServiceCollection services)
+        public static void RegisterConfigureContainer(ContainerBuilder builder)
         {
-            var containerBuilder = new ContainerBuilder();
+
             //模块注入
-            containerBuilder.RegisterModule<BaseModule.BaseModule>();
-            containerBuilder.Populate(services);
-            containerBuilder.Build();
+            builder.RegisterModule<BaseModule.BaseModule>();
+
+
+
+            // var container = builder.Build(); 使用新的注入方法，不需要其他了
 
             //AutoMap的使用
-
         }
     }
 }

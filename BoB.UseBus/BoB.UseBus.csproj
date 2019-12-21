@@ -31,14 +31,26 @@
     <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions">
       <HintPath>..\Lib\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http">
+      <HintPath>..\Lib\Microsoft.AspNetCore.Http.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
       <HintPath>..\Lib\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Mvc.Core">
+      <HintPath>..\Lib\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Routing">
       <HintPath>..\Lib\Microsoft.AspNetCore.Routing.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <HintPath>..\Lib\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
       <HintPath>..\Lib\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting">
+      <HintPath>..\Lib\Microsoft.Extensions.Hosting.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
       <HintPath>..\Lib\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>

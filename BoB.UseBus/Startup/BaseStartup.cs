@@ -22,12 +22,13 @@ namespace BoB.UseBus.Startup
         public virtual void ConfigureServices(IServiceCollection services)
         {
             
-            
         }
 
 
         public virtual void ConfigureContainer(ContainerBuilder builder)
         {
+
+
             BaseRegister.RegisterConfigureContainer(builder);
         }
 
@@ -42,14 +43,17 @@ namespace BoB.UseBus.Startup
 
             app.UseRouting();
 
-           
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapGet("/", async context =>
-            //    {
-            //        await context.Response.WriteAsync("Hello World!");
-            //    });
-            //});
+
+
+
+            app.UseEndpoints(endpoints =>
+            {
+
+                //endpoints.MapGet("/", async context =>
+                //{
+                //    await context.Response.WriteAsync("Hello World!");
+                //});
+            });
         }
     }
 }

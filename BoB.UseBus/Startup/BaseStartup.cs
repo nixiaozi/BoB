@@ -34,7 +34,7 @@ namespace BoB.UseBus.Startup
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            app.UseRouting();  
 
 
 

@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
+    <ProjectReference Include="..\BoB.LanguageManager\BoB.LanguageManager.csproj" />
   </ItemGroup>
 
   <ItemGroup>

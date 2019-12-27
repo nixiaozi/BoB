@@ -8,6 +8,7 @@ namespace ExtendAndHelper.Extends
     {
         public static string AddBeforeStr(this string str,string addstr)
         {
+            
             return addstr + str;
         }
 

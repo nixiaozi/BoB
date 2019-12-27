@@ -13,10 +13,12 @@ using System.Text;
 
 namespace BoB.BaseModule
 {
-    public class BaseModule:Module,IBaseModule
+    public class BoBModule:Module,IBoBModule
     {
 
-        public virtual void BeforeLoad(ContainerBuilder builder)
+        public System.Reflection.Assembly CurrentAssembly = null;
+
+        public virtual void Init(ContainerBuilder builder)
         {
            var EnvName= Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"); //使用autofac获取当前环境的方法
 
@@ -27,15 +29,8 @@ namespace BoB.BaseModule
             Debug.WriteLine("当前的部署环境为" + Environment.GetEnvironmentVariable("environment_name")); //不存在此环境变量，所以为空
         }
 
-        public virtual void AfterLoad(ContainerBuilder builder)
+        public virtual void OnLoad(ContainerBuilder builder)
         {
-
-        }
-
-        protected override void Load(ContainerBuilder builder)
-        {
-            BeforeLoad(builder);
-
             //builder.RegisterAdapter
             base.Load(builder);
 
@@ -59,21 +54,24 @@ namespace BoB.BaseModule
 
 
 
-
             builder.RegisterDecorator<LoggingDecorator, ICommandHandler>(); //装饰器是这样会重写RegisterType
-            // builder.RegisterDecorator<DiagnosticDecorator, ICommandHandler>();
+                                                                            // builder.RegisterDecorator<DiagnosticDecorator, ICommandHandler>();
 
 
-
-            builder.RegisterAssemblyTypes(this.ThisAssembly).Where(t => t.Name.EndsWith("Service"))
-                    .AsImplementedInterfaces();
             //builder.RegisterType<TestService>().As<ITestService>();
 
 
 
             // builder.Build(); Build() or Update() can only be called once on a ContainerBuilder
 
-            AfterLoad(builder);
+        }
+
+        protected override void Load(ContainerBuilder builder)
+        {
+            Init(builder);
+            builder.RegisterAssemblyTypes(CurrentAssembly!=null? CurrentAssembly : this.ThisAssembly).Where(t => t.Name.EndsWith("Service"))
+                    .AsImplementedInterfaces();
+            OnLoad(builder);
         }
 
         protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry, IComponentRegistration registration)

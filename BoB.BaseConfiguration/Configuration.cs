@@ -15,12 +15,13 @@ namespace BoB.BaseConfiguration
         public const string Version = "V3.0";
 
 
+        public static string DefaultLanguage = "";
 
         public static string CurrentEnvironment
         {
             get
             {
-                return Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"); //可以添加一个为空的逻辑，告知会使用默认配置
+                return Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"); //可以添加一个为空的逻辑，告知会使用默认配置（可以使用错误处理模式）
             }
         }
     }

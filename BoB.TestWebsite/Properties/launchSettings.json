@@ -14,7 +14,7 @@
       "launchBrowser": true,
       "launchUrl": "api/default/index",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Staging"
+        "ASPNETCORE_ENVIRONMENT": "Leo"
       }
     },
      // 这个是没有托管服务器时的配置

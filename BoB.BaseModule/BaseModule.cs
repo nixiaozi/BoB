@@ -1,9 +1,14 @@
 ﻿using Autofac;
 using Autofac.Core;
 using Autofac.Features.Metadata;
+using BoB.BaseConfiguration;
 using BoB.BaseModule.Test.AdaptersandDecorators;
+using ExtendAndHelper;
+using ExtendAndHelper.Extends;
+using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 
 namespace BoB.BaseModule
@@ -11,18 +16,26 @@ namespace BoB.BaseModule
     public class BaseModule:Module,IBaseModule
     {
 
-        public virtual void BeforeLoad()
+        public virtual void BeforeLoad(ContainerBuilder builder)
         {
+           var EnvName= Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"); //使用autofac获取当前环境的方法
 
+
+            Debug.WriteLine("Load".ToString().AddBeforeStr("To"));
+            Debug.WriteLine("当前的部署环境为Leo?：" + "Current EnvironmentName:" + EnvName);
+            Debug.WriteLine("当前的部署环境为"+ Configuration.CurrentEnvironment);
+            Debug.WriteLine("当前的部署环境为" + Environment.GetEnvironmentVariable("environment_name")); //不存在此环境变量，所以为空
         }
 
-        public virtual void AfterLoad()
+        public virtual void AfterLoad(ContainerBuilder builder)
         {
 
         }
 
         protected override void Load(ContainerBuilder builder)
         {
+            BeforeLoad(builder);
+
             //builder.RegisterAdapter
             base.Load(builder);
 
@@ -60,6 +73,7 @@ namespace BoB.BaseModule
 
             // builder.Build(); Build() or Update() can only be called once on a ContainerBuilder
 
+            AfterLoad(builder);
         }
 
         protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry, IComponentRegistration registration)

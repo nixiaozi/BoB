@@ -10,6 +10,17 @@ namespace BoB.BaseModule
 {
     public class BaseModule:Module,IBaseModule
     {
+
+        public virtual void BeforeLoad()
+        {
+
+        }
+
+        public virtual void AfterLoad()
+        {
+
+        }
+
         protected override void Load(ContainerBuilder builder)
         {
             //builder.RegisterAdapter
@@ -53,7 +64,8 @@ namespace BoB.BaseModule
 
         protected override void AttachToComponentRegistration(IComponentRegistry componentRegistry, IComponentRegistration registration)
         {
-            
+            //这里是读取一个自定义的实现某接口的文件，进行批量化注入
+            //调用Load方法之后调用
 
 
             base.AttachToComponentRegistration(componentRegistry, registration);
@@ -68,6 +80,10 @@ namespace BoB.BaseModule
         /// <param name="registrationSource"></param>
         protected override void AttachToRegistrationSource(IComponentRegistry componentRegistry, IRegistrationSource registrationSource)
         {
+            //方法参数同AttachToComponentRegistration
+            //在AttachToComponentRegistration后调用，会调用多次
+            //在Configure方法初始化完成后也会再调用一次
+
             base.AttachToRegistrationSource(componentRegistry, registrationSource);
         }
 

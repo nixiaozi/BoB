@@ -8,14 +8,16 @@
     }
   },
   "profiles": {
+    // 这个是使用IIS Express部署时的配置
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "api/default/index",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Staging"
       }
     },
+     // 这个是没有托管服务器时的配置
     "BoB.TestWebsite": {
       "commandName": "Project",
       "launchBrowser": true,

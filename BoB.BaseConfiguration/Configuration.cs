@@ -2,7 +2,7 @@
 
 namespace BoB.BaseConfiguration
 {
-    public class Class1
+    public class Configuration
     {
     }
 }

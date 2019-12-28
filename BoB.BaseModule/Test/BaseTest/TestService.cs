@@ -16,5 +16,12 @@ namespace BoB.BaseModule
         {
             Debug.WriteLine("Hello Now!");
         }
+
+
+
+        public void Say(string str="Default Say")
+        {
+            Debug.WriteLine(str);
+        }
     }
 }

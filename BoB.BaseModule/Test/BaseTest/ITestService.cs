@@ -9,5 +9,7 @@ namespace BoB.BaseModule
         void SayHello();
 
         void SayNow();
+
+        void Say(string str = "Default Say");
     }
 }

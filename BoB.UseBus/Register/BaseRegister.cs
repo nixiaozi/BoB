@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using BoB.LanguageManager;
+using BoB.WorkModule;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace BoB.UseBus.Register
             //模块注入
             builder.RegisterModule<BaseModule.BoBModule>();
             builder.RegisterModule<LanguageManagerModule>();
-
+            builder.RegisterModule<WorkModule.WorkModule>();
 
             // var container = builder.Build(); 使用新的注入方法，不需要其他了
 

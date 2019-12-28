@@ -21,14 +21,17 @@ namespace BoB.TestWebsite.Controller
         public ToolbarButton _toolbar;
         public IEnumerable<ToolbarButton> _toolbarButtons;
         public IEnumerable<ICommandHandler> _commandHandlers;
+        public IBeginWorkService _beginWorkService;
 
         public DefaultController(ITestService testService,ToolbarButton toolbar,
-            IEnumerable<ToolbarButton> toolbarButtons, IEnumerable<ICommandHandler> commandHandlers)
+            IEnumerable<ToolbarButton> toolbarButtons, IEnumerable<ICommandHandler> commandHandlers,
+            IBeginWorkService beginWorkService)
         {
             _testService = testService;
             _toolbar = toolbar;
             _toolbarButtons = toolbarButtons;
             _commandHandlers = commandHandlers;
+            _beginWorkService = beginWorkService;
         }
         
         [HttpGet]
@@ -38,12 +41,13 @@ namespace BoB.TestWebsite.Controller
             _toolbar.Click();
             _toolbarButtons.ToList().ForEach(s => s.Click()); //使用保存按钮的点击事件
             _commandHandlers.ToList().ForEach(s => s.Todo());
-            var item= new BeginWork();
+
+            _beginWorkService.CheckSex();
         }
 
         public void Now()
         {
-            var item = new BeginWork();
+            var item = new BeginWorkService();
         }
 
     }

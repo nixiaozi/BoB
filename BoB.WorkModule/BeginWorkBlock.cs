@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace BoB.Work
 {
-    public class BeginWorkBlock: BaseFlow, IBeginWorkBlock // 需要BeginWorkService和IBeginWorkService都以Service结尾，否者程序集扫描不会引用注入
+    public class BeginWorkBlock: BaseBlock, IBeginWorkBlock // 需要 BeginWorkBlock 和 IBeginWorkBlock 都以Service结尾，否者程序集扫描不会引用注入
     {
         private ITestService _testService;
         private IEnumerable<ToolbarButton> _toolbarButtons;

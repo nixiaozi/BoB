@@ -69,7 +69,8 @@ namespace BoB.BaseModule
         protected override void Load(ContainerBuilder builder)
         {
             Init(builder);
-            builder.RegisterAssemblyTypes(CurrentAssembly!=null? CurrentAssembly : this.ThisAssembly).Where(t => t.Name.EndsWith("Service"))
+            builder.RegisterAssemblyTypes(CurrentAssembly!=null? CurrentAssembly : this.ThisAssembly)
+                .Where(t => t.Name.EndsWith("Service") || t.Name.EndsWith("Block"))
                     .AsImplementedInterfaces();
             OnLoad(builder);
         }

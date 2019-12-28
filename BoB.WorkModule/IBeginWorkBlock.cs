@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BoB.Work
 {
-    public interface IBeginWorkService
+    public interface IBeginWorkBlock
     {
         public void CheckWord();
 

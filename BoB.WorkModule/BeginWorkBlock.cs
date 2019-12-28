@@ -5,12 +5,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
+using BoB.BaseModule.Test.AdaptersandDecorators;
+using System.Linq;
 
 namespace BoB.Work
 {
-    public class BeginWorkService: BaseFlow, IBeginWorkService // 需要BeginWorkService和IBeginWorkService都以Service结尾，否者程序集扫描不会引用注入
+    public class BeginWorkBlock: BaseFlow, IBeginWorkBlock // 需要BeginWorkService和IBeginWorkService都以Service结尾，否者程序集扫描不会引用注入
     {
         private ITestService _testService;
+        private IEnumerable<ToolbarButton> _toolbarButtons;
 
         protected override void Init()
         {
@@ -19,12 +22,14 @@ namespace BoB.Work
             _testService = CurrentServiceProvider.GetService<ITestService>(); // 必须使用Microsoft.Extensions.DependencyInjection 否则不能解释GetService<T> 泛型方法
 
             _testService.SayHello();
+            _toolbarButtons = CurrentServiceProvider.GetService<IEnumerable<ToolbarButton>>();
         }
 
 
         public void CheckSex()
         {
             _testService.Say("CheckSex");
+            _toolbarButtons.FirstOrDefault(s => s.CommandText == "Open File")?.Click();
         }
 
         public void CheckWord()

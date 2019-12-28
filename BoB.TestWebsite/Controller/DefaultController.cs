@@ -21,11 +21,11 @@ namespace BoB.TestWebsite.Controller
         public ToolbarButton _toolbar;
         public IEnumerable<ToolbarButton> _toolbarButtons;
         public IEnumerable<ICommandHandler> _commandHandlers;
-        public IBeginWorkService _beginWorkService;
+        public IBeginWorkBlock _beginWorkService;
 
         public DefaultController(ITestService testService,ToolbarButton toolbar,
             IEnumerable<ToolbarButton> toolbarButtons, IEnumerable<ICommandHandler> commandHandlers,
-            IBeginWorkService beginWorkService)
+            IBeginWorkBlock beginWorkService)
         {
             _testService = testService;
             _toolbar = toolbar;
@@ -47,7 +47,7 @@ namespace BoB.TestWebsite.Controller
 
         public void Now()
         {
-            var item = new BeginWorkService();
+            var item = new BeginWorkBlock();
         }
 
     }

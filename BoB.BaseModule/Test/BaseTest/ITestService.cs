@@ -7,5 +7,7 @@ namespace BoB.BaseModule
     public interface ITestService
     {
         void SayHello();
+
+        void SayNow();
     }
 }

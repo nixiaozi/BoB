@@ -2,9 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using BoB.BaseModule;
+using BoB.ContainManager;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -14,7 +18,16 @@ namespace BoB.TestWebsite
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var builder = CreateHostBuilder(args).Build();
+
+            BoBContainer.ServiceProvider = builder.Services;
+
+
+            var test = BoBContainer.ServiceProvider.GetService<ITestService>();
+            test.SayHello();
+
+
+            builder.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

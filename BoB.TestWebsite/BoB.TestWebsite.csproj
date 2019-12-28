@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BoB.LanguageManager\BoB.LanguageManager.csproj" />
     <ProjectReference Include="..\BoB.UseBus\BoB.UseBus.csproj" />
+    <ProjectReference Include="..\BoB.WorkModule\BoB.Work.csproj" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="http://json.schemastore.org/launchsettings.json" /></VisualStudio></ProjectExtensions>

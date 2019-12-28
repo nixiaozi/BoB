@@ -1,22 +1,25 @@
-﻿using System;
+﻿using ExtendAndHelper.CustomAttributes;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Text;
 
 namespace BoB.LanguageManager
 {
-    public class LangService : ILangService
+    public static class LangService
     {
-        public string TD(string tag)
+        /// <summary>
+        /// 翻译文本
+        /// </summary>
+        /// <param name="OriginalText">原文</param>
+        /// <param name="langType">翻译语种</param>
+        /// <returns></returns>
+        public static string L(string OriginalText,LanguageType? langType)
         {
-            Debug.WriteLine("LangService TD");
-            return "TD";
+
+            return "";
         }
 
-        public string TL(string tag, LanguageType? languageType = null)
-        {
-            Debug.WriteLine("LangService TL");
-            return "TL";
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using BoB.ContainManager;
 using BoB.UseBus.Register;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,9 +22,8 @@ namespace BoB.UseBus.Startup
 
         public virtual void ConfigureContainer(ContainerBuilder builder)
         {
-
-
             BaseRegister.RegisterConfigureContainer(builder);
+            //BoBContainer.Container = builder;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

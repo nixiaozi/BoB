@@ -11,5 +11,10 @@ namespace BoB.BaseModule
         {
             Debug.WriteLine("Hello All of Yours!");
         }
+
+        public void SayNow()
+        {
+            Debug.WriteLine("Hello Now!");
+        }
     }
 }

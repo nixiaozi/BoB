@@ -1,4 +1,5 @@
-﻿using ExtendAndHelper.CustomAttributes;
+﻿using BoB.BaseConfiguration.BaseEnums;
+using ExtendAndHelper.CustomAttributes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace BoB.LanguageManager
 {
-    public static class LangService
+    public class LangService
     {
         /// <summary>
         /// 翻译文本
@@ -15,7 +16,7 @@ namespace BoB.LanguageManager
         /// <param name="OriginalText">原文</param>
         /// <param name="langType">翻译语种</param>
         /// <returns></returns>
-        public static string L(string OriginalText,LanguageType? langType)
+        public string L(string OriginalText,LanguageType? langType)
         {
 
             return "";

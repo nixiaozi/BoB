@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BoB.CacheManager
+namespace BoB.BaseConfiguration.BaseEnums
 {
     public enum CacheTag
     {

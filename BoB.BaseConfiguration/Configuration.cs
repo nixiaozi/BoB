@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BoB.BaseConfiguration.BaseEnums;
+using System;
 
 namespace BoB.BaseConfiguration
 {
@@ -7,15 +8,15 @@ namespace BoB.BaseConfiguration
         /// <summary>
         /// 当前项目的名称
         /// </summary>
-        public const string ProjectName = "ExchangeMall";
+        public const string ProjectName = "BasicofBasic";
 
         /// <summary>
         /// 当前项目的版本
         /// </summary>
-        public const string Version = "V3.0";
+        public const string Version = "V1.0";
 
 
-        public static string DefaultLanguage = "";
+        public static LanguageType DefaultLanguage = LanguageType.zh_cn;
 
         public static string CurrentEnvironment
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BoB.BaseConfiguration.BaseEnums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 

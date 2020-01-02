@@ -23,8 +23,10 @@ namespace BoB.TestWebsite
             BoBContainer.ServiceProvider = builder.Services; //添加一个静态的依赖注入容器引用，
 
 
-            var test = BoBContainer.ServiceProvider.GetService<ITestService>();
-            test.SayHello();
+            //var test = BoBContainer.ServiceProvider.GetService<ITestService>();
+            //test.SayHello();
+
+            
 
 
             builder.Run();

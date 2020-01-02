@@ -7,9 +7,10 @@ namespace BoB.CacheManager
 {
     public enum CacheTag
     {
-        [Tag("")]
+        [Tag("基础配置缓存")]
         BoBConfig=1,
 
+        [Tag("临时数据缓存")]
         Temp=1000,
     }
 }

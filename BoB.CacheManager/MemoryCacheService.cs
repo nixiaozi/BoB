@@ -50,8 +50,7 @@ namespace BoB.CacheManager
         public void ClearTagCache(CacheTag tag)
         {
 
-            //不支持可以自定义错误
-
+            throw new NotImplementedException();
             //var alldata = GetAllCache()
             //    .Where(s => s.Key.IndexOf(tag.ToString()) == 0); //获取所有以tag开头的缓存项
 
@@ -65,9 +64,7 @@ namespace BoB.CacheManager
         public void ClearAllCache()
         {
 
-            //不支持可以自定义错误
-
-            
+            throw new NotImplementedException();
             //var alldata = GetAllCache();
             //foreach (var item in alldata)
             //{
@@ -79,7 +76,7 @@ namespace BoB.CacheManager
         {
             //不支持可以自定义错误
 
-            return new Dictionary<string, object>();
+            throw new NotImplementedException();
         }
     }
 }

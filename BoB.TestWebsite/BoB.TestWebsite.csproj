@@ -22,4 +22,8 @@
 
   <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="http://json.schemastore.org/launchsettings.json" /></VisualStudio></ProjectExtensions>
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="XCOPY &quot;$(SolutionDir)\Lang&quot; &quot;$(ProjectDir)\Lang\&quot; /S /Y" />
+  </Target>
+
 </Project>

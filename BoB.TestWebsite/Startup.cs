@@ -18,7 +18,7 @@ namespace BoB.TestWebsite
         public IConfiguration Configuration { get; }
         public override void ConfigureServices(IServiceCollection services)
         {
-
+            base.ConfigureServices(services);
             services.AddControllers();
         }
 

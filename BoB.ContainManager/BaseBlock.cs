@@ -4,7 +4,7 @@ namespace BoB.ContainManager
 {
     public class BaseBlock
     {
-        protected IServiceProvider CurrentServiceProvider;
+        protected readonly IServiceProvider CurrentServiceProvider;
 
         public BaseBlock()
         {

@@ -59,8 +59,8 @@ namespace BoB.BaseModule
             builder.RegisterType<Todo>().As<ITodo>(); //注入接口
 
 
-            builder.RegisterDecorator<LoggingDecorator, ICommandHandler>(); //装饰器是这样会重写RegisterType
-                                                                            // builder.RegisterDecorator<DiagnosticDecorator, ICommandHandler>();
+            builder.RegisterDecorator<LoggingDecorator, ICommandHandler>(); //装饰器是这样会重写RegisterType（所有实现ICommandHandler接口的方法）
+            // builder.RegisterDecorator<DiagnosticDecorator, ICommandHandler>(); 
 
 
             //builder.RegisterType<TestService>().As<ITestService>();

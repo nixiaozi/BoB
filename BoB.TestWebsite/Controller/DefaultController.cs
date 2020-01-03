@@ -9,6 +9,7 @@ using Autofac;
 using BoB.BaseModule.Test.AdaptersandDecorators;
 using BoB.LanguageManager;
 using BoB.Work;
+using BoB.BaseModule.Test.TypeInject;
 
 namespace BoB.TestWebsite.Controller
 {
@@ -22,16 +23,20 @@ namespace BoB.TestWebsite.Controller
         public IEnumerable<ToolbarButton> _toolbarButtons;
         public IEnumerable<ICommandHandler> _commandHandlers;
         public IBeginWorkBlock _beginWorkService;
+        public IinjectTest _injectTest;
 
         public DefaultController(ITestService testService,ToolbarButton toolbar,
             IEnumerable<ToolbarButton> toolbarButtons, IEnumerable<ICommandHandler> commandHandlers,
-            IBeginWorkBlock beginWorkService)
+            IBeginWorkBlock beginWorkService, IinjectTest injectTest)
         {
             _testService = testService;
             _toolbar = toolbar;
             _toolbarButtons = toolbarButtons;
             _commandHandlers = commandHandlers;
             _beginWorkService = beginWorkService;
+            _injectTest = injectTest;
+
+            
         }
         
         [HttpGet]
@@ -43,6 +48,7 @@ namespace BoB.TestWebsite.Controller
             _commandHandlers.ToList().ForEach(s => s.Todo());
 
             _beginWorkService.CheckSex();
+            _injectTest.ToInjectTest();
         }
 
         public void Now()

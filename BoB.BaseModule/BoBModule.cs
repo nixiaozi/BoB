@@ -3,6 +3,7 @@ using Autofac.Core;
 using Autofac.Features.Metadata;
 using BoB.BaseConfiguration;
 using BoB.BaseModule.Test.AdaptersandDecorators;
+using BoB.BaseModule.Test.TypeInject;
 using ExtendAndHelper;
 using ExtendAndHelper.Extends;
 using Microsoft.AspNetCore.Hosting;
@@ -52,6 +53,10 @@ namespace BoB.BaseModule
             builder.RegisterType<OpenCommandHandler>()
                    .As<ICommandHandler>();
 
+
+            builder.RegisterType<TypeInjectTest>(); //注入对象
+            builder.RegisterType<TypeInjectTest>().As<IinjectTest>(); //接口注入
+            builder.RegisterType<Todo>().As<ITodo>(); //注入接口
 
 
             builder.RegisterDecorator<LoggingDecorator, ICommandHandler>(); //装饰器是这样会重写RegisterType

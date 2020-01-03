@@ -7,6 +7,7 @@ using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using BoB.BaseModule.Test.AdaptersandDecorators;
 using System.Linq;
+using BoB.BaseModule.Test.TypeInject;
 
 namespace BoB.Work
 {
@@ -23,6 +24,8 @@ namespace BoB.Work
 
             _testService.SayHello();
             _toolbarButtons = CurrentServiceProvider.GetService<IEnumerable<ToolbarButton>>();
+
+            CurrentServiceProvider.GetService<TypeInjectTest>().ToInjectTest(); //直接从注入库中拿出对象
         }
 
 

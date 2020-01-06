@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BoB.BaseConfiguration.BaseEnums
+namespace BoB.BoBConfiguration.BaseEnums
 {
     public enum LanguageType
     {

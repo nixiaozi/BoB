@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BoB.BaseConfiguration\BoB.BaseConfiguration.csproj" />
+    <ProjectReference Include="..\BoB.BaseConfiguration\BoB.BoBConfiguration.csproj" />
     <ProjectReference Include="..\ExtendAndHelper\ExtendAndHelper.csproj" />
   </ItemGroup>
 

@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Autofac.Core;
 using Autofac.Features.Metadata;
-using BoB.BaseConfiguration;
+using BoB.BoBConfiguration;
 using BoB.BaseModule.Test.AdaptersandDecorators;
 using BoB.BaseModule.Test.TypeInject;
 using ExtendAndHelper;

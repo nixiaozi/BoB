@@ -1,7 +1,7 @@
-﻿using BoB.BaseConfiguration.BaseEnums;
+﻿using BoB.BoBConfiguration.BaseEnums;
 using System;
 
-namespace BoB.BaseConfiguration
+namespace BoB.BoBConfiguration
 {
     public static class Configuration
     {

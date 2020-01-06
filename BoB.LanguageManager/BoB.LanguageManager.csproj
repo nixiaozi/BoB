@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
+    <ProjectReference Include="..\BoB.CacheManager\BoB.CacheManager.csproj" />
     <ProjectReference Include="..\ExtendAndHelper\ExtendAndHelper.csproj" />
   </ItemGroup>
 

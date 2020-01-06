@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.Api", "BoB.Api\BoB.Api.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.EFDbContext", "BoB.EFDbContext\BoB.EFDbContext.csproj", "{B6049C13-B35D-4A68-9B27-CBE9C1DDCC35}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.BaseConfiguration", "BoB.BaseConfiguration\BoB.BaseConfiguration.csproj", "{43D75AB9-3643-4ED3-ABA2-ECC688D551CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.BoBConfiguration", "BoB.BaseConfiguration\BoB.BoBConfiguration.csproj", "{43D75AB9-3643-4ED3-ABA2-ECC688D551CA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.UseBus", "BoB.UseBus\BoB.UseBus.csproj", "{C68E8C4D-5182-4F06-B10E-F6DA8DDE4532}"
 EndProject
@@ -27,13 +27,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.TestApi", "BoB.TestApi\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtendAndHelper", "ExtendAndHelper\ExtendAndHelper.csproj", "{4971B695-115B-49AE-97C7-580C31CD6009}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoB.LanguageManager", "BoB.LanguageManager\BoB.LanguageManager.csproj", "{F25797A8-0C3C-466A-963D-8FC25B7D1268}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.LanguageManager", "BoB.LanguageManager\BoB.LanguageManager.csproj", "{F25797A8-0C3C-466A-963D-8FC25B7D1268}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoB.CacheManager", "BoB.CacheManager\BoB.CacheManager.csproj", "{934A8B0E-D5D7-4080-8FD7-FE44EEEF8F3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.CacheManager", "BoB.CacheManager\BoB.CacheManager.csproj", "{934A8B0E-D5D7-4080-8FD7-FE44EEEF8F3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoB.Work", "BoB.WorkModule\BoB.Work.csproj", "{12834882-5973-43B8-9B80-6579FCE1253A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.Work", "BoB.WorkModule\BoB.Work.csproj", "{12834882-5973-43B8-9B80-6579FCE1253A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoB.ContainManager", "BoB.ContainManager\BoB.ContainManager.csproj", "{F278EF84-E755-4FC9-AB3F-491A34E874C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.ContainManager", "BoB.ContainManager\BoB.ContainManager.csproj", "{F278EF84-E755-4FC9-AB3F-491A34E874C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

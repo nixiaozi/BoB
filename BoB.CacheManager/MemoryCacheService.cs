@@ -1,4 +1,4 @@
-﻿using BoB.BaseConfiguration.BaseEnums;
+﻿using BoB.BoBConfiguration.BaseEnums;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;

@@ -21,12 +21,12 @@ namespace BoB.BaseModule
 
         public virtual void Init(ContainerBuilder builder)
         {
-           var EnvName= Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"); //使用autofac获取当前环境的方法
+           var EnvName= Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"); //使用autofac获取当前环境的方法,
 
 
             Debug.WriteLine("Load".ToString().AddBeforeStr("To"));
             Debug.WriteLine("当前的部署环境为Leo?：" + "Current EnvironmentName:" + EnvName);
-            Debug.WriteLine("当前的部署环境为"+ Configuration.CurrentEnvironment);
+            Debug.WriteLine("当前的部署环境为"+ StaticConfiguration.CurrentEnvironment);
             Debug.WriteLine("当前的部署环境为" + Environment.GetEnvironmentVariable("environment_name")); //不存在此环境变量，所以为空
         }
 

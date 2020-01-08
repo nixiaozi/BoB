@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using BoB.BaseModule;
+using BoB.BoBConfigManager;
 using BoB.ContainManager;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -25,8 +28,10 @@ namespace BoB.TestWebsite
 
             //var test = BoBContainer.ServiceProvider.GetService<ITestService>();
             //test.SayHello();
+            //这里测试扫描程序集配置获取
+            BoBContainer.ServiceProvider.GetService<IBoBConfigService>().DynamicConfigInit();
 
-            
+
 
 
             builder.Run();

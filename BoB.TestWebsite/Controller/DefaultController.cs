@@ -10,6 +10,7 @@ using BoB.BaseModule.Test.AdaptersandDecorators;
 using BoB.LanguageManager;
 using BoB.Work;
 using BoB.BaseModule.Test.TypeInject;
+using System.Diagnostics;
 
 namespace BoB.TestWebsite.Controller
 {
@@ -49,6 +50,8 @@ namespace BoB.TestWebsite.Controller
 
             _beginWorkService.CheckSex();
             _injectTest.ToInjectTest();
+
+            Debug.WriteLine(BoB.CacheManager.BoBConfiguration.Test);
         }
 
         public void Now()

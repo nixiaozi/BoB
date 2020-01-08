@@ -18,7 +18,7 @@ namespace BoB.UseBus.Register
 
             //模块注入,只有注入模块之后，程序集扫描才能获得该assembly
             builder.RegisterModule<BaseModule.BoBModule>();
-            builder.RegisterModule<BoBConfigManagerModule>();
+            // builder.RegisterModule<BoBConfigManagerModule>();
             builder.RegisterModule<CacheManagerModule>();
             builder.RegisterModule<LanguageManagerModule>();
             builder.RegisterModule<WorkModule.WorkModule>();

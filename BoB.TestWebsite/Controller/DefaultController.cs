@@ -51,6 +51,7 @@ namespace BoB.TestWebsite.Controller
             _beginWorkService.CheckSex();
             _injectTest.ToInjectTest();
 
+            Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.Test);
             Debug.WriteLine(BoB.CacheManager.BoBConfiguration.Test);
         }
 

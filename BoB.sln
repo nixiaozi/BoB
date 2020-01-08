@@ -35,7 +35,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.Work", "BoB.WorkModule\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.ContainManager", "BoB.ContainManager\BoB.ContainManager.csproj", "{F278EF84-E755-4FC9-AB3F-491A34E874C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoB.BoBConfigManager", "BoB.BoBConfigManager\BoB.BoBConfigManager.csproj", "{793E6BD1-1056-4693-BC62-D8364C4E0642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.BoBConfigManager", "BoB.BoBConfigManager\BoB.BoBConfigManager.csproj", "{793E6BD1-1056-4693-BC62-D8364C4E0642}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

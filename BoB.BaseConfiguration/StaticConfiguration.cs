@@ -20,6 +20,8 @@ namespace BoB.BoBConfiguration
 
         public const string ModuleBoBConfiguration = "BoBConfiguration";
 
+        public const string ModuleBaseBoBConfiguration = "BaseBoBConfiguration";
+
 
         public static LanguageType DefaultLanguage = LanguageType.zh_cn;
 

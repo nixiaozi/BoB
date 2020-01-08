@@ -29,7 +29,7 @@ namespace BoB.TestWebsite
             //var test = BoBContainer.ServiceProvider.GetService<ITestService>();
             //test.SayHello();
             //这里测试扫描程序集配置获取
-            BoBContainer.ServiceProvider.GetService<IBoBConfigService>().DynamicConfigInit();
+            //BoBContainer.ServiceProvider.GetService<IBoBConfigService>().DynamicConfigInit();
 
 
 

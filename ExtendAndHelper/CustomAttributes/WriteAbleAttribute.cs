@@ -12,6 +12,10 @@ namespace ExtendAndHelper.CustomAttributes
     {
         public bool WriteAble { get; set; }
 
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="writeAble">是否可写</param>
         public WriteAbleAttribute(bool writeAble=true)
         {
             WriteAble = writeAble;

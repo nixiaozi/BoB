@@ -1,8 +1,8 @@
 {
-  "BoB.CacheManager": {
-    "Test": "uiguihu"
-  },
   "BoB.BoBConfiguration": {
-    "Test": "poooooo"
+    "Test": "Fast"
+  },
+  "BoB.CacheManager": {
+    "Test": "bbbbb"
   }
 }

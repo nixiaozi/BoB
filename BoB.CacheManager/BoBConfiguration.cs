@@ -1,14 +1,22 @@
-﻿using ExtendAndHelper.CustomAttributes;
+﻿using BoB.BoBConfiguration;
+using ExtendAndHelper.CustomAttributes;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Text;
 
 namespace BoB.CacheManager
 {
     public static class BoBConfiguration
     {
+        static BoBConfiguration()
+        {
+            BaseBoBConfiguration.Init(Assembly.GetExecutingAssembly());
+        }
+
+
         [WriteAble]
-        public static string Test="bbbbb";  // 可编辑的属性不能添加Readonly引用
+        public static readonly string Test="bbbbb";  
 
     }
 }

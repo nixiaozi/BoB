@@ -57,7 +57,7 @@ namespace BoB.TestWebsite.Controller
             Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.Test);
             Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.CurrentTime.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss"));
             Debug.WriteLine(BoB.CacheManager.BoBConfiguration.Test);
-            Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.testPeople.Name);
+            Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.testPeople.Now.ToLongTimeString());
             Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.TestBool);
             Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.TestInt);
         }

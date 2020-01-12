@@ -1,8 +1,12 @@
 {
   "BoB.BoBConfiguration": {
-    "Test": "Fast"
+    "Test": "\"Fast\"",
+    "CurrentTime": "2020/1/1 6:20:30",
+    "testPeople": "{\"Age\":45,\"Name\":\"Leo\",\"Now\":\"1024-08-05T06:47:52\",\"HasPen\":false}",
+    "TestInt": "77",
+    "TestBool": "true"
   },
   "BoB.CacheManager": {
-    "Test": "bbbbb"
+    "Test": "\"bbbbb\""
   }
 }

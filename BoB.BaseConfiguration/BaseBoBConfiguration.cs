@@ -2,9 +2,12 @@
 using ExtendAndHelper.CustomAttributes;
 using ExtendAndHelper.Extends;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -76,7 +79,24 @@ namespace BoB.BoBConfiguration
                         {
                             var theMember = typeMembers.FirstOrDefault(s => s.Name == item.Key);
                             if (theMember != null)
-                                ((FieldInfo)theMember).SetValue(t, item.Value);
+                            {
+                                TypeConverter converter =TypeDescriptor.GetConverter(theMember.FieldType);
+
+                                if (theMember.FieldType.BaseType.Name == "Object" && theMember.FieldType.IsSealed==false) //可实例化的类
+                                {
+                                    var v = JObject.Parse(item.Value).ToObject(theMember.FieldType); 
+                                    ((FieldInfo)theMember).SetValue(t, v);
+                                }
+                                else
+                                {
+
+                                    var v = converter.ConvertFromString(null, CultureInfo.CurrentCulture, item.Value);
+                                    ((FieldInfo)theMember).SetValue(t, v);
+                                }
+                                
+
+                                
+                            }
                         }
 
                     }
@@ -117,7 +137,14 @@ namespace BoB.BoBConfiguration
 
                 foreach (var item in typeMembers)
                 {
-                    assemblyConfigs.Add(item.Name, item.GetValue(t).ToString());
+                    if (item.FieldType.Name=="DateTime")
+                    {
+                        assemblyConfigs.Add(item.Name, item.GetValue(t).ToString());
+                    }
+                    else
+                    {
+                        assemblyConfigs.Add(item.Name, JsonConvert.SerializeObject(item.GetValue(t)));
+                    }
                 }
 
             }
@@ -131,5 +158,31 @@ namespace BoB.BoBConfiguration
         [WriteAble]
         public static readonly string Test = "Fast";
 
+        [WriteAble]
+        public static readonly DateTime CurrentTime = new DateTime(2020, 1, 1, 6, 20, 30); //为了兼容这里的时间应该只使用UTC时间
+        
+        [WriteAble]
+        public static readonly TestPeople testPeople = new TestPeople { Age = 45, Name = "Leo", HasPen=false,Now=new DateTime(1024,8,5,6,47,52) };
+
+        [WriteAble]
+        public static readonly int TestInt=67;
+
+        [WriteAble]
+        public static readonly bool TestBool = false;
     }
+
+    public class TestPeople
+    {
+        public int Age { get; set; }
+
+
+        public string Name { get; set; }
+
+        public DateTime Now { get; set; }
+
+
+        public bool HasPen { get; set; }
+    }
+
+
 }

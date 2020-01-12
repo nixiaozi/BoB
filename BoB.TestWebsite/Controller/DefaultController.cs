@@ -11,6 +11,7 @@ using BoB.LanguageManager;
 using BoB.Work;
 using BoB.BaseModule.Test.TypeInject;
 using System.Diagnostics;
+using ExtendAndHelper.Extends;
 
 namespace BoB.TestWebsite.Controller
 {
@@ -51,8 +52,14 @@ namespace BoB.TestWebsite.Controller
             _beginWorkService.CheckSex();
             _injectTest.ToInjectTest();
 
+            Debug.WriteLine((new String("2019/1/1 0:00:00")).TryConvertResult<DateTime>().ToString("yyyy-MM-dd"));
+
             Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.Test);
+            Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.CurrentTime.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss"));
             Debug.WriteLine(BoB.CacheManager.BoBConfiguration.Test);
+            Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.testPeople.Name);
+            Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.TestBool);
+            Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.TestInt);
         }
 
         public void Now()

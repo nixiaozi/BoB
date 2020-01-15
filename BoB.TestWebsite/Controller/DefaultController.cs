@@ -12,6 +12,7 @@ using BoB.Work;
 using BoB.BaseModule.Test.TypeInject;
 using System.Diagnostics;
 using ExtendAndHelper.Extends;
+using Serilog;
 
 namespace BoB.TestWebsite.Controller
 {
@@ -26,10 +27,11 @@ namespace BoB.TestWebsite.Controller
         public IEnumerable<ICommandHandler> _commandHandlers;
         public IBeginWorkBlock _beginWorkService;
         public IinjectTest _injectTest;
+        public ILogger _logger;
 
         public DefaultController(ITestService testService,ToolbarButton toolbar,
             IEnumerable<ToolbarButton> toolbarButtons, IEnumerable<ICommandHandler> commandHandlers,
-            IBeginWorkBlock beginWorkService, IinjectTest injectTest)
+            IBeginWorkBlock beginWorkService, IinjectTest injectTest, ILogger logger)
         {
             _testService = testService;
             _toolbar = toolbar;
@@ -37,8 +39,10 @@ namespace BoB.TestWebsite.Controller
             _commandHandlers = commandHandlers;
             _beginWorkService = beginWorkService;
             _injectTest = injectTest;
+            _logger = logger;
 
-            
+            _logger.Debug("SeriLog Success!");
+
         }
         
         [HttpGet]

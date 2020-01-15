@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using BoB.BoBConfigManager;
+using BoB.BoBLogger;
 using BoB.CacheManager;
 using BoB.LanguageManager;
 using BoB.WorkModule;
@@ -18,6 +19,7 @@ namespace BoB.UseBus.Register
 
             //模块注入,只有注入模块之后，程序集扫描才能获得该assembly
             builder.RegisterModule<BaseModule.BoBModule>();
+            builder.RegisterModule<BoBLoggerModule>();
             // builder.RegisterModule<BoBConfigManagerModule>(); 已经使用静态构造函数初始化，不需要这种注入操作了
             builder.RegisterModule<CacheManagerModule>();
             builder.RegisterModule<LanguageManagerModule>();

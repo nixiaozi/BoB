@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
     <ProjectReference Include="..\BoB.BoBConfigManager\BoB.BoBConfigManager.csproj" />
+    <ProjectReference Include="..\BoB.BoBLogger\BoB.BoBLogger.csproj" />
     <ProjectReference Include="..\BoB.ContainManager\BoB.ContainManager.csproj" />
     <ProjectReference Include="..\BoB.LanguageManager\BoB.LanguageManager.csproj" />
     <ProjectReference Include="..\BoB.WorkModule\BoB.Work.csproj" />

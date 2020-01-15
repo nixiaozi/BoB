@@ -2,9 +2,9 @@
   "BoB.BoBConfiguration": {
     "Test": "\"Fast\"",
     "CurrentTime": "2020/1/1 6:20:30",
-    "testPeople": "{\"Age\":45,\"Name\":\"Leo\",\"Now\":\"2020-1-1T6:20:37+8:00\",\"HasPen\":false}",
-    "TestInt": "77",
-    "TestBool": "true"
+    "testPeople": "{\"Age\":45,\"Name\":\"Leo\",\"Now\":\"1024-08-05T06:47:52\",\"HasPen\":false}",
+    "TestInt": "67",
+    "TestBool": "false"
   },
   "BoB.CacheManager": {
     "Test": "\"bbbbb\""

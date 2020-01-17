@@ -16,8 +16,8 @@ namespace BoB.BoBLogger
         public override void OnLoad(ContainerBuilder builder)
         {
             //没有自定义的引用可以不填
-            DevelopSerilog.Configuration().Error("Directly Serilog Error!");
-            builder.RegisterLogger(DevelopSerilog.Configuration()); //add autofac for for Serilog
+            //DevelopSerilog.Configuration().Error("Directly Serilog Error!");
+            //builder.RegisterLogger(DevelopSerilog.Configuration()); //add autofac for for Serilog
             //builder.Register<ILogger>((c, p) =>
             //{
             //    return new LoggerConfiguration()

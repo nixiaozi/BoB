@@ -12,6 +12,9 @@ namespace BoB.BoBConfiguration.BaseEnums
     {
         [Tag("框架基础缓存")]
         BoBConfig=1,
+        [Tag("语言翻译缓存")]
+        BoBLangService =2,
+
         [Tag("其他类型缓存")]
         Others =10000,
     }

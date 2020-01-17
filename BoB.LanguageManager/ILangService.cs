@@ -13,6 +13,6 @@ namespace BoB.LanguageManager
         /// <param name="OriginalText"></param>
         /// <param name="langType"></param>
         /// <returns></returns>
-        public string L(string OriginalText, LanguageType? langType);
+        public string L(string OriginalText, LanguageType? langType=null);
     }
 }

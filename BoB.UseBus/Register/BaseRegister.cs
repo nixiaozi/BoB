@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Autofac.Configuration;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace BoB.UseBus.Register
 {
@@ -27,6 +30,16 @@ namespace BoB.UseBus.Register
             // var container = builder.Build(); 使用新的注入方法，不需要其他了
 
             //AutoMap的使用
+
+            //autofac使用配置中更改
+            var config = new ConfigurationBuilder();// Add the configuration to the ConfigurationBuilder.
+            if (File.Exists("autofac.json"))
+            {
+                config.AddJsonFile("autofac.json");
+            }
+            var module = new ConfigurationModule(config.Build());// Register the ConfigurationModule with Autofac.
+            builder.RegisterModule(module);
+
 
         }
     }

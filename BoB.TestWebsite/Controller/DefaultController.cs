@@ -28,10 +28,11 @@ namespace BoB.TestWebsite.Controller
         public IBeginWorkBlock _beginWorkService;
         public IinjectTest _injectTest;
         public IBoBLogService _logger;
+        public ILangService _langService;
 
         public DefaultController(ITestService testService,ToolbarButton toolbar,
             IEnumerable<ToolbarButton> toolbarButtons, IEnumerable<ICommandHandler> commandHandlers,
-            IBeginWorkBlock beginWorkService, IinjectTest injectTest, IBoBLogService logger)
+            IBeginWorkBlock beginWorkService, IinjectTest injectTest, IBoBLogService logger,ILangService langService)
         {
             _testService = testService;
             _toolbar = toolbar;
@@ -40,6 +41,7 @@ namespace BoB.TestWebsite.Controller
             _beginWorkService = beginWorkService;
             _injectTest = injectTest;
             _logger = logger;
+            _langService = langService;
 
             logger.Error("DefaultController Error");
         }
@@ -60,9 +62,11 @@ namespace BoB.TestWebsite.Controller
             Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.Test);
             Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.CurrentTime.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss"));
             Debug.WriteLine(BoB.CacheManager.BoBConfiguration.Test);
-            Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.testPeople.Now.ToLongTimeString());
+            Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.testPeople.Name);
             Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.TestBool);
             Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.TestInt);
+
+            Debug.WriteLine(_langService.L("CustomEnvironmentLeo"));
         }
 
         public void Now()

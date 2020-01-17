@@ -1,5 +1,6 @@
 ﻿using BoB.BoBConfiguration.BaseEnums;
 using System;
+using System.Text;
 
 namespace BoB.BoBConfiguration
 {

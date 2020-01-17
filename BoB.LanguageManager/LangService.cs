@@ -1,10 +1,13 @@
 ﻿using BoB.BoBConfiguration.BaseEnums;
 using BoB.CacheManager;
 using ExtendAndHelper.CustomAttributes;
+using ExtendAndHelper.Utilties;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.IO;
 using System.Text;
 
 namespace BoB.LanguageManager
@@ -22,17 +25,33 @@ namespace BoB.LanguageManager
         /// <param name="OriginalText">原文</param>
         /// <param name="langType">翻译语种</param>
         /// <returns></returns>
-        public string L(string OriginalText,LanguageType? langType)
+        public string L(string OriginalText,LanguageType? langType=null)
         {
-            var theLangType = langType.HasValue ? langType.Value : LanguageType.zh_cn;
-            var LangDics = _cacheService.Get<Dictionary<string, string>>(CacheTag.BoBConfig, theLangType.ToString(),
+            var theLangType = langType.HasValue ? langType.Value : BoBConfiguration.BaseLangType; 
+            var LangDics = _cacheService.Get<Dictionary<string, string>>(CacheTag.BoBLangService, theLangType.ToString(),
                 () =>
                 {
+                    var rootPath = PathHelper.GetAppRootPath();
+                    var filePath = rootPath + BoBConfiguration.LangFolder + theLangType.ToString() + ".json";
+                    if (Directory.Exists(rootPath+ BoBConfiguration.LangFolder) && File.Exists(filePath))
+                    {
+                        using (StreamReader r = new StreamReader(filePath,Encoding.UTF8)) 
+                        {
+                            string json = r.ReadToEnd();
+                            Dictionary<string, string> items = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
 
-                    return new Dictionary<string, string>();
+                            return items;
+                        }
+
+                    }
+                    else
+                    {
+                        return new Dictionary<string, string>();
+                    }
+
                 },3600);
 
-            return "";
+            return LangDics.ContainsKey(OriginalText) ? LangDics[OriginalText] : OriginalText; //如果找不到译文则直接显示原文
         }
 
     }

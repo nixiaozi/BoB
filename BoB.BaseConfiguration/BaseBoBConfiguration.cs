@@ -39,7 +39,7 @@ namespace BoB.BoBConfiguration
 
                     //如果主路径存在BoBConfig.json文件就直接读取配置文件配置，并覆盖默认配置(配置项不存在则使用默认值)
                     Dictionary<string, Dictionary<string, string>> allModuleConfig = null;
-                    using (StreamReader r = new StreamReader(configFilePath))
+                    using (StreamReader r = new StreamReader(configFilePath, System.Text.Encoding.UTF8))
                     {
                         string json = r.ReadToEnd();
                         allModuleConfig = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string>>>(json);
@@ -60,7 +60,7 @@ namespace BoB.BoBConfiguration
 
                             File.Delete(configFilePath);
 
-                            using (var tw = new StreamWriter(configFilePath, true))
+                            using (var tw = new StreamWriter(configFilePath, true, System.Text.Encoding.UTF8))
                             {
                                 tw.WriteLine(JsonConvert.SerializeObject(allModuleConfig, Formatting.Indented));
                                 tw.Close();
@@ -110,7 +110,7 @@ namespace BoB.BoBConfiguration
                     Dictionary<string, Dictionary<string, string>> allNewModuleConfig = GetNewModuleConfig(theAssembly);
 
 
-                    using (var tw = new StreamWriter(configFilePath, true))
+                    using (var tw = new StreamWriter(configFilePath, true, System.Text.Encoding.UTF8))
                     {
                         tw.WriteLine(JsonConvert.SerializeObject(allNewModuleConfig, Formatting.Indented));
                         tw.Close();
@@ -162,7 +162,7 @@ namespace BoB.BoBConfiguration
         public static readonly DateTime CurrentTime = new DateTime(2020, 1, 1, 6, 20, 30); //为了兼容这里的时间应该只使用UTC时间
         
         [WriteAble]
-        public static readonly TestPeople testPeople = new TestPeople { Age = 45, Name = "Leo", HasPen=false,Now=new DateTime(1024,8,5,6,47,52) };
+        public static readonly TestPeople testPeople = new TestPeople { Age = 45, Name = "我嫩的都是", HasPen=false,Now=new DateTime(1024,8,5,6,47,52) };
 
         [WriteAble]
         public static readonly int TestInt=67;

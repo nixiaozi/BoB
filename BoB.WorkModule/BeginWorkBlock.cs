@@ -19,10 +19,23 @@ namespace BoB.Work
         protected override void Init()
         {
             // var ServiceProvider = BoBContainer.ServiceProvider; 通过基类获取
+            //for(var i = 1; i < 100000000; i++)
+            //{
+                _testService = CurrentServiceProvider.GetService<ITestService>(); // 必须使用Microsoft.Extensions.DependencyInjection 否则不能解释GetService<T> 泛型方法
+                _testService.SayHello();
+            //}
 
-            _testService = CurrentServiceProvider.GetService<ITestService>(); // 必须使用Microsoft.Extensions.DependencyInjection 否则不能解释GetService<T> 泛型方法
 
-            _testService.SayHello();
+            //for (var i = 1; i < 100000000; i++)
+            //{
+                //using (var scope = CurrentServiceProvider.CreateScope())  //这里使用了生命周期
+                //{
+                //    scope.ServiceProvider.GetService<ITestService>().Say("Current Invoke:" + " time");
+                //}
+            //}
+
+
+
             _toolbarButtons = CurrentServiceProvider.GetService<IEnumerable<ToolbarButton>>();
 
             CurrentServiceProvider.GetService<TypeInjectTest>().ToInjectTest(); //直接从注入库中拿出对象

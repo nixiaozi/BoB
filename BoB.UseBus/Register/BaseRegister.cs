@@ -16,7 +16,6 @@ namespace BoB.UseBus.Register
     {
         public static void RegisterConfigureContainer(ContainerBuilder builder)
         {
-
             //模块注入,只有注入模块之后，程序集扫描才能获得该assembly
             builder.RegisterModule<BaseModule.BoBModule>();
             builder.RegisterModule<BoBLoggerModule>();

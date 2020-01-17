@@ -13,6 +13,7 @@ using BoB.BaseModule.Test.TypeInject;
 using System.Diagnostics;
 using ExtendAndHelper.Extends;
 using BoB.BoBLogger;
+using BoB.BoBExceptions;
 
 namespace BoB.TestWebsite.Controller
 {
@@ -67,6 +68,8 @@ namespace BoB.TestWebsite.Controller
             Debug.WriteLine(BoB.BoBConfiguration.BaseBoBConfiguration.TestInt);
 
             Debug.WriteLine(_langService.L("CustomEnvironmentLeo"));
+
+            var ex = new BoBUnHandledException("wodge",new Exception("geses"));
         }
 
         public void Now()

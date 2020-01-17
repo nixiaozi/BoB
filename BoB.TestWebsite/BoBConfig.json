@@ -11,5 +11,9 @@
   },
   "BoB.LanguageManager": {
     "BaseLangType": "0"
+  },
+  "BoB.BoBExceptions": {
+    "BoBExceptionLog": "true",
+    "BoBUnHandledExceptionLog": "true"
   }
 }

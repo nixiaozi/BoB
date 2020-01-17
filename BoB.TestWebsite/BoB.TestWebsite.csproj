@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BoB.BoBExceptions\BoB.BoBExceptions.csproj" />
     <ProjectReference Include="..\BoB.LanguageManager\BoB.LanguageManager.csproj" />
     <ProjectReference Include="..\BoB.UseBus\BoB.UseBus.csproj" />
     <ProjectReference Include="..\BoB.WorkModule\BoB.Work.csproj" />

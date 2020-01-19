@@ -9,7 +9,7 @@ namespace BoB.BoBConfiguration
         /// <summary>
         /// 当前项目的名称
         /// </summary>
-        public const string ProjectName = "BasicofBasic";
+        public const string ProjectName = "BoB";
 
         /// <summary>
         /// 当前项目的版本

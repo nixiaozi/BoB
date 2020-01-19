@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
@@ -7,6 +7,8 @@
   <ItemGroup>
     <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
     <ProjectReference Include="..\BoB.ContainManager\BoB.ContainManager.csproj" />
+    <ProjectReference Include="..\BoB.EFDbContext\BoB.EFDbContext.csproj" />
+    <ProjectReference Include="..\BoB.MainDataBase\BoB.MainDataBase.csproj" />
   </ItemGroup>
 
   <ItemGroup>

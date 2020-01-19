@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using BoB.BaseModule.Test.AdaptersandDecorators;
 using System.Linq;
 using BoB.BaseModule.Test.TypeInject;
+using BoB.MainDataBase;
 
 namespace BoB.Work
 {
@@ -28,13 +29,15 @@ namespace BoB.Work
 
             //for (var i = 1; i < 100000000; i++)
             //{
-                //using (var scope = CurrentServiceProvider.CreateScope())  //这里使用了生命周期
-                //{
-                //    scope.ServiceProvider.GetService<ITestService>().Say("Current Invoke:" + " time");
-                //}
+            //using (var scope = CurrentServiceProvider.CreateScope())  //这里使用了生命周期
+            //{
+            //    scope.ServiceProvider.GetService<ITestService>().Say("Current Invoke:" + " time");
             //}
-
-
+            //}
+            var context = new MainDbContext();
+            var test = context.Add<School>(new School { SchoolID = 10, Location = "gds", SchoolName = "gre" });
+            context.SaveChanges();
+            
 
             _toolbarButtons = CurrentServiceProvider.GetService<IEnumerable<ToolbarButton>>();
 

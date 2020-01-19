@@ -9,6 +9,7 @@ using BoB.BaseModule.Test.AdaptersandDecorators;
 using System.Linq;
 using BoB.BaseModule.Test.TypeInject;
 using BoB.MainDataBase;
+using ExtendAndHelper.Utilties;
 
 namespace BoB.Work
 {
@@ -35,7 +36,8 @@ namespace BoB.Work
             //}
             //}
             var context = new MainDbContext();
-            var test = context.Add<School>(new School { SchoolID = 10, Location = "gds", SchoolName = "gre" });
+            var id = context.Set<School>().Count()+100;  //可以使用该方法获模型数据
+            var test = context.Add<School>(new School { SchoolID = id, Location = RandomHelper.RandomString(20), SchoolName = RandomHelper.RandomString(10) });
             context.SaveChanges();
             
 

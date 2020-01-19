@@ -25,6 +25,9 @@ namespace BoB.Work
         public byte[] Version { get;  } //对于时间戳这种数据库自动生成的数据，不能设置set;访问器；防止出现错误
     }
 
+    /// <summary>
+    /// 这里进行了Context初始化，必须添加
+    /// </summary>
     public class SchoolCreator : IMainModelCreator
     {
         public void CreateModel(ModelBuilder builder)

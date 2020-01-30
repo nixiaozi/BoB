@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BoB.AutoMapperManager\BoB.AutoMapperManager.csproj" />
     <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
     <ProjectReference Include="..\BoB.ContainManager\BoB.ContainManager.csproj" />
     <ProjectReference Include="..\BoB.EFDbContext\BoB.EFDbContext.csproj" />

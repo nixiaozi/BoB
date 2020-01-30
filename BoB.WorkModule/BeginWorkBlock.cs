@@ -10,6 +10,7 @@ using System.Linq;
 using BoB.BaseModule.Test.TypeInject;
 using BoB.MainDataBase;
 using ExtendAndHelper.Utilties;
+using BoB.AutoMapperManager;
 
 namespace BoB.Work
 {
@@ -17,9 +18,11 @@ namespace BoB.Work
     {
         private ITestService _testService;
         private IEnumerable<ToolbarButton> _toolbarButtons;
+        private IAutoMapperService _autoMapperService;
 
         protected override void Init()
         {
+            _autoMapperService= CurrentServiceProvider.GetService<IAutoMapperService>();
             // var ServiceProvider = BoBContainer.ServiceProvider; 通过基类获取
             //for(var i = 1; i < 100000000; i++)
             //{
@@ -51,7 +54,22 @@ namespace BoB.Work
         {
             _testService.Say("CheckSex");
             _toolbarButtons.FirstOrDefault(s => s.CommandText == "Open File")?.Click();
+
+
+            var school = GetSchool(110);
+            var schooldto = _autoMapperService.DoMap<School, SchoolDto>(school);
+
+             School mSchllo = _autoMapperService.DoMap<SchoolDto, School>(schooldto);
+
         }
+
+
+        public School GetSchool(int ID)
+        {
+            var context = new MainDbContext();
+            return context.Set<School>().FirstOrDefault(s => s.SchoolID == ID);
+        }
+
 
         public void CheckWord()
         {

@@ -1,4 +1,5 @@
-﻿using BoB.EFDbContext.BaseEntities;
+﻿using AutoMapper;
+using BoB.EFDbContext.BaseEntities;
 using BoB.MainDataBase;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,6 +9,7 @@ using System.Text;
 
 namespace BoB.Work
 {
+    [AutoMap(typeof(SchoolDto))]
     public class School
     {
         [Key]
@@ -21,8 +23,9 @@ namespace BoB.Work
 
         public string Location { get; set; }
 
-
-        public byte[] Version { get;  } //对于时间戳这种数据库自动生成的数据，不能设置set;访问器；防止出现错误
+        [IgnoreMap]
+        [Timestamp]
+        public byte[] Version { get; set; } //对于时间戳这种数据库自动生成的数据，需要显式添加Timestamp标记
     }
 
     /// <summary>

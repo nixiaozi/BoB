@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BoB.AutoMapperManager\BoB.AutoMapperManager.csproj" />
     <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
     <ProjectReference Include="..\BoB.BoBConfigManager\BoB.BoBConfigManager.csproj" />
     <ProjectReference Include="..\BoB.BoBLogger\BoB.BoBLogger.csproj" />

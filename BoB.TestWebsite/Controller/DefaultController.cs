@@ -14,6 +14,8 @@ using System.Diagnostics;
 using ExtendAndHelper.Extends;
 using BoB.BoBLogger;
 using BoB.BoBExceptions;
+using BoB.AutoMapperManager.Test;
+using BoB.AutoMapperManager;
 
 namespace BoB.TestWebsite.Controller
 {
@@ -30,10 +32,12 @@ namespace BoB.TestWebsite.Controller
         public IinjectTest _injectTest;
         public IBoBLogService _logger;
         public ILangService _langService;
+        public IAutoMapperService _autoMapperService;
 
         public DefaultController(ITestService testService,ToolbarButton toolbar,
             IEnumerable<ToolbarButton> toolbarButtons, IEnumerable<ICommandHandler> commandHandlers,
-            IBeginWorkBlock beginWorkService, IinjectTest injectTest, IBoBLogService logger,ILangService langService)
+            IBeginWorkBlock beginWorkService, IinjectTest injectTest, IBoBLogService logger,ILangService langService,
+            IAutoMapperService autoMapperService)
         {
             _testService = testService;
             _toolbar = toolbar;
@@ -43,6 +47,7 @@ namespace BoB.TestWebsite.Controller
             _injectTest = injectTest;
             _logger = logger;
             _langService = langService;
+            _autoMapperService = autoMapperService;
 
             logger.Error("DefaultController Error");
         }
@@ -70,6 +75,19 @@ namespace BoB.TestWebsite.Controller
             Debug.WriteLine(_langService.L("CustomEnvironmentLeo"));
 
             var ex = new BoBUnHandledException("wodge",new Exception("geses"));
+
+            //测试autoMapper的使用
+            var FooObj = new Foo()
+            {
+                Age = 9,
+                ID = 7,
+                Name = "IED"
+            };
+
+
+            FooDto dto = _autoMapperService.DoMap<Foo, FooDto> (FooObj);
+            Debug.WriteLine("FooDto's Name="+dto.Name);
+
         }
 
         public void Now()

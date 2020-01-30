@@ -12,6 +12,7 @@ using System.Text;
 using Autofac.Configuration;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using BoB.AutoMapperManager;
 
 namespace BoB.UseBus.Register
 {
@@ -29,7 +30,7 @@ namespace BoB.UseBus.Register
 
             // var container = builder.Build(); 使用新的注入方法，不需要其他了
 
-            //AutoMap的使用
+
 
             //autofac使用配置中更改
             var config = new ConfigurationBuilder();// Add the configuration to the ConfigurationBuilder.
@@ -40,6 +41,10 @@ namespace BoB.UseBus.Register
             var module = new ConfigurationModule(config.Build());// Register the ConfigurationModule with Autofac.
             builder.RegisterModule(module);
 
+
+
+            //AutoMap的使用（必须再注入完所有引用后使用)
+            builder.RegisterModule<AutoMapperManagerModule>();
 
         }
     }

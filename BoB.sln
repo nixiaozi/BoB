@@ -43,7 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.BoBExceptions", "BoB.Bo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.MainDataBase", "BoB.MainDataBase\BoB.MainDataBase.csproj", "{1CE9F999-D700-4257-95DA-F0DEF6203472}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoB.AutoMapperManager", "BoB.AutoMapperManager\BoB.AutoMapperManager.csproj", "{435E945D-636E-41CE-981C-C8B38F670811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.AutoMapperManager", "BoB.AutoMapperManager\BoB.AutoMapperManager.csproj", "{435E945D-636E-41CE-981C-C8B38F670811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoB.OAuth", "BoB.OAuth\BoB.OAuth.csproj", "{2D5D9EA6-07C0-4DB7-A752-6B356415D397}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -119,6 +121,10 @@ Global
 		{435E945D-636E-41CE-981C-C8B38F670811}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{435E945D-636E-41CE-981C-C8B38F670811}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{435E945D-636E-41CE-981C-C8B38F670811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D5D9EA6-07C0-4DB7-A752-6B356415D397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D5D9EA6-07C0-4DB7-A752-6B356415D397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D5D9EA6-07C0-4DB7-A752-6B356415D397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D5D9EA6-07C0-4DB7-A752-6B356415D397}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -141,6 +147,7 @@ Global
 		{67DE16A9-73D2-4C3D-8718-C22428469FE8} = {991F6AD8-DE78-4763-B212-51A3F678A9E5}
 		{1CE9F999-D700-4257-95DA-F0DEF6203472} = {47245C68-BBBB-4B8C-B645-EAD30A1EB18F}
 		{435E945D-636E-41CE-981C-C8B38F670811} = {991F6AD8-DE78-4763-B212-51A3F678A9E5}
+		{2D5D9EA6-07C0-4DB7-A752-6B356415D397} = {33EAD9FB-7AE9-45DD-A9CB-F89AD2D2DF1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C2269C5-7CF7-4EC9-8D09-1589D95ECEC4}

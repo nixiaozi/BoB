@@ -137,7 +137,7 @@ namespace BoB.BoBConfiguration
 
                 foreach (var item in typeMembers)
                 {
-                    if (item.FieldType.Name=="DateTime")
+                    if (item.FieldType.Name=="DateTime" || item.FieldType.Name == "String")
                     {
                         assemblyConfigs.Add(item.Name, item.GetValue(t).ToString());
                     }

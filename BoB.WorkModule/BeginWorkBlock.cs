@@ -22,6 +22,7 @@ namespace BoB.Work
 
         protected override void Init()
         {
+            
             _autoMapperService= CurrentServiceProvider.GetService<IAutoMapperService>();
             // var ServiceProvider = BoBContainer.ServiceProvider; 通过基类获取
             //for(var i = 1; i < 100000000; i++)

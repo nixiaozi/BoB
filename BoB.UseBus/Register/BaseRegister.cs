@@ -13,6 +13,7 @@ using Autofac.Configuration;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using BoB.AutoMapperManager;
+using BoB.RazorWork;
 
 namespace BoB.UseBus.Register
 {
@@ -23,10 +24,11 @@ namespace BoB.UseBus.Register
             //模块注入,只有注入模块之后，程序集扫描才能获得该assembly
             builder.RegisterModule<BaseModule.BoBModule>();
             builder.RegisterModule<BoBLoggerModule>();
-            // builder.RegisterModule<BoBConfigManagerModule>(); 已经使用静态构造函数初始化，不需要这种注入操作了
+            // builder.RegisterModule<BoBConfigManagerModule>(); 已经使用静态构造函数初始化，不需要这种注入操作了,模块已弃用
             builder.RegisterModule<CacheManagerModule>();
             builder.RegisterModule<LanguageManagerModule>();
             builder.RegisterModule<WorkModule.WorkModule>();
+            builder.RegisterModule<RazorWorkModule>();
 
             // var container = builder.Build(); 使用新的注入方法，不需要其他了
 

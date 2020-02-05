@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
+    <ProjectReference Include="..\BoB.ContainManager\BoB.ContainManager.csproj" />
+    <ProjectReference Include="..\BoB.RazorDataBase\BoB.RazorDataBase.csproj" />
+  </ItemGroup>
+
+</Project>

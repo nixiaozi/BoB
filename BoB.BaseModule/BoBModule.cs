@@ -77,6 +77,10 @@ namespace BoB.BaseModule
             builder.RegisterAssemblyTypes(CurrentAssembly!=null? CurrentAssembly : this.ThisAssembly)
                 .Where(t => t.Name.EndsWith("Service") || t.Name.EndsWith("Block"))
                     .AsImplementedInterfaces();
+
+            var test = builder.RegisterAssemblyTypes(CurrentAssembly != null ? CurrentAssembly : this.ThisAssembly)
+                .Where(t => t.Name.EndsWith("Service") || t.Name.EndsWith("Block"));
+
             OnLoad(builder);
         }
 

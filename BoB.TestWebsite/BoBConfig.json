@@ -15,5 +15,8 @@
   "BoB.BoBExceptions": {
     "BoBExceptionLog": "true",
     "BoBUnHandledExceptionLog": "true"
+  },
+  "BoB.MainDataBase": {
+    "ConnectionStr": "Data Source=.;Initial Catalog=CSNAutoEntityTest;User ID=sa;Password=As412563"
   }
 }

@@ -12,7 +12,6 @@
 
   <ItemGroup>
     <Folder Include="MiddleWare\" />
-    <Folder Include="CustomHost\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +28,7 @@
     <ProjectReference Include="..\BoB.BoBLogger\BoB.BoBLogger.csproj" />
     <ProjectReference Include="..\BoB.ContainManager\BoB.ContainManager.csproj" />
     <ProjectReference Include="..\BoB.LanguageManager\BoB.LanguageManager.csproj" />
+    <ProjectReference Include="..\BoB.RazorWork\BoB.RazorWork.csproj" />
     <ProjectReference Include="..\BoB.WorkModule\BoB.Work.csproj" />
   </ItemGroup>
 

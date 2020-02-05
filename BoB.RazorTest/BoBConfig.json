@@ -1,0 +1,15 @@
+﻿{
+  "BoB.BoBConfiguration": {
+    "Test": "\"Fast\"",
+    "CurrentTime": "2020/1/1 6:20:30",
+    "testPeople": "{\"Age\":45,\"Name\":\"我嫩的都是\",\"Now\":\"1024-08-05T06:47:52\",\"HasPen\":false}",
+    "TestInt": "67",
+    "TestBool": "false"
+  },
+  "BoB.MainDataBase": {
+    "ConnectionStr": "Data Source=.;Initial Catalog=CSNAutoEntityTest;User ID=sa;Password=As412563"
+  },
+  "BoB.RazorDataBase": {
+    "ConnectionStr": "Data Source=.;Initial Catalog=RazorTest;User ID=sa;Password=As412563"
+  }
+}

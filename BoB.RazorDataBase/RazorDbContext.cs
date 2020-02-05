@@ -1,16 +1,14 @@
 ﻿using BoB.EFDbContext;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace BoB.MainDataBase
+namespace BoB.RazorDataBase
 {
-    public class MainDbContext: DbContext
+    public class RazorDbContext:DbContext
     {
-        public MainDbContext() { }
+        public RazorDbContext() { }
 
-        public MainDbContext(DbContextOptions<DbContext> options) : base(options) { }
+        public RazorDbContext(DbContextOptions<DbContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,9 +19,10 @@ namespace BoB.MainDataBase
         {
             base.OnModelCreating(modelBuilder);
 
-            BaseDbContext.Init(modelBuilder, typeof(IMainModelCreator)); //初始化模型
+            BaseDbContext.Init(modelBuilder, typeof(IRazorModelCreator)); //初始化模型
 
         }
+
 
     }
 }

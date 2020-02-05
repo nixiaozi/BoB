@@ -19,10 +19,39 @@ namespace BoB.OAuth.Pages
             _log = log; 
         }
 
-        public IActionResult OnGet()
+        //public void OnGet()
+        //{
+
+        //}
+
+        public string Message { get; set; }
+        public void OnGet()
         {
-            _log.Error("Gsdge", "sdg", "gdsger");
-            return Content("something");
+            Message = "Get used";
         }
+        public void OnPost()
+        {
+            Message = "Post used";
+        }
+
+
+        //public IActionResult OnPost()
+        //{
+        //    _log.Error("Gsdge", "sdg", "gdsger");
+        //    return Content("something");
+        //}
+
+
+        
+
+        //不可以同时使用多个OnGet重载，就算参数不同也不行
+        //An unhandled exception occurred while processing the request.
+        //InvalidOperationException: Multiple handlers matched.The following handlers matched route data and had all constraints satisfied:
+        //Microsoft.AspNetCore.Mvc.IActionResult OnGet(), Void OnGet(System.String)
+        //Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.DefaultPageHandlerMethodSelector.Select(PageContext context)
+        //public void OnGet(string id)
+        //{
+
+        //}
     }
 }

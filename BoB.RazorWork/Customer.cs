@@ -10,7 +10,7 @@ namespace BoB.RazorWork
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="值不能为空！"), StringLength(10)]
+        [Required(ErrorMessage ="值不能为空！"), StringLength(10,ErrorMessage ="字符串长度最多为10个")]
         public string Name { get; set; }
 
     }

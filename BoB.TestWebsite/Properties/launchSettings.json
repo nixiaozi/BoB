@@ -1,14 +1,13 @@
-﻿{
+{
   "iisSettings": {
-    "windowsAuthentication": false, 
-    "anonymousAuthentication": true, 
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
     "iisExpress": {
       "applicationUrl": "http://localhost:53375",
       "sslPort": 44349
     }
   },
   "profiles": {
-    // 这个是使用IIS Express部署时的配置
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
@@ -17,15 +16,21 @@
         "ASPNETCORE_ENVIRONMENT": "Leo"
       }
     },
-     // 这个是没有托管服务器时的配置
     "BoB.TestWebsite": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/default/index",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api/default/index",
+      "publishAllPorts": true,
+      "useSSL": true
     }
   }
 }

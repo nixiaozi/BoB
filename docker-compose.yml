@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  bob.testwebsite:
+    image: ${DOCKER_REGISTRY-}bobtestwebsite
+    build:
+      context: .
+      dockerfile: BoB.TestWebsite/Dockerfile

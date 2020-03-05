@@ -28,7 +28,7 @@ namespace BoB.TestWebsite.Controller
         public ToolbarButton _toolbar;
         public IEnumerable<ToolbarButton> _toolbarButtons;
         public IEnumerable<ICommandHandler> _commandHandlers;
-        public IBeginWorkBlock _beginWorkService;
+        //public IBeginWorkBlock _beginWorkService;
         public IinjectTest _injectTest;
         public IBoBLogService _logger;
         public ILangService _langService;
@@ -36,14 +36,14 @@ namespace BoB.TestWebsite.Controller
 
         public DefaultController(ITestService testService,ToolbarButton toolbar,
             IEnumerable<ToolbarButton> toolbarButtons, IEnumerable<ICommandHandler> commandHandlers,
-            IBeginWorkBlock beginWorkService, IinjectTest injectTest, IBoBLogService logger,ILangService langService,
+            /*IBeginWorkBlock beginWorkService,*/ IinjectTest injectTest, IBoBLogService logger,ILangService langService,
             IAutoMapperService autoMapperService)
         {
             _testService = testService;
             _toolbar = toolbar;
             _toolbarButtons = toolbarButtons;
             _commandHandlers = commandHandlers;
-            _beginWorkService = beginWorkService;
+            //_beginWorkService = beginWorkService;
             _injectTest = injectTest;
             _logger = logger;
             _langService = langService;
@@ -60,7 +60,7 @@ namespace BoB.TestWebsite.Controller
             _toolbarButtons.ToList().ForEach(s => s.Click()); //使用保存按钮的点击事件
             _commandHandlers.ToList().ForEach(s => s.Todo());
 
-            _beginWorkService.CheckSex();
+            //_beginWorkService.CheckSex();
             _injectTest.ToInjectTest();
 
             Debug.WriteLine((new String("2019/1/1 0:00:00")).TryConvertResult<DateTime>().ToString("yyyy-MM-dd"));

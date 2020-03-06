@@ -1,25 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using BoB.RazorWork;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 
 namespace BoB.RazorTest.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private ICustomerBlock _customerservice;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ICustomerBlock customerservice)
         {
-            _logger = logger;
+            _customerservice = customerservice;
         }
 
-        public void OnGet()
-        {
+        public IList<Customer> Customer { get; set; }
 
+
+        public async Task OnGetAsync()
+        {
+            Customer = await _customerservice.DoListAllAsync();
         }
+
+
+        public async Task<IActionResult> OnPostDeleteAsync(int id)
+        {
+            
+
+            await _customerservice.DoDeleteAsync(id);
+
+            return RedirectToPage();
+        }
+
+
     }
 }

@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BoB.ContainManager\BoB.ContainManager.csproj" />
+  </ItemGroup>
+
 </Project>

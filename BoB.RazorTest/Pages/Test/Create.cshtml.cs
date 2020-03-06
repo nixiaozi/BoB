@@ -11,11 +11,11 @@ namespace BoB.RazorTest
 {
     public class CreateModel : PageModel
     {
-        private CreateBlock _createBlock;
+        private ICustomerBlock _createBlock;
         private IBeginWorkBlock _beginService;
 
         public CreateModel(
-            CreateBlock createBlock,
+            ICustomerBlock createBlock,
             IBeginWorkBlock beginService
             )
         {

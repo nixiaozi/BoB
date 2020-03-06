@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BoB.Api
 {
-    public class ApiResult<R> : IApiInput, IApiResult where R : IApiResult
+    public class ApiResult<R> : IApiResult
     {
         /// <summary>
         /// 构造函数初始化
@@ -70,6 +68,20 @@ namespace BoB.Api
         {
             return DoSomeThing.Invoke(this);
         }
+
+
+        //public ApiResult<T> MapTo<T>()
+        //{
+        //    var mapperService = BoBContainer.ServiceProvider.GetService<IAutoMapperService>();
+
+        //    var result=new ApiResult<T>
+        //    {
+        //        a
+        //    }
+
+        //    mapperService.DoMap<R, T>(this.Data);
+
+        //}
 
 
     }

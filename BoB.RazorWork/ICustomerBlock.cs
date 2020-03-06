@@ -5,9 +5,13 @@ using System.Threading.Tasks;
 
 namespace BoB.RazorWork
 {
-    public interface ICreateBlock
+    public interface ICustomerBlock
     {
         public Task DoCreateAsync(Customer customer);
+
+        public Task<IList<Customer>> DoListAllAsync();
+
+        public Task DoDeleteAsync(int Key);
 
     }
 }

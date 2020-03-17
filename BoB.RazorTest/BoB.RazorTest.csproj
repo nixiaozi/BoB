@@ -14,6 +14,15 @@
     <ProjectReference Include="..\BoB.UseBus\BoB.UseBus.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\lib\" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="XCOPY &quot;$(SolutionDir)\Lang&quot; &quot;$(ProjectDir)\Lang\&quot; /S /Y" />
+  </Target>
+
 
 
 </Project>

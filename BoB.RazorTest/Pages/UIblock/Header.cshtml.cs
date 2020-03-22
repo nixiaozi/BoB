@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BoB.RazorTest
 {
-    public class HeaderModel : PageModel
+    public class HeaderModel : PageModel   //类别名不能重名，会有重名提醒
     {
         public void OnGet()
         {

@@ -32,6 +32,7 @@ namespace BoB.RazorTest
         [BindProperty]
         public Customer Customer { get; set; }
 
+        
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)

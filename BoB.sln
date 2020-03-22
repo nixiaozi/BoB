@@ -53,8 +53,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.RazorDataBase", "BoB.Ra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.RazorWork", "BoB.RazorWork\BoB.RazorWork.csproj", "{016B1369-7096-4205-B009-CB242BBF13E5}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{28726952-E579-4D9C-A5AB-5F11E4DEFADD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -145,10 +143,6 @@ Global
 		{016B1369-7096-4205-B009-CB242BBF13E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{016B1369-7096-4205-B009-CB242BBF13E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{016B1369-7096-4205-B009-CB242BBF13E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{28726952-E579-4D9C-A5AB-5F11E4DEFADD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28726952-E579-4D9C-A5AB-5F11E4DEFADD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28726952-E579-4D9C-A5AB-5F11E4DEFADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28726952-E579-4D9C-A5AB-5F11E4DEFADD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

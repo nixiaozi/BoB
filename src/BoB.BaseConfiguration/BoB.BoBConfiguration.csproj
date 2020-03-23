@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BoB.ContainManager\BoB.ContainManager.csproj" />
+    <ProjectReference Include="..\BoB.ExtendAndHelper\BoB.ExtendAndHelper.csproj" />
+  </ItemGroup>
+
+</Project>

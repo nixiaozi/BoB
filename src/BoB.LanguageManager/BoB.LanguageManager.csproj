@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Lang\zh_cn.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
+    <ProjectReference Include="..\BoB.CacheManager\BoB.CacheManager.csproj" />
+    <ProjectReference Include="..\BoB.ExtendAndHelper\BoB.ExtendAndHelper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Lang\zh_cn.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="XCOPY &quot;$(ProjectDir)\Lang&quot; &quot;$(SolutionDir)\Lang\&quot; /S /Y" />
+  </Target>
+
+</Project>

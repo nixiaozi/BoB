@@ -10,6 +10,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BoB.HelloWorldApi.Controllers
 {
+    /// <summary>
+    /// DefaultController summary
+    /// </summary>
+    /// <remarks>DefaultController</remarks>
     [Route("[controller]/[action]")]
     [ApiController]
     public class DefaultController : ControllerBase
@@ -17,19 +21,33 @@ namespace BoB.HelloWorldApi.Controllers
         private IPeopleBlock _peopleBlock;
         private IWorldActionBlock _worldActionBlock;
 
+        /// <summary>
+        /// DefaultController Init
+        /// </summary>
+        /// <param name="peopleBlock"></param>
+        /// <param name="worldActionBlock"></param>
         public DefaultController(IPeopleBlock peopleBlock, IWorldActionBlock worldActionBlock)
         {
             _peopleBlock = peopleBlock;
             _worldActionBlock = worldActionBlock;
         }
 
-
+        /// <summary>
+        /// GetIndex Hello
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public string GetIndex()
         {
             return "Hello";
         }
 
-
+        /// <summary>
+        /// AddPeople（添加的人）
+        /// </summary>
+        /// <param name="people">添加的人</param>
+        /// <returns></returns>
+        [HttpPost]
         public ActionResult<ApiResult<int>> AddPeople(People people)
         {
             ApiResult<int> result = new ApiResult<int>(false);

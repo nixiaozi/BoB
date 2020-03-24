@@ -24,7 +24,8 @@ namespace BoB.PeopleEntities
     {
         public void CreateModel(ModelBuilder builder)
         {
-            builder.Entity<People>().HasKey(s => s.Key);
+            builder.Entity<People>();
+            
         }
     }
 }

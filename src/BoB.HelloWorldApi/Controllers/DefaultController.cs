@@ -58,6 +58,21 @@ namespace BoB.HelloWorldApi.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// 获取所有有效的People
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult<ApiResult<List<People>>> AllValidatePeopleList()
+        {
+            ApiResult<List<People>> result = new ApiResult<List<People>>(false);
+
+            result.Data = _peopleBlock.GetAllValidatePeople();
+            result.Success = true;
+
+            return Ok(result);
+        }
+
 
     }
 }

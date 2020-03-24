@@ -53,7 +53,7 @@ namespace BoB.PeopleEntities
         {
             using (var context = new MainDbContext())
             {
-                return context.Set<People>().ToList();
+                return context.Set<People>().Where(s=>s.DataStatus== DataStatus.Normal).ToList();
             }
         }
 

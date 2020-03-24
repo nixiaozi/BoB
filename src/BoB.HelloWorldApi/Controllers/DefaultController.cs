@@ -73,6 +73,20 @@ namespace BoB.HelloWorldApi.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// 所有的人都sayhello
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult<ApiResult<List<string>>> AllSayHello()
+        {
+            ApiResult<List<string>> result = new ApiResult<List<string>>(false);
+
+            result.Data = _worldActionBlock.AllSayHello();
+            result.Success = true;
+
+            return Ok(result);
+        }
 
     }
 }

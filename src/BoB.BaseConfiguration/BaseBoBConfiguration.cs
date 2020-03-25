@@ -72,7 +72,7 @@ namespace BoB.BoBConfiguration
                         //Debug.Write(theAssembly.FullName + "\n");
                         //Debug.WriteLine(t.Name);
 
-                        //获取所有EditAble标识的字段
+                        //获取所有WriteAble标识的字段
                         var typeMembers = t.GetFields().Where(prop => Attribute.IsDefined(prop, typeof(WriteAbleAttribute)));
 
                         foreach (var item in theModuleConfig.Value)

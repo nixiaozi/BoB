@@ -7,7 +7,7 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
 
 
 ## 功能和优势
-1. 使用模块化注入,减少繁琐的依赖注入服务添加
+* 使用模块化注入,减少繁琐的依赖注入服务添加
     一般依赖注入都是使用单个服务进行注入例如：
     ```C#
     builder.RegisterType<MemberService>().As<IMemberService>().InstancePerLifetimeScope();
@@ -20,16 +20,43 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
     builder.RegisterModule<AccountLogModule>();
     ```
     
-2. 灵活的自定义配置管理
+* 灵活的自定义配置管理
+    可以在每个模块中轻松的添加配置
+    ```C#
+    [WriteAble]
+    public static readonly TestPeople testPeople = new TestPeople { Age = 45, Name = "我嫩的都是", HasPen=false,Now=new DateTime(1024,8,5,6,47,52) };
+    [WriteAble]
+    public static readonly int TestInt=67;
+    [WriteAble]
+    public static readonly bool TestBool = false;
+    ```
+    项目运行时会自动生成一个BoBConfig.json文件来存储各个模块的所有课编辑的配置，你可以通过修改BoBConfig.json文件的配置值来修改配置。
     
 
-3. 灵活的异常处理和日志记录功能
-    
+* 灵活的异常处理和日志记录功能
+    集成了Serilog日志模块，你可以定制模板。当然你还可以使用你自己喜欢的。
+    ```C#
+    var _log = BoBContainer.ServiceProvider.GetService<IBoBLogService>();
+    _log.Verbose(Message, _ModuleLay, _ModuleName, _MethodName, HResult, exception);
+    ```
 
-4. 可扩展的缓存处理功能
-    使用缓存是提高系统性能的重要方式
+* 可扩展的缓存处理功能
+   使用缓存是提高系统性能的重要方式，你可以自由使用自己喜欢的缓存控制如redis。
+   ```C#
+    var LangDics = _cacheService.Get<Dictionary<string, string>>(CacheTag.BoBLangService, theLangType.ToString(),
+        () =>
+        {
+            // return to cache data
+        },3600);
+    ```
 
-5. 简单的语言切换
+* 简单的语言切换
+    使用不同的语种使用不同的json文件，来提供对语种翻译的支持。
+    ```C#
+    public ILangService _langService;
+    ***
+    _langService.L("CustomEnvironmentLeo")
+    ```
 
 
 :kissing_heart:更多的功能来自你的参与

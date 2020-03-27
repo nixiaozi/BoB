@@ -65,11 +65,26 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
 * 首先你需要新建一个文件夹BoBProject(这个名字可以取你想要的)用来存放你的项目，然后进入这个文件夹并新建四个子文件夹 BoB.Base、BoB.Core、BoB.Module 和 BoB.Use。最后进入 BoB.Module 文件夹并新建两个子文件夹 Actions 和 OTO。最后文件结构如下图：
 
 
-* 然后打开powershell并且导航到BoBProject文件夹下，执行以下命令以获取项目模板：
+* 然后打开powershell并且导航到BoBProject文件夹下，执行以下命令以下载需要的项目模板：
     ``` .NetCLI
     dotnet new --install BoB.BaseTemplate::1.0.3
     ```
-* 然后
+* 执行以下命令来添加项目：
+    ``` .NetCLI
+    dotnet new BoB.Api --output "BoB.Base/BoB.Api"
+    dotnet new BoB.AutoMapper --output "BoB.Base/BoB.AutoMapperManager"
+    dotnet new BoB.BaseConfig --output "BoB.Base/BoB.BoBConfiguration"
+    dotnet new BoB.BaseModule --output "BoB.Base/BoB.BaseModule"
+    dotnet new BoB.Exceptions --output "BoB.Base/BoB.BoBExceptions"
+    dotnet new BoB.BoBLogger --output "BoB.Base/BoB.BoBLogger"
+    dotnet new BoB.CacheManager --output "BoB.Base/BoB.CacheManager"
+    dotnet new BoB.ContainManager --output "BoB.Base/BoB.ContainManager"
+    dotnet new BoB.EFDbContext --output "BoB.Base/BoB.EFDbContext"
+    dotnet new BoB.ExtendAndHelper --output "BoB.Base/BoB.ExtendAndHelper"
+    dotnet new BoB.LanguageManager --output "BoB.Base/BoB.LanguageManager"
+    dotnet new BoB.LanguageManager --output "BoB.Use/BoB.UseBus"
+    
+    ```
 
 
 ## 实例

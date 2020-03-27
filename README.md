@@ -69,11 +69,11 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
     ``` .NetCLI
     dotnet new --install BoB.BaseTemplate::1.0.3
     ```
-* 执行以下命令来添加项目：
+* 然后在powershell中执行以下命令来添加所需项目：
     ``` .NetCLI
     dotnet new BoB.Api --output "BoB.Base/BoB.Api"
     dotnet new BoB.AutoMapper --output "BoB.Base/BoB.AutoMapperManager"
-    dotnet new BoB.BaseConfig --output "BoB.Base/BoB.BoBConfiguration"
+    dotnet new BoB.BaseConfig --output "BoB.Base/BoB.BaseConfiguration"
     dotnet new BoB.BaseModule --output "BoB.Base/BoB.BaseModule"
     dotnet new BoB.Exceptions --output "BoB.Base/BoB.BoBExceptions"
     dotnet new BoB.BoBLogger --output "BoB.Base/BoB.BoBLogger"
@@ -82,10 +82,29 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
     dotnet new BoB.EFDbContext --output "BoB.Base/BoB.EFDbContext"
     dotnet new BoB.ExtendAndHelper --output "BoB.Base/BoB.ExtendAndHelper"
     dotnet new BoB.LanguageManager --output "BoB.Base/BoB.LanguageManager"
-    dotnet new BoB.LanguageManager --output "BoB.Use/BoB.UseBus"
+    dotnet new BoB.UseBus --output "BoB.Use/BoB.UseBus"
     
     ```
-
+* 然后添加sln文件，最后生成解决方案
+    ``` .NetCLI
+    dotnet new sln -n BoB
+    ```
+    解决方案名称为BoB
+* 最后在powershell中执行以下命令，把前面生成的项目添加入解决方案
+    ``` .NetCLI
+    dotnet sln BoB.sln add BoB.Base/BoB.Api/BoB.Api.csproj BoB.Base/BoB.AutoMapperManager/BoB.AutoMapperManager.csproj BoB.Base/BoB.BaseConfiguration/BoB.BoBConfiguration.csproj BoB.Base/BoB.BaseModule/BoB.BaseModule.csproj BoB.Base/BoB.BoBExceptions/BoB.BoBExceptions.csproj BoB.Base/BoB.BoBLogger/BoB.BoBLogger.csproj BoB.Base/BoB.CacheManager/BoB.CacheManager.csproj BoB.Base/BoB.ContainManager/BoB.ContainManager.csproj BoB.Base/BoB.EFDbContext/BoB.EFDbContext.csproj BoB.Base/BoB.ExtendAndHelper/BoB.ExtendAndHelper.csproj BoB.Base/BoB.LanguageManager/BoB.LanguageManager.csproj BoB.Use/BoB.UseBus/BoB.UseBus.csproj
+    ```
+    现在一个基础的后台框架已经完成了，你现在可以打开BoB.sln来查看解决方案，可以在这个框架的基础上编写自己的业务代码。同时为了让我们有个更加直观的了解，我特意做了一个简单的实例，下面是加载示例模板的代码：
+    * 首先在powershell中执行以下命令来添加所需示例项目：
+    ``` .NetCLI
+    dotnet new BoB.HelloWorldApi --output "BoB.Use/BoB.HelloWorldApi"
+    dotnet new BoB.MainDatabase --output "BoB.Core/BoB.MainDatabase"
+    dotnet new BoB.PeopleEntities --output "BoB.Module/OTO/BoB.PeopleEntities"
+    dotnet new BoB.WorldAction --output "BoB.Module/Actions/BoB.WorldAction"
+    ```
+    
+    
+    
 
 ## 实例
 

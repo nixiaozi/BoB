@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Li YingCheng",
+  "classifications": [ "Common", "Lib", "dotnetCore" ],
+  "identity": "BoB.MainDatabase",
+  "name": "BoB Quick Start MainDatabase project",
+  "shortName": "BoB.MainDatabase",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  }
+}

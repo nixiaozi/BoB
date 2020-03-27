@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Li YingCheng",
+  "classifications": [ "Common", "Lib", "dotnetCore" ],
+  "identity": "BoB.BoBLogger",
+  "name": "BoB Customize Logger Handler project",
+  "shortName": "BoB.BoBLogger",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Li YingCheng",
+  "classifications": [ "Common", "Lib", "dotnetCore" ],
+  "identity": "BoB.BaseConfig",
+  "name": "BoB BaseConfig project",
+  "shortName": "BoB.BaseConfig",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  }
+}

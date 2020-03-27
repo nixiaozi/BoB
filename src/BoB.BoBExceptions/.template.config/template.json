@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Li YingCheng",
+  "classifications": [ "Common", "Lib", "dotnetCore" ],
+  "identity": "BoB.Exceptions",
+  "name": "BoB Customize Exceptions Handler project",
+  "shortName": "BoB.Exceptions",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  }
+}

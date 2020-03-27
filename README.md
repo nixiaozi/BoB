@@ -59,11 +59,17 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
     ```
 
 
-:kissing_heart:更多的功能来自你的参与
+更多的功能来自你的参与:kissing_heart:
 
 ## 开始使用
+* 首先你需要新建一个文件夹BoBProject(这个名字可以取你想要的)用来存放你的项目，然后进入这个文件夹并新建四个子文件夹 BoB.Base、BoB.Core、BoB.Module 和 BoB.Use。最后进入 BoB.Module 文件夹并新建两个子文件夹 Actions 和 OTO。最后文件结构如下图：
 
 
+* 然后打开powershell并且导航到BoBProject文件夹下，执行以下命令以获取项目模板：
+    ``` .NetCLI
+    dotnet new --install BoB.BaseTemplate::1.0.3
+    ```
+* 然后
 
 
 ## 实例

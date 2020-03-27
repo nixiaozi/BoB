@@ -5,15 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BoBdotNetCore" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BoB.AutoMapperManager\BoB.AutoMapperManager.csproj" />
     <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
     <ProjectReference Include="..\BoB.PeopleEntities\BoB.PeopleEntities.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
-      <HintPath>..\Lib\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+
 
 </Project>

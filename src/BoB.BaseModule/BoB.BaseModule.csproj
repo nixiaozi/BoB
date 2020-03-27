@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="BoBdotNetCore" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -13,13 +14,5 @@
     <ProjectReference Include="..\BoB.ExtendAndHelper\BoB.ExtendAndHelper.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions">
-      <HintPath>..\Lib\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
-      <HintPath>..\Lib\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 
 </Project>

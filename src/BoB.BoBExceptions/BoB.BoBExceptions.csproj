@@ -5,17 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BoBdotNetCore" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BoB.BaseConfiguration\BoB.BoBConfiguration.csproj" />
     <ProjectReference Include="..\BoB.BoBLogger\BoB.BoBLogger.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Microsoft.Extensions.DependencyInjection">
-      <HintPath>..\Lib\Microsoft.Extensions.DependencyInjection.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
-      <HintPath>..\Lib\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-    </Reference>
-  </ItemGroup>
 
 </Project>

@@ -62,49 +62,68 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
 更多的功能来自你的参与:kissing_heart:
 
 ## 开始使用
-* 首先你需要新建一个文件夹BoBProject(这个名字可以取你想要的)用来存放你的项目，然后进入这个文件夹并新建四个子文件夹 BoB.Base、BoB.Core、BoB.Module 和 BoB.Use。最后进入 BoB.Module 文件夹并新建两个子文件夹 Actions 和 OTO。最后文件结构如下图：
+1、 可以直接下载这个项目，其中[src文件夹](src/)中就是项目内容。打开BoB.sln可以看到项目结构如下：
 
-
+2、 或者你也可以使用命令行从模板安装项目
+* 首先你需要新建一个文件夹BoBProject(这个名字可以取你想要的)用来存放你的项目。~~，然后进入这个文件夹并新建四个子文件夹 BoB.Base、BoB.Core、BoB.Module 和 BoB.Use。最后进入 BoB.Module 文件夹并新建两个子文件夹 Actions 和 OTO。最后文件结构如下图：
 * 然后打开powershell并且导航到BoBProject文件夹下，执行以下命令以下载需要的项目模板：
     ``` .NetCLI
     dotnet new --install BoB.BaseTemplate::1.0.3
     ```
 * 然后在powershell中执行以下命令来添加所需项目：
     ``` .NetCLI
-    dotnet new BoB.Api --output "BoB.Base/BoB.Api"
-    dotnet new BoB.AutoMapper --output "BoB.Base/BoB.AutoMapperManager"
-    dotnet new BoB.BaseConfig --output "BoB.Base/BoB.BaseConfiguration"
-    dotnet new BoB.BaseModule --output "BoB.Base/BoB.BaseModule"
-    dotnet new BoB.Exceptions --output "BoB.Base/BoB.BoBExceptions"
-    dotnet new BoB.BoBLogger --output "BoB.Base/BoB.BoBLogger"
-    dotnet new BoB.CacheManager --output "BoB.Base/BoB.CacheManager"
-    dotnet new BoB.ContainManager --output "BoB.Base/BoB.ContainManager"
-    dotnet new BoB.EFDbContext --output "BoB.Base/BoB.EFDbContext"
-    dotnet new BoB.ExtendAndHelper --output "BoB.Base/BoB.ExtendAndHelper"
-    dotnet new BoB.LanguageManager --output "BoB.Base/BoB.LanguageManager"
-    dotnet new BoB.UseBus --output "BoB.Use/BoB.UseBus"
+    dotnet new BoB.Api --output "BoB.Api"
+    dotnet new BoB.AutoMapper --output "BoB.AutoMapperManager"
+    dotnet new BoB.BaseConfig --output "BoB.BaseConfiguration"
+    dotnet new BoB.BaseModule --output "BoB.BaseModule"
+    dotnet new BoB.Exceptions --output "BoB.BoBExceptions"
+    dotnet new BoB.BoBLogger --output "BoB.BoBLogger"
+    dotnet new BoB.CacheManager --output "BoB.CacheManager"
+    dotnet new BoB.ContainManager --output "BoB.ContainManager"
+    dotnet new BoB.EFDbContext --output "BoB.EFDbContext"
+    dotnet new BoB.ExtendAndHelper --output "BoB.ExtendAndHelper"
+    dotnet new BoB.LanguageManager --output "BoB.LanguageManager"
+    dotnet new BoB.UseBus --output "BoB.UseBus"
     
     ```
-* 然后添加sln文件，最后生成解决方案
+* 然后添加sln文件生成解决方案，在powershell中运行：
     ``` .NetCLI
     dotnet new sln -n BoB
     ```
     解决方案名称为BoB
 * 最后在powershell中执行以下命令，把前面生成的项目添加入解决方案
     ``` .NetCLI
-    dotnet sln BoB.sln add BoB.Base/BoB.Api/BoB.Api.csproj BoB.Base/BoB.AutoMapperManager/BoB.AutoMapperManager.csproj BoB.Base/BoB.BaseConfiguration/BoB.BoBConfiguration.csproj BoB.Base/BoB.BaseModule/BoB.BaseModule.csproj BoB.Base/BoB.BoBExceptions/BoB.BoBExceptions.csproj BoB.Base/BoB.BoBLogger/BoB.BoBLogger.csproj BoB.Base/BoB.CacheManager/BoB.CacheManager.csproj BoB.Base/BoB.ContainManager/BoB.ContainManager.csproj BoB.Base/BoB.EFDbContext/BoB.EFDbContext.csproj BoB.Base/BoB.ExtendAndHelper/BoB.ExtendAndHelper.csproj BoB.Base/BoB.LanguageManager/BoB.LanguageManager.csproj BoB.Use/BoB.UseBus/BoB.UseBus.csproj
+    dotnet sln BoB.sln add BoB.Api/BoB.Api.csproj BoB.AutoMapperManager/BoB.AutoMapperManager.csproj BoB.BaseConfiguration/BoB.BoBConfiguration.csproj BoB.BaseModule/BoB.BaseModule.csproj BoB.BoBExceptions/BoB.BoBExceptions.csproj BoB.BoBLogger/BoB.BoBLogger.csproj BoB.CacheManager/BoB.CacheManager.csproj BoB.ContainManager/BoB.ContainManager.csproj BoB.EFDbContext/BoB.EFDbContext.csproj BoB.ExtendAndHelper/BoB.ExtendAndHelper.csproj BoB.LanguageManager/BoB.LanguageManager.csproj BoB.UseBus/BoB.UseBus.csproj
     ```
     现在一个基础的后台框架已经完成了，你现在可以打开BoB.sln来查看解决方案，可以在这个框架的基础上编写自己的业务代码。同时为了让我们有个更加直观的了解，我特意做了一个简单的实例，下面是加载示例模板的代码：
     * 首先在powershell中执行以下命令来添加所需示例项目：
     ``` .NetCLI
-    dotnet new BoB.HelloWorldApi --output "BoB.Use/BoB.HelloWorldApi"
-    dotnet new BoB.MainDatabase --output "BoB.Core/BoB.MainDatabase"
-    dotnet new BoB.PeopleEntities --output "BoB.Module/OTO/BoB.PeopleEntities"
-    dotnet new BoB.WorldAction --output "BoB.Module/Actions/BoB.WorldAction"
+    dotnet new BoB.HelloWorldApi --output "BoB.HelloWorldApi"
+    dotnet new BoB.MainDatabase --output "BoB.MainDatabase"
+    dotnet new BoB.PeopleEntities --output "BoB.PeopleEntities"
+    dotnet new BoB.WorldAction --output "BoB.WorldAction"
+    ```
+    * 然后把这几个项目添加到BoB.sln这个解决方案，可以通过执行以下命令来实现：
+    ``` .NetCLI
+    dotnet sln BoB.sln add BoB.HelloWorldApi/BoB.HelloWorldApi.csproj BoB.MainDatabase/BoB.MainDatabase.csproj BoB.PeopleEntities/BoB.PeopleEntities.csproj BoB.WorldAction/BoB.WorldAction.csproj
     ```
     
+    **备注：由于.netCli 命令行工具无法创建解决方案文件夹类似的关联，所以项目没有分层结构。需要在visual studio 中手动修改**
+    打开浏览器访问链接 https://localhost:5001/swagger/index.html 即可看到效果：
     
     
+    **备注：.netcore项目可以通过命令行直接运行：**
+    首先需要在BoBProject文件夹下新建一个文本文件，在文本文件中添加如下脚本
+    ``` .NetCLI
+    call SET SolutionDir="%cd%"
+    call SET RunProjectDir="%cd%\BoB.HelloWorldApi"
+    call dotnet run --project  "%RunProjectDir%"
+    ```
+    然后重命名该文本文件为start.cmd。最后确保powershell在BoBProject目录下运行，运行下面脚本
+    ``` .NetCLI
+    .\start.cmd
+    ```
+    打开浏览器访问链接 https://localhost:5001/swagger/index.html 即与上面同样的效果。
 
 ## 实例
 

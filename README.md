@@ -158,6 +158,10 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
 * Swashbuckle.AspNetCore v5.2.1
 * System.Runtime v4.3.1
 
+## 联系作者
+邮箱：nixiaozi01@hotmail.com
+QQ: 776493846
+
 
 ## 许可证
 BoB项目使用了[MIT](LICENSE.txt)许可

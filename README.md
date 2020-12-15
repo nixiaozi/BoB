@@ -64,6 +64,8 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
 ## 开始使用
 1、 第一种方法：直接下载这个项目，其中[src文件夹](src/)中就是项目内容。打开BoB.sln可以看到项目结构如下：
 
+![vs structure](https://user-images.githubusercontent.com/13010868/77848256-15366000-71f6-11ea-858a-67ab529cbf79.png)
+
 2、 第二种方法：可以使用命令行从模板安装项目
 * 首先你需要新建一个文件夹BoBProject(这个名字可以取你想要的)用来存放你的项目。
 * 然后打开powershell并且导航到BoBProject文件夹下，执行以下命令来下载需要的项目模板：
@@ -72,7 +74,9 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
     ```
     会得到类似结果：
     
-* 然后在powershell中执行以下命令来添加所需项目：
+    ![download template](https://user-images.githubusercontent.com/13010868/77848252-136c9c80-71f6-11ea-8929-58808c83a35d.png)
+    
+* 下一步在powershell中执行以下命令来添加所需项目：
     ``` .NetCLI
     dotnet new BoB.Api --output "BoB.Api"
     dotnet new BoB.AutoMapper --output "BoB.AutoMapperManager"
@@ -90,11 +94,15 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
     ```
     会得到如下输出：
     
+    ![add project](https://user-images.githubusercontent.com/13010868/77848249-123b6f80-71f6-11ea-91e7-69b2f90b98dc.png)
+    
 * 然后添加sln文件生成解决方案，在powershell中运行：
     ``` .NetCLI
     dotnet new sln -n BoB
     ```
     会得到如下输出：
+    
+    ![add sln](https://user-images.githubusercontent.com/13010868/77848251-136c9c80-71f6-11ea-87a9-4cb2551ac835.png)
     
     解决方案名称为BoB
 * 最后在powershell中执行以下命令，把前面生成的项目添加入解决方案
@@ -102,6 +110,8 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
     dotnet sln BoB.sln add BoB.Api/BoB.Api.csproj BoB.AutoMapperManager/BoB.AutoMapperManager.csproj BoB.BaseConfiguration/BoB.BoBConfiguration.csproj BoB.BaseModule/BoB.BaseModule.csproj BoB.BoBExceptions/BoB.BoBExceptions.csproj BoB.BoBLogger/BoB.BoBLogger.csproj BoB.CacheManager/BoB.CacheManager.csproj BoB.ContainManager/BoB.ContainManager.csproj BoB.EFDbContext/BoB.EFDbContext.csproj BoB.ExtendAndHelper/BoB.ExtendAndHelper.csproj BoB.LanguageManager/BoB.LanguageManager.csproj BoB.UseBus/BoB.UseBus.csproj
     ```
     会得到如下输出
+    
+    ![project in sln](https://user-images.githubusercontent.com/13010868/77848253-14053300-71f6-11ea-99b0-7d0d71092596.png)
     
     现在一个基础的后台框架已经完成了，你现在可以打开BoB.sln来查看解决方案，可以在这个框架的基础上编写自己的业务代码。同时为了让我们有个更加直观的了解，我特意做了一个简单的实例，下面是加载示例模板的代码：
     * 首先在powershell中执行以下命令来添加所需示例项目：
@@ -119,6 +129,7 @@ BoB基于.net Core平台可以轻松的实现跨平台部署。
     **备注：由于.netCli 命令行工具无法创建解决方案文件夹类似的关联，所以项目没有分层结构。需要在visual studio 中手动修改**
     打开浏览器访问链接 https://localhost:5001/swagger/index.html 即可看到效果：
     
+    ![quick result](https://user-images.githubusercontent.com/13010868/77848255-149dc980-71f6-11ea-85c4-e1a4ae9b3eb5.png)
     
     **备注：.netcore项目可以通过命令行直接运行：**
     首先需要在BoBProject文件夹下新建一个文本文件，在文本文件中添加如下脚本

@@ -8,6 +8,7 @@ using System.IO;
 using BoB.AutoMapperManager;
 using BoB.WorldAction;
 using BoB.PeopleEntities;
+using ACM.UserEntities;
 
 namespace BoB.UseBus.Register
 {
@@ -23,8 +24,9 @@ namespace BoB.UseBus.Register
             builder.RegisterModule<LanguageManagerModule>();
 
             //BoB.Core部分模块注入
-            builder.RegisterModule<WorldActionModule>();
-            builder.RegisterModule<PeopleEntitiesModule>();
+            //builder.RegisterModule<WorldActionModule>();
+            //builder.RegisterModule<PeopleEntitiesModule>();
+            builder.RegisterModule<UserEntitiesModule>();
 
 
             //autofac使用配置中更改

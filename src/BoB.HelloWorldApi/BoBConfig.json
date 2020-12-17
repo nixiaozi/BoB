@@ -1,0 +1,5 @@
+﻿{
+  "ACM.MainDatabase": {
+    "ConnectionStr": "Data Source=.;Initial Catalog=ACM.Main;User ID=sa;Password=As412563"
+  }
+}

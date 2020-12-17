@@ -1,0 +1,6 @@
+{
+  "modules": [{
+    "type": "ACM.AppListEntities.AppListEntitiesModule, ACM.AppListEntities"
+    }
+  ]
+}

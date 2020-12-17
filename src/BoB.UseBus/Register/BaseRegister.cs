@@ -27,6 +27,7 @@ namespace BoB.UseBus.Register
             //builder.RegisterModule<WorldActionModule>();
             //builder.RegisterModule<PeopleEntitiesModule>();
             builder.RegisterModule<UserEntitiesModule>();
+            // AppListEntitiesModule 模块注入 通过autofac.json 配置文件添加
 
 
             //autofac使用配置中更改

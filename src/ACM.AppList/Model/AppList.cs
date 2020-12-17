@@ -1,4 +1,6 @@
 ﻿using ACM.MainDatabase;
+using BoB.EFDbContext;
+using BoB.EFDbContext.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +9,7 @@ using System.Text;
 
 namespace ACM.AppListEntities
 {
-    public class AppList
+    public class AppList:IBaseEntity<int>
     {
         [Key]
         public int ID { get; set; }
@@ -17,6 +19,7 @@ namespace ACM.AppListEntities
 
         public string WebDomain { get; set; }
 
+        public DataStatus Status { get; set; }
     }
 
 

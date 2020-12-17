@@ -7,7 +7,8 @@ using System.Text;
 
 namespace BoB.EFDbContext
 {
-    public abstract class BaseEntity<TKey> : IBaseEntity<TKey>
+    public abstract class BaseEntity<TKey>  : IBaseEntity<TKey> 
+        where TKey: IComparable
     {
         /*public BaseEntity()
         {

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ACM.MainDatabase
 {
-    public interface IBaseBlock<T,K> where T:IBaseEntity<K>
+    public interface IBaseBlock<T,K> where T:IBaseEntity<K> where K: IComparable
     {
         public bool Insert(T data);
 
@@ -15,7 +15,7 @@ namespace ACM.MainDatabase
 
         public bool Delete(K id);
 
-        public bool Get(K id);
+        public T Get(K id);
 
     }
 }

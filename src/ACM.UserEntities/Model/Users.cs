@@ -1,4 +1,5 @@
 ﻿using ACM.MainDatabase;
+using BoB.EFDbContext;
 using BoB.EFDbContext.Enums;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -8,7 +9,7 @@ using System.Text;
 
 namespace ACM.UserEntities
 {
-    public class Users
+    public class Users:IBaseEntity<Guid>
     {
         /// <summary>
         /// 用户ID

@@ -4,10 +4,11 @@ using Microsoft.Extensions.DependencyInjection; // 解决CurrentServiceProvider.
 using ACM.MainDatabase;
 using System.Linq;
 using BoB.EFDbContext.Enums;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ACM.UserEntities
 {
-    public class UserBlock : BaseBlock, IUserBlock
+    public class UserBlock : BaseBlock<Users,Guid>,IBaseBlock<Users, Guid>, IUserBlock
     {
         private IAutoMapperService _autoMapperService;
 
@@ -16,34 +17,38 @@ namespace ACM.UserEntities
             _autoMapperService = CurrentServiceProvider.GetService<IAutoMapperService>();
         }
 
+        public Users GetUser(string Phone)
+        {
+            using (var context=new MaindbContext())
+            {
+                return context.Set<Users>().FirstOrDefault(s => s.Phone==Phone.Trim());
+            }
+
+        }
+
         public bool AddUser(UserInput user)
         {
             if (user.ID == Guid.Empty)
                 user.ID = Guid.NewGuid();
+            var hasUser = GetUser(user.Phone);
 
-            using(var context = new MaindbContext())
+            if (hasUser == null)
+                return Insert(user);
+            else
             {
-                context.Add<Users>(_autoMapperService.DoMap<UserInput, Users>(user));
-                context.SaveChanges();
+                return false;
             }
-
-            return true;
 
         }
 
         public bool RemoveUser(Guid userId)
         {
-            Users user = new Users { ID = userId };
-            return Update(user, s =>
-             {
-                 s.Status = DataStatus.Delete;
-                 return s;
-             });
+            return Delete(userId);
 
         }
 
 
-        public bool Update(Users users,Func<Users,Users> func)
+        /*public bool Update(Users users,Func<Users,Users> func)
         {
             using(var context = new MaindbContext())
             {
@@ -55,7 +60,7 @@ namespace ACM.UserEntities
                 return true;
             }
         }
-
+*/
 
     }
 }

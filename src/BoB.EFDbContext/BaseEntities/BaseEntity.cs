@@ -5,15 +5,15 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace BoB.EFDbContext.BaseEntities
+namespace BoB.EFDbContext
 {
-    public abstract class BaseEntity<TKey> : IBaseEntity
+    public abstract class BaseEntity<TKey> : IBaseEntity<TKey>
     {
-        public BaseEntity()
+        /*public BaseEntity()
         {
             if (typeof(TKey) == typeof(Guid))
                 ID = Guid.NewGuid().CastTo<TKey>();
-        }
+        }*/
 
         /// <summary>
         /// 主键编号

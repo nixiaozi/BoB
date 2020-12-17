@@ -11,7 +11,7 @@ using BoB.EFDbContext.Enums;
 
 namespace BoB.PeopleEntities
 {
-    public class PeopleBlock : BaseBlock, IPeopleBlock
+    public class PeopleBlock : InitBlock, IPeopleBlock
     {
         private IAutoMapperService _autoMapperService;
 

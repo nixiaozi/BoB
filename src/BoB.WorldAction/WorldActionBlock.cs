@@ -8,7 +8,7 @@ using BoB.PeopleEntities;
 
 namespace BoB.WorldAction
 {
-    public class WorldActionBlock : BaseBlock, IWorldActionBlock
+    public class WorldActionBlock : InitBlock, IWorldActionBlock
     {
         private IAutoMapperService _autoMapperService;
         private IPeopleBlock _peopleBlock;

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BoB.EFDbContext.BaseEntities
+namespace BoB.EFDbContext
 {
-    public interface IBaseEntity
+    public interface IBaseEntity<TKey> 
     {
-
+        public TKey ID { get; set; }
     }
 }

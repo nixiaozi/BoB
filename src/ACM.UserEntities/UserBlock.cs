@@ -1,5 +1,4 @@
 ﻿using BoB.AutoMapperManager;
-using BoB.ContainManager;
 using System;
 using Microsoft.Extensions.DependencyInjection; // 解决CurrentServiceProvider.GetService<IAutoMapperService>();  出错的问题
 using ACM.MainDatabase;

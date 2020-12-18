@@ -1,5 +1,6 @@
 ﻿using ACM.AppListEntities;
 using ACM.UserEntities;
+using BoB.ExtendAndHelper.Utilties;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -54,6 +55,21 @@ namespace BoB.HelloWorldApi.Controllers
             return result ? Ok("删除应用标识成功") : Problem("删除应用标识失败");
         }
 
+        [HttpPost]
+        public ActionResult<string> Encrypt(string EncryptText,string Key,string Salt)
+        {
+            var result = SecurityHelper.EncryptToBase64(EncryptText.Trim(), Key.Trim(), Salt.Trim());
+
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public ActionResult<string> Decrypt(string DecryptText, string Key, string Salt)
+        {
+            var result = SecurityHelper.DecryptFromBase64(DecryptText.Trim(), Key.Trim(), Salt.Trim());
+
+            return Ok(result);
+        }
 
     }
 }

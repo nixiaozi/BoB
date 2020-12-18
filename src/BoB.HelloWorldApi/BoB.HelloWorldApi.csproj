@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ACM.AppAccountList\ACM.AppAccountListEntities.csproj" />
     <ProjectReference Include="..\ACM.AppList\ACM.AppListEntities.csproj" />
     <ProjectReference Include="..\BoB.Api\BoB.Api.csproj" />
     <ProjectReference Include="..\BoB.UseBus\BoB.UseBus.csproj" />

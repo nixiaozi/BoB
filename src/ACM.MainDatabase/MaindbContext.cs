@@ -14,7 +14,8 @@ namespace ACM.MainDatabase
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(BoBConfiguration.ConnectionStr);
+            optionsBuilder.UseSqlServer(BoBConfiguration.ConnectionStr, 
+                x => x.UseNetTopologySuite());// 使用.net core 的空间解析库
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,4 +1,5 @@
-﻿using ACM.AppListEntities;
+﻿using ACM.AppAccountListEntities;
+using ACM.AppListEntities;
 using ACM.UserEntities;
 using BoB.ExtendAndHelper.Utilties;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,14 @@ namespace BoB.HelloWorldApi.Controllers
     {
         private IUserBlock _userBlock;
         private IAppListBlock _appListBlock;
+        private IAppAccountListBlock _appAccountListBlock;
 
 
-        public ACMController(IUserBlock userBlock, IAppListBlock appListBlock)
+        public ACMController(IUserBlock userBlock, IAppListBlock appListBlock, IAppAccountListBlock appAccountListBlock)
         {
             _userBlock = userBlock;
             _appListBlock = appListBlock;
+            _appAccountListBlock = appAccountListBlock;
         }
 
         [HttpGet]
@@ -70,6 +73,15 @@ namespace BoB.HelloWorldApi.Controllers
 
             return Ok(result);
         }
+
+
+        [HttpPost]
+        public ActionResult<string> AddAppAcount(AppAccountInput account)
+        {
+            var result = _appAccountListBlock.AddAppAccount(account);
+            return result ? Ok("添加应用账户成功") : Problem("添加应用账户失败");
+        }
+
 
     }
 }

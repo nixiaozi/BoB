@@ -1,6 +1,10 @@
 {
-  "modules": [{
-    "type": "ACM.AppListEntities.AppListEntitiesModule, ACM.AppListEntities"
+  "modules": [
+    {
+      "type": "ACM.AppListEntities.AppListEntitiesModule, ACM.AppListEntities"
+    },
+    {
+      "type": "ACM.AppAccountListEntities.AppAccountListEntitiesModule, ACM.AppAccountListEntities"
     }
   ]
 }

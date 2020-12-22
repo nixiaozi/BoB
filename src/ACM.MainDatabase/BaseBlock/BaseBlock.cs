@@ -4,6 +4,7 @@ using BoB.EFDbContext.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace ACM.MainDatabase
@@ -30,6 +31,22 @@ namespace ACM.MainDatabase
                 s.Status = DataStatus.Delete;
                 return s;
             });
+        }
+
+        public T Get(Expression<Func<T,bool>> expression)
+        {
+            using (var context = new MaindbContext())
+            {
+                return context.Set<T>().FirstOrDefault(expression);
+            }
+        }
+
+        public IQueryable<T> GetList(Expression<Func<T, bool>> expression)
+        {
+            using(var context = new MaindbContext())
+            {
+                return context.Set<T>().Where(expression).AsQueryable();
+            }
         }
 
         public T Get(K id)

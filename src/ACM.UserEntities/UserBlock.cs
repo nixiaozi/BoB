@@ -47,6 +47,11 @@ namespace ACM.UserEntities
 
         }
 
+        public Users GetUserById(Guid userId)
+        {
+            return Get(userId);
+        }
+
 
         /*public bool Update(Users users,Func<Users,Users> func)
         {

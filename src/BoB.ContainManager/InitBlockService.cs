@@ -2,11 +2,11 @@
 
 namespace BoB.ContainManager
 {
-    public class InitBlock
+    public class InitBlockService
     {
         protected readonly IServiceProvider CurrentServiceProvider;
 
-        public InitBlock()
+        public InitBlockService()
         {
             CurrentServiceProvider = BoBContainer.ServiceProvider;
 

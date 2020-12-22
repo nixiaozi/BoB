@@ -10,5 +10,7 @@ namespace ACM.AppAccountListEntities
 
         public bool DeleteAccount(Guid accountId);
 
+        public AppAccountList GetAccountByUser(Guid userId);
+
     }
 }

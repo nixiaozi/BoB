@@ -33,9 +33,10 @@ namespace ACM.AppAccountListEntities
             return Delete(accountId);
         }
 
-
-
-
+        public AppAccountList GetAccountByUser(Guid userId)
+        {
+            return Get(s => s.UserID == userId);
+        }
 
     }
 }

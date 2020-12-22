@@ -5,6 +5,9 @@
     },
     {
       "type": "ACM.AppAccountListEntities.AppAccountListEntitiesModule, ACM.AppAccountListEntities"
+    },
+    {
+      "type": "ACM.SinaChina.SinaChinaModule, ACM.SinaChina"
     }
   ]
 }

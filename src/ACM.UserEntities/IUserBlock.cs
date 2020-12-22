@@ -11,5 +11,8 @@ namespace ACM.UserEntities
 
         public bool RemoveUser(Guid userId);
 
+
+        public Users GetUserById(Guid userId);
+
     }
 }

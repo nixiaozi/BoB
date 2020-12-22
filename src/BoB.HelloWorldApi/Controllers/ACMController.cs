@@ -1,5 +1,6 @@
 ﻿using ACM.AppAccountListEntities;
 using ACM.AppListEntities;
+using ACM.SinaChina;
 using ACM.UserEntities;
 using BoB.ExtendAndHelper.Utilties;
 using Microsoft.AspNetCore.Mvc;
@@ -14,13 +15,16 @@ namespace BoB.HelloWorldApi.Controllers
         private IUserBlock _userBlock;
         private IAppListBlock _appListBlock;
         private IAppAccountListBlock _appAccountListBlock;
+        private ISinaChinaWebService _sinaChinaWebService;
 
 
-        public ACMController(IUserBlock userBlock, IAppListBlock appListBlock, IAppAccountListBlock appAccountListBlock)
+        public ACMController(IUserBlock userBlock, IAppListBlock appListBlock, IAppAccountListBlock appAccountListBlock,
+            ISinaChinaWebService sinaChinaWebService)
         {
             _userBlock = userBlock;
             _appListBlock = appListBlock;
             _appAccountListBlock = appAccountListBlock;
+            _sinaChinaWebService = sinaChinaWebService;
         }
 
         [HttpGet]
@@ -59,17 +63,17 @@ namespace BoB.HelloWorldApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<string> Encrypt(string EncryptText,string Key,string Salt)
+        public ActionResult<string> Encrypt(string EncryptText,string Salt)
         {
-            var result = SecurityHelper.EncryptToBase64(EncryptText.Trim(), Key.Trim(), Salt.Trim());
+            var result = SecurityHelper.EncryptToBase64(EncryptText.Trim(),  Salt.Trim());
 
             return Ok(result);
         }
 
         [HttpPost]
-        public ActionResult<string> Decrypt(string DecryptText, string Key, string Salt)
+        public ActionResult<string> Decrypt(string DecryptText,  string Salt)
         {
-            var result = SecurityHelper.DecryptFromBase64(DecryptText.Trim(), Key.Trim(), Salt.Trim());
+            var result = SecurityHelper.DecryptFromBase64(DecryptText.Trim(),  Salt.Trim());
 
             return Ok(result);
         }
@@ -80,6 +84,15 @@ namespace BoB.HelloWorldApi.Controllers
         {
             var result = _appAccountListBlock.AddAppAccount(account);
             return result ? Ok("添加应用账户成功") : Problem("添加应用账户失败");
+        }
+
+        [HttpPost]
+        public ActionResult<string> SinaChinaLogin(Guid UserID)
+        {
+            var user = _appAccountListBlock.GetAccountByUser(UserID);
+            _sinaChinaWebService.ToLogin(user);
+
+            return Ok();
         }
 
 

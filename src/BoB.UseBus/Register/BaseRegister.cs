@@ -9,6 +9,7 @@ using BoB.AutoMapperManager;
 using BoB.WorldAction;
 using BoB.PeopleEntities;
 using ACM.UserEntities;
+using BoB.EmailManager;
 
 namespace BoB.UseBus.Register
 {
@@ -22,6 +23,7 @@ namespace BoB.UseBus.Register
             builder.RegisterModule<BoBLoggerModule>();
             builder.RegisterModule<CacheManagerModule>();
             builder.RegisterModule<LanguageManagerModule>();
+            builder.RegisterModule<EmailManagerModule>();
 
             //BoB.Core部分模块注入
             //builder.RegisterModule<WorldActionModule>();

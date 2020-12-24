@@ -4,7 +4,9 @@ using ACM.SinaChina;
 using ACM.UserEntities;
 using BoB.ExtendAndHelper.Utilties;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
+using System.Net;
 
 namespace BoB.HelloWorldApi.Controllers
 {
@@ -84,6 +86,14 @@ namespace BoB.HelloWorldApi.Controllers
         {
             var result = _appAccountListBlock.AddAppAccount(account);
             return result ? Ok("添加应用账户成功") : Problem("添加应用账户失败");
+        }
+
+        [HttpPost]
+        public ActionResult<string> CookieUpdateTest(Guid  userId)
+        {
+            Cookie cookie = new Cookie("test", "abcd");
+           var result= _appAccountListBlock.UpdateTheAccountCookie(userId, JsonConvert.SerializeObject(cookie));
+            return result ? Ok("修改Cookie成功") : Problem("修改Cookie失败");
         }
 
         [HttpPost]

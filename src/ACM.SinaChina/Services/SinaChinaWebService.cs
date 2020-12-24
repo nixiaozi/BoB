@@ -14,6 +14,7 @@ using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using BoB.ExtendAndHelper.Utilties;
 using System.Threading;
+using BoB.EmailManager;
 
 namespace ACM.SinaChina
 {
@@ -21,10 +22,12 @@ namespace ACM.SinaChina
     {
         private IUserBlock _userBlock;
         private IAppAccountListBlock _appAccountListBlock;
+        private IEmailManagerService _emailManagerService;
         protected override void Init()
         {
             _userBlock= CurrentServiceProvider.GetService<IUserBlock>();
             _appAccountListBlock= CurrentServiceProvider.GetService<IAppAccountListBlock>();
+            _emailManagerService= CurrentServiceProvider.GetService<IEmailManagerService>();
         }
 
         public bool ToLogin(AppAccountList account)
@@ -43,7 +46,7 @@ namespace ACM.SinaChina
 
 
             var driver = new ChromeDriver(chromeOptions);
-
+            //下面是添加自定义的地理位置信息
             Dictionary<string, object> coordinates = new Dictionary<string, object>
             {
                 {"latitude", 50.2334 },
@@ -136,27 +139,36 @@ namespace ACM.SinaChina
             //}
 
             var doWait = true;
+            var WaitTime = 0;
             while (doWait)
             {
+                if (WaitTime>=10 && WaitTime %10==0)
+                {
+                    _emailManagerService.ACMEmailAutoWarn("用户编号："+user.ID+",在执行新浪网登陆操作时出现意外请手动处理");
+                    // 这个地方出错之后不能直接返回，需要先挂起线程等待用户手动处理
+                    Console.Write("程序已暂停等待用户手动处理,按任意键继续...");
+                    Console.ReadKey();
+                    Console.WriteLine("继续进行自动处理操作");
+                }
                 Thread.Sleep(3000);
                 doWait = new WebDriverWait(driver, TimeSpan.FromSeconds(2))
                     .Until<bool>(div =>
                     {
                         driver.ExecuteScript("console.info('等待3秒后，查看cookie')");
-                        var element = div.Manage().Cookies.GetCookieNamed("get");
+                        var element = div.Manage().Cookies.GetCookieNamed("SUB"); //  Cookies 中的SUB字段会在登录之后出现
                         return element != null ? false : true;
                     });
-
+                WaitTime++;
             }
 
 
             // 如果发现成功登录了就需要重新存储Cookie
             var loginedCookie = JsonConvert.SerializeObject(driver.Manage().Cookies.AllCookies);
-            // _appAccountListBlock.
+            _appAccountListBlock.UpdateTheAccountCookie(user.ID, loginedCookie);
+            driver.ExecuteScript("console.info('{0}')","已经成功登录了系统");
 
 
-
-
+            driver.Quit(); // 退出driver
 
 
 

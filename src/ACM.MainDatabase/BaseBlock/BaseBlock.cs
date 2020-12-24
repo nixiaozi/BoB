@@ -70,9 +70,14 @@ namespace ACM.MainDatabase
 
         public bool Update(T data, Func<T, T> func)
         {
+            return Update(data.ID, func);
+        }
+
+        public bool Update(K id, Func<T, T> func)
+        {
             using (var context = new MaindbContext())
             {
-                var getData = context.Set<T>().FirstOrDefault(s => s.ID.Equals(data.ID));
+                var getData = context.Set<T>().FirstOrDefault(s => s.ID.Equals(id));
                 func?.Invoke(getData);
 
                 context.SaveChanges();
@@ -80,6 +85,7 @@ namespace ACM.MainDatabase
                 return true;
             }
         }
+
 
         protected virtual void Init()
         {

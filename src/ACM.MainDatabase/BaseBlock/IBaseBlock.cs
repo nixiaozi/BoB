@@ -14,6 +14,8 @@ namespace ACM.MainDatabase
 
         public bool Update(T data,Func<T,T> func);
 
+        public bool Update(K id,Func<T,T> func);
+
 
         public bool Delete(K id);
 

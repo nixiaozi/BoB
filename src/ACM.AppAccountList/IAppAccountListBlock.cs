@@ -12,5 +12,7 @@ namespace ACM.AppAccountListEntities
 
         public AppAccountList GetAccountByUser(Guid userId);
 
+        public bool UpdateTheAccountCookie(Guid UserId, string Cookie);
+
     }
 }

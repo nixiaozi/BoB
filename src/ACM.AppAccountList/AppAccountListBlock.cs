@@ -4,6 +4,7 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using NetTopologySuite.Geometries;
 using PasswordGenerator;
+using BoB.EFDbContext.Enums;
 
 namespace ACM.AppAccountListEntities
 {
@@ -36,6 +37,23 @@ namespace ACM.AppAccountListEntities
         public AppAccountList GetAccountByUser(Guid userId)
         {
             return Get(s => s.UserID == userId);
+        }
+
+        public bool UpdateTheAccountCookie(Guid UserId, string Cookie)
+        {
+            // 无法把Func<A,A> 转化成 Func<B,B> 因为我们没有办法得到保证前一函数中的某些属性转到后一个函数后还有效
+            //Func<AppAccountInput, Func<AppAccountInput, AppAccountInput>, AppAccountList> dofunc
+            //    = delegate (AppAccountInput a, Func<AppAccountInput, AppAccountInput> b)
+            //     {
+            //         var ra = _autoMapperService.DoMap<AppAccountInput, AppAccountList>(a);
+            //         b.Invoke(ra);
+
+            //     };
+
+            return Update(Get(s=>s.UserID==UserId && s.Status== DataStatus.Normal).ID, s=> {
+                s.Cookie = Cookie;
+                return s;
+            });
         }
 
     }

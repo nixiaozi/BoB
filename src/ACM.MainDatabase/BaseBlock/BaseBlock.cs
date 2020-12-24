@@ -22,6 +22,18 @@ namespace ACM.MainDatabase
             //这里可以在服务解析之后进行的基类处理
         }
 
+        
+
+        public bool Delete(MaindbContext context, K id)
+        {
+            T data = new T();
+            data.ID = id;
+            return Update(context,data, s =>
+            {
+                s.Status = DataStatus.Delete;
+                return s;
+            });
+        }
         public bool Delete(K id)
         {
             T data = new T();
@@ -33,7 +45,13 @@ namespace ACM.MainDatabase
             });
         }
 
-        public T Get(Expression<Func<T,bool>> expression)
+
+
+        public T Get(MaindbContext context, Expression<Func<T,bool>> expression)
+        {
+            return context.Set<T>().FirstOrDefault(expression);
+        }
+        public T Get(Expression<Func<T, bool>> expression)
         {
             using (var context = new MaindbContext())
             {
@@ -41,14 +59,27 @@ namespace ACM.MainDatabase
             }
         }
 
+
+
+        public IQueryable<T> GetList(MaindbContext context, Expression<Func<T, bool>> expression)
+        {
+            return context.Set<T>().Where(expression).AsQueryable();
+        }
         public IQueryable<T> GetList(Expression<Func<T, bool>> expression)
         {
-            using(var context = new MaindbContext())
+            using (var context = new MaindbContext())
             {
                 return context.Set<T>().Where(expression).AsQueryable();
             }
         }
 
+
+
+        public T Get(MaindbContext context, K id)
+        {
+            return context.Set<T>().FirstOrDefault(s => s.ID.Equals(id)); // 直接使用 Equals 方法代替 == 操作符
+
+        }
         public T Get(K id)
         {
             using (var context = new MaindbContext())
@@ -57,9 +88,16 @@ namespace ACM.MainDatabase
             }
         }
 
+
+
+        public bool Insert(MaindbContext context, T data)
+        {
+            context.Add<T>(data);
+            return true;
+        }
         public bool Insert(T data)
         {
-            using(var context=new MaindbContext())
+            using (var context = new MaindbContext())
             {
                 context.Add<T>(data);
                 context.SaveChanges();
@@ -68,11 +106,25 @@ namespace ACM.MainDatabase
             }
         }
 
+
+        public bool Update(MaindbContext context, T data, Func<T, T> func)
+        {
+            return Update(context,data.ID, func);
+        }
         public bool Update(T data, Func<T, T> func)
         {
             return Update(data.ID, func);
         }
 
+
+
+        public bool Update(MaindbContext context,K id, Func<T, T> func)
+        {
+            var getData = context.Set<T>().FirstOrDefault(s => s.ID.Equals(id));
+            func?.Invoke(getData);
+
+            return true;
+        }
         public bool Update(K id, Func<T, T> func)
         {
             using (var context = new MaindbContext())

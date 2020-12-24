@@ -97,9 +97,9 @@ namespace BoB.HelloWorldApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<string> SinaChinaLogin(Guid UserID)
+        public  ActionResult<string> SinaChinaLogin(Guid UserID)
         {
-            var user = _appAccountListBlock.GetAccountByUser(UserID);
+            var user =  _appAccountListBlock.GetAccountByUser(UserID);
             _sinaChinaWebService.ToLogin(user);
 
             return Ok();

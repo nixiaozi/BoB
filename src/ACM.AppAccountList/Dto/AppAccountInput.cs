@@ -36,5 +36,6 @@ namespace ACM.AppAccountListEntities
         public string Password { get; set; }
 
         public string Salt { get; set; }
+        public string LastURL { get; set; }
     }
 }

@@ -146,6 +146,7 @@ namespace ACM.SinaChina
                 {
                     _emailManagerService.ACMEmailAutoWarn("用户编号："+user.ID+",在执行新浪网登陆操作时出现意外请手动处理");
                     // 这个地方出错之后不能直接返回，需要先挂起线程等待用户手动处理
+                    // 下面的Console 无法在 Windows Service 环境下执行，可以改用数据库字段进行判断。
                     Console.Write("程序已暂停等待用户手动处理,按任意键继续...");
                     Console.ReadKey();
                     Console.WriteLine("继续进行自动处理操作");

@@ -10,6 +10,9 @@ using BoB.WorldAction;
 using BoB.PeopleEntities;
 using ACM.UserEntities;
 using BoB.EmailManager;
+using Autofac.Features.Metadata;
+using ACM.BaseAutoAction;
+using ACM.SinaChina;
 
 namespace BoB.UseBus.Register
 {
@@ -41,7 +44,15 @@ namespace BoB.UseBus.Register
             var module = new ConfigurationModule(config.Build());// Register the ConfigurationModule with Autofac.
             builder.RegisterModule(module);
 
+            //需要添加对于不同APP浏览效果的适配器【注意： 这个有可能会在BaseModule之前执行】
+            //注意不要以特殊后缀Service 和 Block 结尾，因为这样autofac会自动再进行一次自动注入，破坏我们的适配器设置
+            builder.RegisterType<SinaChinaAuto>()
+                .As<IBaseAuto>()
+                .WithMetadata("type", "sinachina");
 
+
+            builder.RegisterAdapter<Meta<IBaseAuto>, AutoActionAdapter>(
+                cmd => new AutoActionAdapter(cmd.Value, (string)cmd.Metadata["type"]));
 
             //AutoMap的使用（必须再注入完所有引用后使用)
             builder.RegisterModule<AutoMapperManagerModule>();

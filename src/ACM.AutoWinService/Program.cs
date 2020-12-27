@@ -39,8 +39,8 @@ namespace ACM.AutoWinService
             {
                 BaseRegister.RegisterConfigureContainer(af);
                 //af.RegisterInstance<MaindbContext>(new MaindbContext());
-                af.RegisterType<MaindbContext>();
-                af.RegisterModule<AppListEntitiesModule>();
+                af.RegisterType<MaindbContext>(); // 添加对数据库访问类的实例引用
+                af.RegisterModule<AppListEntitiesModule>();// 添加对业务模块的引用
             }); // 然后使用autofac容器进行配置
 
 

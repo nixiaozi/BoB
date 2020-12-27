@@ -1,11 +1,14 @@
 ﻿using ACM.AppAccountListEntities;
 using ACM.AppListEntities;
+using ACM.BaseAutoAction;
 using ACM.SinaChina;
 using ACM.UserEntities;
 using BoB.ExtendAndHelper.Utilties;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 
 namespace BoB.HelloWorldApi.Controllers
@@ -18,15 +21,17 @@ namespace BoB.HelloWorldApi.Controllers
         private IAppListBlock _appListBlock;
         private IAppAccountListBlock _appAccountListBlock;
         private ISinaChinaWebService _sinaChinaWebService;
+        private IEnumerable<AutoActionAdapter> _autoActionAdapters;
 
 
         public ACMController(IUserBlock userBlock, IAppListBlock appListBlock, IAppAccountListBlock appAccountListBlock,
-            ISinaChinaWebService sinaChinaWebService)
+            ISinaChinaWebService sinaChinaWebService, IEnumerable<AutoActionAdapter> autoActionAdapters)
         {
             _userBlock = userBlock;
             _appListBlock = appListBlock;
             _appAccountListBlock = appAccountListBlock;
             _sinaChinaWebService = sinaChinaWebService;
+            _autoActionAdapters = autoActionAdapters;
         }
 
         [HttpGet]
@@ -105,6 +110,12 @@ namespace BoB.HelloWorldApi.Controllers
             return Ok();
         }
 
+        [HttpPost]
+        public ActionResult<string> AutofacAdapterTest()
+        {
+            _autoActionAdapters.FirstOrDefault(s => s.CommandText == "sinachina")?.DoBrowserRandom(new RandomBrowse());
+            return Ok();
+        }
 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using ACM.BaseAutoAction;
+using Autofac;
 using BoB.BaseModule;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ namespace ACM.SinaChina
         public override void OnLoad(ContainerBuilder builder)
         {
             //没有自定义的引用可以不填
+            
+
+            
 
         }
 

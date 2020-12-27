@@ -39,6 +39,11 @@ namespace ACM.AppAccountListEntities
 
         public DateTime CreateTime { get; set; }
 
+        /// <summary>
+        /// 用户最后访问的URL
+        /// </summary>
+        public string LastURL { get; set; }
+
     }
 
     public class AppAccountListCreator : IMaindbModelCreator

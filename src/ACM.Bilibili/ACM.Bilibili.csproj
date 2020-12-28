@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ACM.AppAccountList\ACM.AppAccountListEntities.csproj" />
+    <ProjectReference Include="..\ACM.BaseAutoAction\ACM.BaseAutoAction.csproj" />
+    <ProjectReference Include="..\ACM.MainDatabase\ACM.MainDatabase.csproj" />
+    <ProjectReference Include="..\BoB.BaseConfiguration\BoB.BoBConfiguration.csproj" />
+    <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
+  </ItemGroup>
+
+</Project>

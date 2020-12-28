@@ -13,6 +13,7 @@ using BoB.EmailManager;
 using Autofac.Features.Metadata;
 using ACM.BaseAutoAction;
 using ACM.SinaChina;
+using ACM.Bilibili;
 
 namespace BoB.UseBus.Register
 {
@@ -49,6 +50,10 @@ namespace BoB.UseBus.Register
             builder.RegisterType<SinaChinaAuto>()
                 .As<IBaseAuto>()
                 .WithMetadata("type", "sinachina");
+
+            builder.RegisterType<BilibiliAuto>()
+                .As<IBaseAuto>()
+                .WithMetadata("type", "bilibili");
 
 
             builder.RegisterAdapter<Meta<IBaseAuto>, AutoActionAdapter>(

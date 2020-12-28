@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ACM.BaseAutoAction\ACM.BaseAutoAction.csproj" />
+    <ProjectReference Include="..\ACM.Bilibili\ACM.Bilibili.csproj" />
     <ProjectReference Include="..\ACM.SinaChina\ACM.SinaChina.csproj" />
     <ProjectReference Include="..\ACM.UserEntities\ACM.UserEntities.csproj" />
     <ProjectReference Include="..\BoB.AutoMapperManager\BoB.AutoMapperManager.csproj" />

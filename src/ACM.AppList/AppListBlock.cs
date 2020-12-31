@@ -4,6 +4,7 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Linq;
+using BoB.EFDbContext.Enums;
 
 namespace ACM.AppListEntities
 {
@@ -22,12 +23,26 @@ namespace ACM.AppListEntities
 
         public bool DeleteApp(int appID)
         {
-            return Delete(appID);
+            return Delete(new MaindbContext(),appID);
         }
 
-        public List<AppList> GetAllApps(MaindbContext context)
+        public List<AppList> GetAllApps(MaindbContext context=null)
         {
-            return GetList(context,s => s.ID >= 0).ToList();
+            if (context != null)
+                return GetList(context, s => s.ID >= 0).ToList();
+            else
+                return GetList(new MaindbContext(),s => s.Status == DataStatus.Normal).ToList();
+        }
+
+        public bool UpdateTheApp(AppInput newer)
+        {
+            return Update(new MaindbContext(), newer, s =>
+            {
+                s.AppName = newer.AppName;
+                s.IdentityName = newer.IdentityName;
+                s.WebDomain = newer.WebDomain;
+                return s;
+            });
         }
     }
 }

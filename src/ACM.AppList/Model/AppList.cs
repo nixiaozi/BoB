@@ -13,8 +13,10 @@ namespace ACM.AppListEntities
     {
         [Key]
         public int ID { get; set; }
-
-
+        /// <summary>
+        /// 标识名称，使用全英文小写
+        /// </summary>
+        public string IdentityName { get; set; }
         public string AppName { get; set; }
 
         public string WebDomain { get; set; }

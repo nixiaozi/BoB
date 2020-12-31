@@ -93,6 +93,7 @@ namespace ACM.MainDatabase
         public bool Insert(MaindbContext context, T data)
         {
             context.Add<T>(data);
+            context.SaveChanges();
             return true;
         }
         public bool Insert(T data)
@@ -123,6 +124,7 @@ namespace ACM.MainDatabase
             var getData = context.Set<T>().FirstOrDefault(s => s.ID.Equals(id));
             func?.Invoke(getData);
 
+            context.SaveChanges();
             return true;
         }
         public bool Update(K id, Func<T, T> func)

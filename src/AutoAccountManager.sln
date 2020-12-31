@@ -72,11 +72,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACM.AutoWinService", "ACM.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACM.BaseAutoAction", "ACM.BaseAutoAction\ACM.BaseAutoAction.csproj", "{9A3CF025-FC15-465D-AA52-E5B24C08ED75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.AllTasksEntities", "ACM.AllTasks\ACM.AllTasksEntities.csproj", "{7EBDE00C-800C-4537-A6A4-2E9E56E57A88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACM.AllTasksEntities", "ACM.AllTasks\ACM.AllTasksEntities.csproj", "{7EBDE00C-800C-4537-A6A4-2E9E56E57A88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.DoingTasksEntities", "ACM.DoingTasks\ACM.DoingTasksEntities.csproj", "{5236D25F-D459-4A42-8BF7-BA5F67CEFFEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACM.DoingTasksEntities", "ACM.DoingTasks\ACM.DoingTasksEntities.csproj", "{5236D25F-D459-4A42-8BF7-BA5F67CEFFEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.Bilibili", "ACM.Bilibili\ACM.Bilibili.csproj", "{3565DB7F-DADD-48EC-83F2-26072404CEE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACM.Bilibili", "ACM.Bilibili\ACM.Bilibili.csproj", "{3565DB7F-DADD-48EC-83F2-26072404CEE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

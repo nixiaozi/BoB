@@ -4,6 +4,7 @@ using ACM.BaseAutoAction;
 using ACM.SinaChina;
 using ACM.UserEntities;
 using BoB.ExtendAndHelper.Utilties;
+using BoB.HelloWorldApi.Model;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -63,10 +64,17 @@ namespace BoB.HelloWorldApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<string> DeleteApp(int appID)
+        public ActionResult<string> DeleteApp(ACMDeleteAppModel model)
         {
-            bool result = _appListBlock.DeleteApp(appID);
+            bool result = _appListBlock.DeleteApp(model.appID);
             return result ? Ok("删除应用标识成功") : Problem("删除应用标识失败");
+        }
+
+        [HttpPost]
+        public ActionResult<string> UpdateApp(AppInput newer)
+        {
+            bool result = _appListBlock.UpdateTheApp(newer);
+            return result ? Ok("更新应用标识成功") : Problem("更新应用标识失败");
         }
 
         [HttpPost]
@@ -115,6 +123,13 @@ namespace BoB.HelloWorldApi.Controllers
         {
             _autoActionAdapters.FirstOrDefault(s => s.CommandText == "sinachina")?.DoBrowserRandom(new RandomBrowse());
             return Ok();
+        }
+
+        [HttpGet]
+        public ActionResult<List<AppList>> GetAllAppList()
+        {
+            var result = _appListBlock.GetAllApps();
+            return Ok(result);
         }
 
     }

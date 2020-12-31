@@ -11,6 +11,8 @@ namespace ACM.AppListEntities
 
         public bool DeleteApp(int appID);
 
-        public List<AppList> GetAllApps(MaindbContext context);
+        public List<AppList> GetAllApps(MaindbContext context=null);
+
+        public bool UpdateTheApp(AppInput newer);
     }
 }

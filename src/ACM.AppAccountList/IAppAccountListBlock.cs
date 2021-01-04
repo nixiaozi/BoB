@@ -10,9 +10,15 @@ namespace ACM.AppAccountListEntities
 
         public bool DeleteAccount(Guid accountId);
 
+        public bool UpdateAccount(AppAccountList input);
+
         public AppAccountList GetAccountByUser(Guid userId);
 
         public bool UpdateTheAccountCookie(Guid UserId, string Cookie);
+
+        public List<int> GetTheUserApps(Guid userID);
+
+        public List<AppAccountList> GetTheUserAccounts(Guid userID);
 
     }
 }

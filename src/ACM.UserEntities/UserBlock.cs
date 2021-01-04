@@ -5,6 +5,7 @@ using ACM.MainDatabase;
 using System.Linq;
 using BoB.EFDbContext.Enums;
 using System.Diagnostics.CodeAnalysis;
+using System.Collections.Generic;
 
 namespace ACM.UserEntities
 {
@@ -28,12 +29,20 @@ namespace ACM.UserEntities
 
         public bool AddUser(UserInput user)
         {
+            if (String.IsNullOrEmpty(user.Phone.Trim()))
+            {
+                throw new Exception("用户手机号不能为空");
+            }
+
             if (user.ID == Guid.Empty)
                 user.ID = Guid.NewGuid();
             var hasUser = GetUser(user.Phone);
 
             if (hasUser == null)
+            {
+                user.CreateTime = DateTime.Now;
                 return Insert(user);
+            }
             else
             {
                 return false;
@@ -43,7 +52,7 @@ namespace ACM.UserEntities
 
         public bool RemoveUser(Guid userId)
         {
-            return Delete(userId);
+            return Delete(new MaindbContext(), userId);
 
         }
 
@@ -65,7 +74,25 @@ namespace ACM.UserEntities
                 return true;
             }
         }
-*/
+        */
+
+        public List<Users> GetAllUserList(MaindbContext context = null)
+        {
+            if (context != null)
+                return GetList(context, s => s.Status == DataStatus.Normal).ToList();
+            else
+                return GetList(new MaindbContext(), s => s.Status == DataStatus.Normal).ToList();
+        }
+
+        public bool UpdateUser(Users users)
+        {
+            return Update(new MaindbContext(), users, s =>
+            {
+                s.Brithday = users.Brithday;
+                return s;
+            });
+        }
+
 
     }
 }

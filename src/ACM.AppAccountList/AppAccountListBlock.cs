@@ -5,6 +5,9 @@ using Microsoft.Extensions.DependencyInjection;
 using NetTopologySuite.Geometries;
 using PasswordGenerator;
 using BoB.EFDbContext.Enums;
+using System.Collections.Generic;
+using System.Linq;
+using BoB.ExtendAndHelper.Utilties;
 
 namespace ACM.AppAccountListEntities
 {
@@ -20,6 +23,14 @@ namespace ACM.AppAccountListEntities
 
         public bool AddAppAccount(AppAccountInput account)
         {
+            Random random = new Random();
+            // 需要对输入数据进行处理
+            account.Longitude = random.NextDouble() * 360 - 180; // 添加随机经度坐标
+            account.Latitude = random.NextDouble() * 180 - 90;   // 添加随机纬度坐标
+            account.Salt = new Password(4).IncludeNumeric().LengthRequired(4).Next(); // 定义随机的四位salt
+            account.Password = SecurityHelper.EncryptToBase64(account.Password, account.Salt); //把传入的密码进行加密
+
+
             AppAccountList input = _autoMapperService.DoMap<AppAccountInput, AppAccountList>(account);
             input.ID = Guid.NewGuid();
             input.Location = new Point(account.Longitude, account.Latitude) { SRID = 4326,  };
@@ -31,7 +42,23 @@ namespace ACM.AppAccountListEntities
 
         public bool DeleteAccount(Guid accountId)
         {
-            return Delete(accountId);
+            return Delete(new  MaindbContext(), accountId);
+        }
+
+        public bool UpdateAccount(AppAccountList input)
+        {
+            return Update(new MaindbContext(), input, s =>
+            {
+                s.Address = input.Address;
+                //if (string.IsNullOrWhiteSpace(input.AppUserID)) s.AppUserID = input.AppUserID;
+                //if (string.IsNullOrWhiteSpace(input.Cookie)) s.Cookie = input.Cookie;
+                if (!string.IsNullOrWhiteSpace(input.Password))
+                {
+                    s.Password = SecurityHelper.EncryptToBase64(input.Password.Trim(), s.Salt);
+                }
+                s.NickName = input.NickName;
+                return s;
+            });
         }
 
         public AppAccountList GetAccountByUser(Guid userId)
@@ -55,6 +82,19 @@ namespace ACM.AppAccountListEntities
                 return s;
             });
         }
+
+        public List<int> GetTheUserApps(Guid userID)
+        {
+            return GetList(new MaindbContext(), s => s.Status == DataStatus.Normal && s.UserID == userID).Select(s => s.AppID).ToList();
+
+        }
+
+        public List<AppAccountList> GetTheUserAccounts(Guid userID)
+        {
+            return GetList(new MaindbContext(), s => s.Status == DataStatus.Normal && s.UserID == userID).ToList();
+        }
+
+        
 
     }
 }

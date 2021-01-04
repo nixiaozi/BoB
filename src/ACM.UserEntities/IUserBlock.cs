@@ -14,5 +14,10 @@ namespace ACM.UserEntities
 
         public Users GetUserById(Guid userId);
 
+        public List<Users> GetAllUserList(MaindbContext context = null);
+
+
+        public bool UpdateUser(Users users);
+
     }
 }

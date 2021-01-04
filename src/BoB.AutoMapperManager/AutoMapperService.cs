@@ -16,7 +16,7 @@ namespace BoB.AutoMapperManager
         {
             //扫描所有加载的程序集，获取所有添加的映射
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies()
-                .Where(s => s.FullName.Contains(StaticConfiguration.ProjectName)).ToArray();
+                .Where(s => s.FullName.Contains(StaticConfiguration.ProjectName) || s.FullName.Contains("BoB.HelloWorldApi")).ToArray();
 
             configuration = new MapperConfiguration(cfg => {
                 foreach(var assembly in assemblies)

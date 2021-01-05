@@ -6,6 +6,9 @@ namespace ACM.BaseAutoAction
 {
     public class CollectAction:ViewAction
     {
-        public string ToCollectVideoID { get; set; }
+        /// <summary>
+        /// 收藏夹名称
+        /// </summary>
+        public string FacoritesName { get; set; }
     }
 }

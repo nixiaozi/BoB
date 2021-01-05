@@ -8,6 +8,9 @@
     },
     {
       "type": "ACM.SinaChina.SinaChinaModule, ACM.SinaChina"
+    },
+    {
+      "type": "ACM.AllTasksEntities.AllTasksEntitiesModule, ACM.AllTasksEntities"
     }
   ]
 }

@@ -20,6 +20,10 @@ namespace BoB.HelloWorldApi.Model
                 .ForMember(dest => dest.latitude, opt => opt.MapFrom(src => src.Location.Y))
                 .ForMember(dest => dest.longitude, opt => opt.MapFrom(src => src.Location.X))
                 .ForMember(dest => dest.nickName, opt => opt.MapFrom(src => src.NickName));
+
+            CreateMap<SearchAccountOutput, OptionItem<Guid, string>>()
+                .ForMember(dest => dest.key, opt => opt.MapFrom(s => s.ID))
+                .ForMember(dest => dest.value, opt => opt.MapFrom(s => s.NickName));
         }
     }
 }

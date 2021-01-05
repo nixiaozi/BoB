@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ACM.BaseAutoAction
 {
-    public class GiveLikeAction
+    public class GiveLikeAction : ViewAction
     {
         /// <summary>
         /// 是否给视频点赞

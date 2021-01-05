@@ -63,6 +63,11 @@ namespace ACM.AllTasksEntities
         /// </summary>
         public string ParamObj { get; set; }
 
+        /// <summary>
+        /// 任务类型
+        /// </summary>
+        public ACMTaskTypeEnum TaskType { get; set; }
+
     }
 
     public class AllTasksCreator : IMaindbModelCreator

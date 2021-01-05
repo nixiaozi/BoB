@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ACM.AllTasks\ACM.AllTasksEntities.csproj" />
     <ProjectReference Include="..\ACM.AppAccountList\ACM.AppAccountListEntities.csproj" />
     <ProjectReference Include="..\ACM.AppList\ACM.AppListEntities.csproj" />
     <ProjectReference Include="..\ACM.SinaChina\ACM.SinaChina.csproj" />

@@ -22,6 +22,11 @@ namespace ACM.DoingTasksEntities
         public Guid TaskID { get; set; }
 
         public string ParamObj { get; set; }
+
+        /// <summary>
+        /// 任务类型
+        /// </summary>
+        public ACMTaskTypeEnum TaskType { get; set; }
     }
 
     public class DoingTasksCreator : IMaindbModelCreator

@@ -94,7 +94,11 @@ namespace ACM.AppAccountListEntities
             return GetList(new MaindbContext(), s => s.Status == DataStatus.Normal && s.UserID == userID).ToList();
         }
 
-        
+        public List<SearchAccountOutput> SearchAccount(string SearchStr, int appID)
+        {
+            return GetList(new MaindbContext(), s => s.Status == DataStatus.Normal && s.AppID == appID && s.NickName.Contains(SearchStr))
+                ?.Select(s => new SearchAccountOutput { NickName = s.NickName, ID = s.ID }).ToList();
+        }
 
     }
 }

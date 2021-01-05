@@ -1,9 +1,11 @@
-﻿using ACM.AppAccountListEntities;
+﻿using ACM.AllTasksEntities;
+using ACM.AppAccountListEntities;
 using ACM.AppListEntities;
 using ACM.BaseAutoAction;
 using ACM.SinaChina;
 using ACM.UserEntities;
 using BoB.AutoMapperManager;
+using BoB.ExtendAndHelper.Extends;
 using BoB.ExtendAndHelper.Utilties;
 using BoB.HelloWorldApi.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -25,11 +27,12 @@ namespace BoB.HelloWorldApi.Controllers
         private ISinaChinaWebService _sinaChinaWebService;
         private IEnumerable<AutoActionAdapter> _autoActionAdapters;
         private IAutoMapperService _autoMapperService;
+        private IAllTasksBlock _allTasksBlock;
 
 
         public ACMController(IUserBlock userBlock, IAppListBlock appListBlock, IAppAccountListBlock appAccountListBlock,
             ISinaChinaWebService sinaChinaWebService, IEnumerable<AutoActionAdapter> autoActionAdapters,
-            IAutoMapperService autoMapperService)
+            IAutoMapperService autoMapperService, IAllTasksBlock allTasksBlock)
         {
             _userBlock = userBlock;
             _appListBlock = appListBlock;
@@ -37,6 +40,7 @@ namespace BoB.HelloWorldApi.Controllers
             _sinaChinaWebService = sinaChinaWebService;
             _autoActionAdapters = autoActionAdapters;
             _autoMapperService = autoMapperService;
+            _allTasksBlock = allTasksBlock;
         }
 
         [HttpGet]
@@ -201,7 +205,58 @@ namespace BoB.HelloWorldApi.Controllers
             return Ok(_autoMapperService.DoMap<List<AppAccountList>,List<GetTheUserAccountOutput>>(result));
         }
 
+        [HttpGet]
+        public ActionResult<List<OptionItem<int,string>>> GetTaskTypes()
+        {
+            List<OptionItem<int, string>> data = new List<OptionItem<int, string>>();
+            foreach (ACMTaskTypeEnum item in (ACMTaskTypeEnum[])Enum.GetValues(typeof(ACMTaskTypeEnum)))
+            {
+                var it = new OptionItem<int, string> { key = (int)item, value = item.DisplayName() };
+                data.Add(it);
+            }
 
+            return Ok(data);
+        }
+
+        [HttpGet]
+        public ActionResult<List<OptionItem<int, string>>> GetTaskLevels()
+        {
+            List<OptionItem<int, string>> data = new List<OptionItem<int, string>>();
+            foreach (ACMTaskLevelEnum item in (ACMTaskLevelEnum[])Enum.GetValues(typeof(ACMTaskLevelEnum)))
+            {
+                var it = new OptionItem<int, string> { key = (int)item, value = item.DisplayName() };
+                data.Add(it);
+            }
+
+            return Ok(data);
+        }
+
+        [HttpGet]
+        public ActionResult<List<OptionItem<Guid, string>>> SearchAccount(string SearchStr,int appID)
+        {
+            var result = SearchStr==null?null: _appAccountListBlock.SearchAccount(SearchStr.Trim(), appID);
+            return Ok(_autoMapperService.DoMap<List<SearchAccountOutput>, List<OptionItem<Guid, string>>>(result));
+
+        }
+
+        [HttpPost]
+        public ActionResult<string> AddNewTask(AddNewTaskModel model)
+        {
+            AllTasks data = new AllTasks
+            {
+                AppID = model.appID,
+                CreateTime = DateTime.Now,
+                ParamObj = model.taskParamStr,
+                Status = EFDbContext.Enums.DataStatus.Normal,
+                TaskEcecuteStatus = TaskExecuteStatusEnum.UnDo,
+                TaskLevel = model.taskLevel,
+                TaskType = model.taskType,
+                UserID = model.userAccount,
+            };
+            var result = _allTasksBlock.AddNewTask(data);
+
+            return result? Ok("添加任务成功") : Problem("添加任务失败");
+        }
 
     }
 }

@@ -20,5 +20,7 @@ namespace ACM.AppAccountListEntities
 
         public List<AppAccountList> GetTheUserAccounts(Guid userID);
 
+        public List<SearchAccountOutput> SearchAccount(string SearchStr, int appID);
+
     }
 }

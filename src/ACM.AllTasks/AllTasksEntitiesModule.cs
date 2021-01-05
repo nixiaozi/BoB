@@ -2,7 +2,7 @@
 using BoB.BaseModule;
 using System;
 
-namespace ACM.AllTasks
+namespace ACM.AllTasksEntities
 {
     public class AllTasksEntitiesModule : BoBModule, IBoBModule
     {

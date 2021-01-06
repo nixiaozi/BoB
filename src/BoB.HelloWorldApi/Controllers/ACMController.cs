@@ -3,6 +3,8 @@ using ACM.AppAccountListEntities;
 using ACM.AppListEntities;
 using ACM.BaseAutoAction;
 using ACM.SinaChina;
+using ACM.TaskManager;
+using ACM.TaskManager.Model;
 using ACM.UserEntities;
 using BoB.AutoMapperManager;
 using BoB.ExtendAndHelper.Extends;
@@ -28,11 +30,12 @@ namespace BoB.HelloWorldApi.Controllers
         private IEnumerable<AutoActionAdapter> _autoActionAdapters;
         private IAutoMapperService _autoMapperService;
         private IAllTasksBlock _allTasksBlock;
+        private ITaskManagerService _taskManagerService;
 
 
         public ACMController(IUserBlock userBlock, IAppListBlock appListBlock, IAppAccountListBlock appAccountListBlock,
             ISinaChinaWebService sinaChinaWebService, IEnumerable<AutoActionAdapter> autoActionAdapters,
-            IAutoMapperService autoMapperService, IAllTasksBlock allTasksBlock)
+            IAutoMapperService autoMapperService, IAllTasksBlock allTasksBlock, ITaskManagerService taskManagerService)
         {
             _userBlock = userBlock;
             _appListBlock = appListBlock;
@@ -41,6 +44,7 @@ namespace BoB.HelloWorldApi.Controllers
             _autoActionAdapters = autoActionAdapters;
             _autoMapperService = autoMapperService;
             _allTasksBlock = allTasksBlock;
+            _taskManagerService = taskManagerService;
         }
 
         [HttpGet]
@@ -248,7 +252,7 @@ namespace BoB.HelloWorldApi.Controllers
                 CreateTime = DateTime.Now,
                 ParamObj = model.taskParamStr,
                 Status = EFDbContext.Enums.DataStatus.Normal,
-                TaskEcecuteStatus = TaskExecuteStatusEnum.UnDo,
+                TaskExecuteStatus = TaskExecuteStatusEnum.UnDo,
                 TaskLevel = model.taskLevel,
                 TaskType = model.taskType,
                 UserID = model.userAccount,
@@ -256,6 +260,20 @@ namespace BoB.HelloWorldApi.Controllers
             var result = _allTasksBlock.AddNewTask(data);
 
             return result? Ok("添加任务成功") : Problem("添加任务失败");
+        }
+
+        [HttpGet]
+        public ActionResult<string> RemoveTheApp(int appID)
+        {
+            var result = _appListBlock.RemoveTheApp(appID);
+            return result ? Ok("删除应用成功") : Problem("删除应用失败");
+        }
+
+        [HttpGet]
+        public ActionResult<List<TaskDetailOutput>> GetAllTask()
+        {
+            var result = _taskManagerService.GetUndoneTaskDetail();
+            return Ok(result);
         }
 
     }

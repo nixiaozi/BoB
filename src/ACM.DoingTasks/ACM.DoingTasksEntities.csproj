@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ACM.AutoWinService\ACM.AutoWinService.csproj" />
+    <ProjectReference Include="..\ACM.BaseAutoAction\ACM.BaseAutoAction.csproj" />
     <ProjectReference Include="..\ACM.MainDatabase\ACM.MainDatabase.csproj" />
     <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
     <ProjectReference Include="..\BoB.EFDbContext\BoB.EFDbContext.csproj" />

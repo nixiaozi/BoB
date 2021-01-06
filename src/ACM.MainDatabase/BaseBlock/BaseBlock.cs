@@ -22,7 +22,24 @@ namespace ACM.MainDatabase
             //这里可以在服务解析之后进行的基类处理
         }
 
-        
+        public bool Remove(K id)
+        {
+            using (var context = new MaindbContext())
+            {
+                var item =context.Set<T>().FirstOrDefault(s => s.ID.Equals(id));
+                context.Remove<T>(item);
+                context.SaveChanges();
+                return true;
+            }
+        }
+
+        public bool Remove(MaindbContext context, K id)
+        {
+            var item = context.Set<T>().FirstOrDefault(s => s.ID.Equals(id));
+            context.Remove<T>(item);
+            context.SaveChanges();
+            return true;
+        }
 
         public bool Delete(MaindbContext context, K id)
         {

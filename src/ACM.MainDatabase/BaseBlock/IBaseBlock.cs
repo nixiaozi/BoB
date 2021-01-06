@@ -25,6 +25,10 @@ namespace ACM.MainDatabase
 
         public bool Delete(MaindbContext context, K id);
 
+        public bool Remove(K id);
+
+        public bool Remove(MaindbContext context, K id);
+
         public T Get(K id);
 
         public T Get(MaindbContext context, K id);

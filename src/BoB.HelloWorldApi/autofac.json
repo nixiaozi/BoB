@@ -11,6 +11,9 @@
     },
     {
       "type": "ACM.AllTasksEntities.AllTasksEntitiesModule, ACM.AllTasksEntities"
+    },
+    {
+      "type": "ACM.DoingTasksEntities.DoingTasksEntitiesModule, ACM.DoingTasksEntities"
     }
   ]
 }

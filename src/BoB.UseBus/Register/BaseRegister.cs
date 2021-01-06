@@ -14,6 +14,7 @@ using Autofac.Features.Metadata;
 using ACM.BaseAutoAction;
 using ACM.SinaChina;
 using ACM.Bilibili;
+using ACM.TaskManager;
 
 namespace BoB.UseBus.Register
 {
@@ -34,6 +35,7 @@ namespace BoB.UseBus.Register
             //builder.RegisterModule<PeopleEntitiesModule>();
             builder.RegisterModule<UserEntitiesModule>();
             // AppListEntitiesModule 模块注入 通过autofac.json 配置文件添加
+            builder.RegisterModule<TaskManagerModule>();
 
 
             //autofac使用配置中更改

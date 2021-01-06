@@ -2,9 +2,9 @@
 using BoB.BaseModule;
 using System;
 
-namespace ACM.DoingTasksEntities
+namespace ACM.TaskManager
 {
-    public class DoingTasksEntitiesModule : BoBModule, IBoBModule
+    public class TaskManagerModule : BoBModule, IBoBModule
     {
         public override void Init(ContainerBuilder builder)
         {

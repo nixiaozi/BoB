@@ -78,6 +78,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACM.DoingTasksEntities", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACM.Bilibili", "ACM.Bilibili\ACM.Bilibili.csproj", "{3565DB7F-DADD-48EC-83F2-26072404CEE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.TaskManager", "ACM.TaskManager\ACM.TaskManager.csproj", "{49E90923-E536-4878-8083-D0B8570CE558}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -196,6 +198,10 @@ Global
 		{3565DB7F-DADD-48EC-83F2-26072404CEE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3565DB7F-DADD-48EC-83F2-26072404CEE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3565DB7F-DADD-48EC-83F2-26072404CEE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49E90923-E536-4878-8083-D0B8570CE558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49E90923-E536-4878-8083-D0B8570CE558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49E90923-E536-4878-8083-D0B8570CE558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49E90923-E536-4878-8083-D0B8570CE558}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -231,6 +237,7 @@ Global
 		{7EBDE00C-800C-4537-A6A4-2E9E56E57A88} = {0895E588-157C-46CF-988F-CB4207C596D2}
 		{5236D25F-D459-4A42-8BF7-BA5F67CEFFEF} = {0895E588-157C-46CF-988F-CB4207C596D2}
 		{3565DB7F-DADD-48EC-83F2-26072404CEE6} = {88D825B7-9DB4-48B0-8938-9ABAC4CFE526}
+		{49E90923-E536-4878-8083-D0B8570CE558} = {88D825B7-9DB4-48B0-8938-9ABAC4CFE526}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C2269C5-7CF7-4EC9-8D09-1589D95ECEC4}

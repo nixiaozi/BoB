@@ -36,7 +36,7 @@ namespace ACM.AllTasksEntities
         /// <summary>
         /// 任务执行的状态
         /// </summary>
-        public TaskExecuteStatusEnum TaskEcecuteStatus { get; set; }
+        public TaskExecuteStatusEnum TaskExecuteStatus { get; set; }
 
         /// <summary>
         /// 任务的等级

@@ -44,5 +44,10 @@ namespace ACM.AppListEntities
                 return s;
             });
         }
+
+        public bool RemoveTheApp(int appID)
+        {
+            return Remove(new MaindbContext(), appID);
+        }
     }
 }

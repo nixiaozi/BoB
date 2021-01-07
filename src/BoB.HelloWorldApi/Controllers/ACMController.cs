@@ -157,17 +157,17 @@ namespace BoB.HelloWorldApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<string> CookieUpdateTest(Guid  userId)
+        public ActionResult<string> CookieUpdateTest(Guid  accountID)
         {
             Cookie cookie = new Cookie("test", "abcd");
-           var result= _appAccountListBlock.UpdateTheAccountCookie(userId, JsonConvert.SerializeObject(cookie));
+           var result= _appAccountListBlock.UpdateTheAccountCookie(accountID, JsonConvert.SerializeObject(cookie));
             return result ? Ok("修改Cookie成功") : Problem("修改Cookie失败");
         }
 
         [HttpPost]
-        public  ActionResult<string> SinaChinaLogin(Guid UserID)
+        public  ActionResult<string> SinaChinaLogin(Guid UserID,int appID=4)
         {
-            var user =  _appAccountListBlock.GetAccountByUser(UserID);
+            var user =  _appAccountListBlock.GetAccountByUser(UserID,appID);
             _sinaChinaWebService.ToLogin(user);
 
             return Ok();

@@ -61,12 +61,12 @@ namespace ACM.AppAccountListEntities
             });
         }
 
-        public AppAccountList GetAccountByUser(Guid userId)
+        public AppAccountList GetAccountByUser(Guid userId, int appID)
         {
-            return Get(s => s.UserID == userId);
+            return Get(s => s.UserID == userId&&s.AppID==appID&&s.Status== DataStatus.Normal);
         }
 
-        public bool UpdateTheAccountCookie(Guid UserId, string Cookie)
+        public bool UpdateTheAccountCookie(Guid AccountID, string Cookie)
         {
             // 无法把Func<A,A> 转化成 Func<B,B> 因为我们没有办法得到保证前一函数中的某些属性转到后一个函数后还有效
             //Func<AppAccountInput, Func<AppAccountInput, AppAccountInput>, AppAccountList> dofunc
@@ -77,7 +77,7 @@ namespace ACM.AppAccountListEntities
 
             //     };
 
-            return Update(Get(s=>s.UserID==UserId && s.Status== DataStatus.Normal).ID, s=> {
+            return Update(Get(s=>s.ID==AccountID && s.Status== DataStatus.Normal).ID, s=> {
                 s.Cookie = Cookie;
                 return s;
             });

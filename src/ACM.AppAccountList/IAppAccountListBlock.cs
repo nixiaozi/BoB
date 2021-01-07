@@ -12,9 +12,9 @@ namespace ACM.AppAccountListEntities
 
         public bool UpdateAccount(AppAccountList input);
 
-        public AppAccountList GetAccountByUser(Guid userId);
+        public AppAccountList GetAccountByUser(Guid userId,int appID);
 
-        public bool UpdateTheAccountCookie(Guid UserId, string Cookie);
+        public bool UpdateTheAccountCookie(Guid AccountID, string Cookie);
 
         public List<int> GetTheUserApps(Guid userID);
 

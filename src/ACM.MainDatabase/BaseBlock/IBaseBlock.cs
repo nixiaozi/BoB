@@ -41,5 +41,7 @@ namespace ACM.MainDatabase
 
         public IQueryable<T> GetList(MaindbContext context, Expression<Func<T, bool>> expression);
 
+        public List<T> AsyncGetList(Expression<Func<T, bool>> expression);
+
     }
 }

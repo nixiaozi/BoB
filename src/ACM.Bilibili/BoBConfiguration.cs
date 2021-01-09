@@ -15,7 +15,7 @@ namespace ACM.Bilibili
 
 
         // [WriteAble]
-        public static readonly string HomePage = "http://www.bilibili.cn";
+        public static readonly string HomePage = "http://www.bilibili.com";
 
         public static readonly int AppID = 2;
 

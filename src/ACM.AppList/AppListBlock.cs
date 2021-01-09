@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Linq;
 using BoB.EFDbContext.Enums;
+using System.Threading.Tasks;
 
 namespace ACM.AppListEntities
 {
@@ -32,6 +33,11 @@ namespace ACM.AppListEntities
                 return GetList(context, s => s.ID >= 0).ToList();
             else
                 return GetList(new MaindbContext(),s => s.Status == DataStatus.Normal).ToList();
+        }
+
+        public List<AppList> GetAllTheApps()
+        {
+            return AsyncGetList( s => s.ID >= 0).ToList();
         }
 
         public bool UpdateTheApp(AppInput newer)

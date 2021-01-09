@@ -20,7 +20,8 @@ namespace BoB.UseBus.Register
 {
     public static class BaseRegister
     {
-        public static void RegisterConfigureContainer(ContainerBuilder builder)
+        // 为了兼容直接使用autofac 容器的情况增加了函数返回值
+        public static ContainerBuilder RegisterConfigureContainer(ContainerBuilder builder)
         {
             //模块注入,只有注入模块之后，程序集扫描才能获得该assembly
             //BoB.Base部分模块注入
@@ -64,6 +65,8 @@ namespace BoB.UseBus.Register
             //AutoMap的使用（必须再注入完所有引用后使用)
             builder.RegisterModule<AutoMapperManagerModule>();
 
+
+            return builder;
         }
     }
 }

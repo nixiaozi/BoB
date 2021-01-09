@@ -91,6 +91,16 @@ namespace ACM.MainDatabase
         }
 
 
+        public List<T> AsyncGetList(Expression<Func<T, bool>> expression)
+        {
+            using (var context = new MaindbContext())
+            {
+                return context.Set<T>().Where(expression).ToList();
+            }
+        }
+
+
+
 
         public T Get(MaindbContext context, K id)
         {

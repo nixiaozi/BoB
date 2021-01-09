@@ -21,8 +21,8 @@ namespace ACM.AutoWinService
         {
             CurrentServiceProvider = BoBContainer.ServiceProvider;  // 首先要定义依赖池
 
-            //appListBlock = CurrentServiceProvider.GetService<IAppListBlock>();
-            //var apps = appListBlock.GetAllApps();
+            var dirappListBlock = CurrentServiceProvider.GetService<IAppListBlock>();
+            var apps = dirappListBlock.GetAllTheApps(); // 
             // 以上注释代码会导致，在查询数据库时出现context 上下文已释放，查不到数据，
             // 具体可以参考 https://blog.hildenco.com/2018/12/accessing-entity-framework-context-on.html
             // 主要意思是在Controller已关闭或者完成的状态下，EF Core会自动关闭DBContext 连接，释放资源防止资源浪费

@@ -1,15 +1,27 @@
 ﻿using ACM.BaseAutoAction;
+using BoB.ContainManager;
 using System;
+using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Text;
+using ACM.SeleniumManager;
 
 namespace ACM.Bilibili
 {
-    public class BilibiliAuto : IBaseAuto
+    public class BilibiliAuto : InitBlockService, IBaseAuto
     {
+        private IBilibiliService _bilibiliService;
+
+        protected override void Init()
+        {
+            //_bilibiliService = CurrentServiceProvider.GetService<IBilibiliService>();
+
+        }
+
+
         public void DoBrowserRandom(RandomBrowse paramObj)
         {
-            throw new NotImplementedException();
+            var driver = ChromeDriverHelper.InitDriver().BrowserToUrl(BoBConfiguration.HomePage);
         }
 
         public void DoBrowserToAttention(AttentionAction paramObj)

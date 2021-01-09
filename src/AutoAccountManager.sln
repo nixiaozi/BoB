@@ -80,7 +80,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACM.Bilibili", "ACM.Bilibil
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACM.TaskManager", "ACM.TaskManager\ACM.TaskManager.csproj", "{49E90923-E536-4878-8083-D0B8570CE558}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.SeleniumManager", "ACM.SeleniumManager\ACM.SeleniumManager.csproj", "{7650F983-3AA0-4027-A227-7D36F22765A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ACM.SeleniumManager", "ACM.SeleniumManager\ACM.SeleniumManager.csproj", "{7650F983-3AA0-4027-A227-7D36F22765A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.AutoAccountApplication", "ACM.AutoAccountApplication\ACM.AutoAccountApplication.csproj", "{A61167AD-005B-4DB4-BE8D-6435C1DA19CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -208,6 +210,10 @@ Global
 		{7650F983-3AA0-4027-A227-7D36F22765A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7650F983-3AA0-4027-A227-7D36F22765A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7650F983-3AA0-4027-A227-7D36F22765A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A61167AD-005B-4DB4-BE8D-6435C1DA19CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A61167AD-005B-4DB4-BE8D-6435C1DA19CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A61167AD-005B-4DB4-BE8D-6435C1DA19CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A61167AD-005B-4DB4-BE8D-6435C1DA19CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -245,6 +251,7 @@ Global
 		{3565DB7F-DADD-48EC-83F2-26072404CEE6} = {88D825B7-9DB4-48B0-8938-9ABAC4CFE526}
 		{49E90923-E536-4878-8083-D0B8570CE558} = {88D825B7-9DB4-48B0-8938-9ABAC4CFE526}
 		{7650F983-3AA0-4027-A227-7D36F22765A8} = {47245C68-BBBB-4B8C-B645-EAD30A1EB18F}
+		{A61167AD-005B-4DB4-BE8D-6435C1DA19CC} = {33EAD9FB-7AE9-45DD-A9CB-F89AD2D2DF1F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C2269C5-7CF7-4EC9-8D09-1589D95ECEC4}

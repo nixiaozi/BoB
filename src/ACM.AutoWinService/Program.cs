@@ -32,7 +32,9 @@ namespace ACM.AutoWinService
             var builder = new HostBuilder()
             .ConfigureServices((hostContext, services) =>
             {
-                services.AddHostedService<AutoTimeService>();
+                // 同时只能存在一个HostedService，默认会解析第一次遇到的这个，而忽略后面的
+                //services.AddHostedService<AutoTimeService>();
+                services.AddHostedService<ACMAutoService>();
             })
             .UseServiceProviderFactory(new AutofacServiceProviderFactory())  // 添加Autofac 服务提供程序;
             .ConfigureContainer<ContainerBuilder>(af =>

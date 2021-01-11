@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using BoB.EFDbContext.Enums;
 using System.Threading.Tasks;
+using Autofac;
 
 namespace ACM.AppListEntities
 {
@@ -14,7 +15,7 @@ namespace ACM.AppListEntities
         private IAutoMapperService _autoMapperService;
         protected override void Init()
         {
-            _autoMapperService = CurrentServiceProvider.GetService<IAutoMapperService>();
+            _autoMapperService = CurrentServiceContainer.Resolve<IAutoMapperService>();
         }
 
         public bool AddApp(AppInput app)

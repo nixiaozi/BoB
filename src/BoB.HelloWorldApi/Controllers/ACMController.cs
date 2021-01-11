@@ -6,7 +6,9 @@ using ACM.SinaChina;
 using ACM.TaskManager;
 using ACM.TaskManager.Model;
 using ACM.UserEntities;
+using Autofac;
 using BoB.AutoMapperManager;
+using BoB.ContainManager;
 using BoB.ExtendAndHelper.Extends;
 using BoB.ExtendAndHelper.Utilties;
 using BoB.HelloWorldApi.Model;
@@ -21,7 +23,7 @@ namespace BoB.HelloWorldApi.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ACMController : ControllerBase
+    public class ACMController : ACMBaseController
     {
         private IUserBlock _userBlock;
         private IAppListBlock _appListBlock;
@@ -33,18 +35,16 @@ namespace BoB.HelloWorldApi.Controllers
         private ITaskManagerService _taskManagerService;
 
 
-        public ACMController(IUserBlock userBlock, IAppListBlock appListBlock, IAppAccountListBlock appAccountListBlock,
-            ISinaChinaWebService sinaChinaWebService, IEnumerable<AutoActionAdapter> autoActionAdapters,
-            IAutoMapperService autoMapperService, IAllTasksBlock allTasksBlock, ITaskManagerService taskManagerService)
+        public ACMController()
         {
-            _userBlock = userBlock;
-            _appListBlock = appListBlock;
-            _appAccountListBlock = appAccountListBlock;
-            _sinaChinaWebService = sinaChinaWebService;
-            _autoActionAdapters = autoActionAdapters;
-            _autoMapperService = autoMapperService;
-            _allTasksBlock = allTasksBlock;
-            _taskManagerService = taskManagerService;
+            _userBlock = BoBContainer.ServiceContainer.Resolve<IUserBlock>();
+            _appListBlock = BoBContainer.ServiceContainer.Resolve<IAppListBlock>();
+            _appAccountListBlock = BoBContainer.ServiceContainer.Resolve<IAppAccountListBlock>();
+            _sinaChinaWebService = BoBContainer.ServiceContainer.Resolve<ISinaChinaWebService>();
+            _autoActionAdapters = BoBContainer.ServiceContainer.Resolve<IEnumerable<AutoActionAdapter>>();
+            _autoMapperService = BoBContainer.ServiceContainer.Resolve<IAutoMapperService>();
+            _allTasksBlock = BoBContainer.ServiceContainer.Resolve<IAllTasksBlock>();
+            _taskManagerService = BoBContainer.ServiceContainer.Resolve<ITaskManagerService>();
         }
 
         [HttpGet]

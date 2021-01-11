@@ -6,6 +6,7 @@ using System.Linq;
 using BoB.EFDbContext.Enums;
 using System.Diagnostics.CodeAnalysis;
 using System.Collections.Generic;
+using Autofac;
 
 namespace ACM.UserEntities
 {
@@ -15,7 +16,7 @@ namespace ACM.UserEntities
 
         protected override void Init()
         {
-            _autoMapperService = CurrentServiceProvider.GetService<IAutoMapperService>();
+            _autoMapperService = CurrentServiceContainer.Resolve<IAutoMapperService>();
         }
 
         public Users GetUser(string Phone)

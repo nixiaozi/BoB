@@ -8,6 +8,7 @@ using BoB.EFDbContext.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using BoB.ExtendAndHelper.Utilties;
+using Autofac;
 
 namespace ACM.AppAccountListEntities
 {
@@ -17,7 +18,7 @@ namespace ACM.AppAccountListEntities
 
         protected override void Init()
         {
-            _autoMapperService = CurrentServiceProvider.GetService<IAutoMapperService>();
+            _autoMapperService = CurrentServiceContainer.Resolve<IAutoMapperService>();
         }
 
 

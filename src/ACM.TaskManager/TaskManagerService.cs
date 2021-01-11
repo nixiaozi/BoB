@@ -2,6 +2,7 @@
 using ACM.DoingTasksEntities;
 using ACM.MainDatabase;
 using ACM.TaskManager.Model;
+using Autofac;
 using BoB.ContainManager;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -18,8 +19,8 @@ namespace ACM.TaskManager
 
         protected override void Init()
         {
-            _allTasksBlock = CurrentServiceProvider.GetService<IAllTasksBlock>();
-            _doingTasksBlock = CurrentServiceProvider.GetService<IDoingTasksBlock>();
+            _allTasksBlock = CurrentServiceContainer.Resolve<IAllTasksBlock>();
+            _doingTasksBlock = CurrentServiceContainer.Resolve<IDoingTasksBlock>();
         }
 
 

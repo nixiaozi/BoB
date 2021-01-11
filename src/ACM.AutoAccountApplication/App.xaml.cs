@@ -10,6 +10,7 @@ using System.Windows.Threading;
 using ACM.BaseAutoAction;
 using ACM.TaskManager;
 using Autofac;
+using BoB.ContainManager;
 using BoB.UseBus.Register;
 
 namespace ACM.AutoAccountApplication
@@ -24,9 +25,12 @@ namespace ACM.AutoAccountApplication
         public App()
         {
             var containerBuilder = new ContainerBuilder();
-            containerBuilder = BaseRegister.RegisterConfigureContainer(containerBuilder);
+            BaseRegister.RegisterConfigureContainer(containerBuilder); //添加后台依赖注入
+            TheContainer = BoBContainer.ServiceContainer;
+            //var containerBuilder = new ContainerBuilder();
+            //containerBuilder = BaseRegister.RegisterConfigureContainer(containerBuilder);
 
-            TheContainer = containerBuilder.Build();
+            //TheContainer = containerBuilder.Build();
         }
 
 

@@ -16,6 +16,7 @@ using BoB.ExtendAndHelper.Utilties;
 using System.Threading;
 using BoB.EmailManager;
 using ACM.SeleniumManager;
+using Autofac;
 
 namespace ACM.SinaChina
 {
@@ -26,9 +27,9 @@ namespace ACM.SinaChina
         private IEmailManagerService _emailManagerService;
         protected override void Init()
         {
-            _userBlock = CurrentServiceProvider.GetService<IUserBlock>();
-            _appAccountListBlock = CurrentServiceProvider.GetService<IAppAccountListBlock>();
-            _emailManagerService = CurrentServiceProvider.GetService<IEmailManagerService>();
+            _userBlock = CurrentServiceContainer.Resolve<IUserBlock>();
+            _appAccountListBlock = CurrentServiceContainer.Resolve<IAppAccountListBlock>();
+            _emailManagerService = CurrentServiceContainer.Resolve<IEmailManagerService>();
         }
 
         public bool ToLogin(AppAccountList account)

@@ -59,7 +59,6 @@ namespace ACM.AutoWinService
             {
                 // await builder.RunConsoleAsync();
                 var buildered = builder.Build();
-                BoBContainer.ServiceProvider = buildered.Services;
                 await buildered.RunAsync();
             }
         }

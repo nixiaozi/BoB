@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Autofac;
+using System;
 
 namespace BoB.ContainManager
 {
     public class InitBlockService
     {
-        protected readonly IServiceProvider CurrentServiceProvider;
+        protected readonly IContainer CurrentServiceContainer;
 
         public InitBlockService()
         {
-            CurrentServiceProvider = BoBContainer.ServiceProvider;
+            CurrentServiceContainer = BoBContainer.ServiceContainer;
 
             Init();
 

@@ -5,35 +5,36 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using ACM.AppListEntities;
 using BoB.ContainManager;
 using ACM.MainDatabase;
 using System.Linq;
+using Autofac;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ACM.AutoWinService
 {
     public class AutoTimeService : IHostedService//, IDisposable  
     {
         // private IAppListBlock appListBlock;
-        public IServiceProvider CurrentServiceProvider;
+        public IContainer CurrentServiceContainer;
         public AutoTimeService(IServiceScopeFactory _serviceScopeFactory)
         {
-            CurrentServiceProvider = BoBContainer.ServiceProvider;  // 首先要定义依赖池
+            CurrentServiceContainer = BoBContainer.ServiceContainer;  // 首先要定义依赖池
 
-            var dirappListBlock = CurrentServiceProvider.GetService<IAppListBlock>();
+            var dirappListBlock = CurrentServiceContainer.Resolve<IAppListBlock>();
             var apps = dirappListBlock.GetAllTheApps(); // 
             // 以上注释代码会导致，在查询数据库时出现context 上下文已释放，查不到数据，
             // 具体可以参考 https://blog.hildenco.com/2018/12/accessing-entity-framework-context-on.html
             // 主要意思是在Controller已关闭或者完成的状态下，EF Core会自动关闭DBContext 连接，释放资源防止资源浪费
             // 但是对于我们这种后台服务，就不能使用这种默认操作
-            using (var scope = CurrentServiceProvider.CreateScope())
+            using (var scope = CurrentServiceContainer.BeginLifetimeScope())
             {
-                var dbContext1 = scope.ServiceProvider.GetService<MaindbContext>();
+                var dbContext1 = scope.Resolve<MaindbContext>();
                 var apps1 = dbContext1.Set<AppList>().Where(s => s.ID >= 0).ToList();
 
-                var dbContext2 = scope.ServiceProvider.GetService<MaindbContext>();
-                var appListBlock = CurrentServiceProvider.GetService<IAppListBlock>();
+                var dbContext2 = scope.Resolve<MaindbContext>();
+                var appListBlock = CurrentServiceContainer.Resolve<IAppListBlock>();
                 var apps2 = appListBlock.GetAllApps(dbContext2);
 
                 var apps3 = appListBlock.GetAllApps(dbContext1);    // 这个也能获得预期的数据 context 不会自动释放，并且重用也没有关系

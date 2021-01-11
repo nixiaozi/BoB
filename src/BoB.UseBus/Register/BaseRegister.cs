@@ -3,7 +3,6 @@ using BoB.BoBLogger;
 using BoB.CacheManager;
 using BoB.LanguageManager;
 using Autofac.Configuration;
-using Microsoft.Extensions.Configuration;
 using System.IO;
 using BoB.AutoMapperManager;
 using BoB.WorldAction;
@@ -15,6 +14,8 @@ using ACM.BaseAutoAction;
 using ACM.SinaChina;
 using ACM.Bilibili;
 using ACM.TaskManager;
+using BoB.ContainManager;
+using Microsoft.Extensions.Configuration;
 
 namespace BoB.UseBus.Register
 {
@@ -65,7 +66,7 @@ namespace BoB.UseBus.Register
             //AutoMap的使用（必须再注入完所有引用后使用)
             builder.RegisterModule<AutoMapperManagerModule>();
 
-
+            BoBContainer.ServiceContainer = builder.Build();
             return builder;
         }
     }

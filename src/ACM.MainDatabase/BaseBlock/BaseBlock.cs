@@ -1,4 +1,5 @@
-﻿using BoB.ContainManager;
+﻿using Autofac;
+using BoB.ContainManager;
 using BoB.EFDbContext;
 using BoB.EFDbContext.Enums;
 using System;
@@ -11,11 +12,11 @@ namespace ACM.MainDatabase
 {
     public class BaseBlock<T,K>:IBaseBlock<T,K> where T:class,IBaseEntity<K>,new() where K : IComparable
     {
-        protected readonly IServiceProvider CurrentServiceProvider;
+        protected readonly IContainer CurrentServiceContainer;
 
         public BaseBlock()
         {
-            CurrentServiceProvider = BoBContainer.ServiceProvider;
+            CurrentServiceContainer = BoBContainer.ServiceContainer;
 
             Init();
 

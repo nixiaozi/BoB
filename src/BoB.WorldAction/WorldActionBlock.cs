@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text;
 using BoB.PeopleEntities;
+using Autofac;
 
 namespace BoB.WorldAction
 {
@@ -16,8 +17,8 @@ namespace BoB.WorldAction
 
         protected override void Init()
         {
-            _autoMapperService = CurrentServiceProvider.GetService<IAutoMapperService>();
-            _peopleBlock= CurrentServiceProvider.GetService<IPeopleBlock>();
+            _autoMapperService = CurrentServiceContainer.Resolve<IAutoMapperService>();
+            _peopleBlock= CurrentServiceContainer.Resolve<IPeopleBlock>();
         }
 
 

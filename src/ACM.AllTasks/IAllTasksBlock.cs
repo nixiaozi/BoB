@@ -7,13 +7,13 @@ using System.Text;
 
 namespace ACM.AllTasksEntities
 {
-    public interface IAllTasksBlock
+    public interface IAllTasksBlock: IBaseBlock<AllTasks, Guid>
     {
         public bool AddNewTask(AllTasks theTask);
 
-        public bool UpdateTheTaskStatus(Guid taskID, TaskExecuteStatusEnum taskExecuteStatus);
+        public bool UpdateTheTaskStatus(Guid taskID, TaskExecuteStatusEnum taskExecuteStatus, MaindbContext context=null);
 
-        public bool DeleteTheTask(Guid taskID);
+        public bool DeleteTheTask(Guid taskID, MaindbContext context = null);
 
         public IQueryable<AllTasks> GetAllTasks(MaindbContext context);
     }

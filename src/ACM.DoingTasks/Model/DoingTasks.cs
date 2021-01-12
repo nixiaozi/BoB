@@ -10,10 +10,10 @@ using System.Text;
 
 namespace ACM.DoingTasksEntities
 {
-    public class DoingTasks : IBaseEntity<Guid>
+    public class DoingTasks : IBaseEntity<int>
     {
         [Key]
-        public Guid ID { get; set; }
+        public int ID { get; set; }
 
         public DataStatus Status { get; set; }
 

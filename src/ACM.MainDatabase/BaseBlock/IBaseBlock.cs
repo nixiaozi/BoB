@@ -37,7 +37,7 @@ namespace ACM.MainDatabase
 
         public T Get(MaindbContext context, Expression<Func<T, bool>> expression);
 
-        public IQueryable<T> GetList(Expression<Func<T, bool>> expression);
+        // public IQueryable<T> GetList(Expression<Func<T, bool>> expression);
 
         public IQueryable<T> GetList(MaindbContext context, Expression<Func<T, bool>> expression);
 

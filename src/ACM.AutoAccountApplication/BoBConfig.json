@@ -1,1 +1,9 @@
-﻿{}
+﻿{
+  "ACM.MainDatabase": {
+    "ConnectionStr": "Data Source=.;Initial Catalog=ACM.Main;User ID=sa;Password=As412563"
+  },
+  "ACM.AutoAccountApplication": {
+    "NormalAllowParallelTaskNum": "4",
+    "AutoCancelTimeSpan": "\"00:30:00\""
+  }
+}

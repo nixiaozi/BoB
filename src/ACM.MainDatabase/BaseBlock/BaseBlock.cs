@@ -83,13 +83,14 @@ namespace ACM.MainDatabase
         {
             return context.Set<T>().Where(expression).AsQueryable();
         }
-        public IQueryable<T> GetList(Expression<Func<T, bool>> expression)
-        {
-            using (var context = new MaindbContext())
-            {
-                return context.Set<T>().Where(expression).AsQueryable();
-            }
-        }
+
+        //public IQueryable<T> GetList(Expression<Func<T, bool>> expression)
+        //{
+        //    using (var context = new MaindbContext())
+        //    {
+        //        return context.Set<T>().Where(expression).AsQueryable();
+        //    }
+        //}
 
 
         public List<T> AsyncGetList(Expression<Func<T, bool>> expression)
@@ -118,13 +119,13 @@ namespace ACM.MainDatabase
 
 
 
-        public bool Insert(MaindbContext context, T data)
+        public virtual bool Insert(MaindbContext context, T data)
         {
             context.Add<T>(data);
             context.SaveChanges();
             return true;
         }
-        public bool Insert(T data)
+        public virtual bool Insert(T data)
         {
             using (var context = new MaindbContext())
             {

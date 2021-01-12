@@ -176,7 +176,7 @@ namespace BoB.HelloWorldApi.Controllers
         [HttpPost]
         public ActionResult<string> AutofacAdapterTest()
         {
-            _autoActionAdapters.FirstOrDefault(s => s.CommandText == "sinachina")?.DoBrowserRandom(new RandomBrowse());
+            _autoActionAdapters.FirstOrDefault(s => s.CommandText == "sinachina")?.DoBrowserRandom(new RandomBrowse(),new System.Threading.CancellationToken());
             return Ok();
         }
 

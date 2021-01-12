@@ -44,9 +44,8 @@ namespace ACM.TaskManager
         {
             TheTask = Task.Factory.StartNew(() =>
             {
-                action.Invoke(default(T), canceltoken);
+                action.Invoke(TaskDetail, canceltoken);
             }, canceltoken);
-
         }
 
         public void CancelTask()

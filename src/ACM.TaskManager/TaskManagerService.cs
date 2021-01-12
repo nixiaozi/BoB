@@ -1,14 +1,17 @@
 ﻿using ACM.AllTasksEntities;
+using ACM.BaseAutoAction;
 using ACM.DoingTasksEntities;
 using ACM.MainDatabase;
 using ACM.TaskManager.Model;
 using Autofac;
 using BoB.ContainManager;
+using BoB.EFDbContext.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ACM.TaskManager
 {
@@ -41,7 +44,8 @@ namespace ACM.TaskManager
                         TaskID = x.ID,
                         TaskLevel = x.TaskLevel,
                         TaskParams = x.ParamObj,
-                        TaskType = x.TaskType
+                        TaskType = x.TaskType,
+                        AppID=x.AppID,
                     }).ToList();
 
                 return result;
@@ -69,10 +73,129 @@ namespace ACM.TaskManager
                 TaskLevel = s.TaskLevel,
                 TaskParams = s.ParamObj,
                 TaskType = s.TaskType,
+                AppID=s.AppID,
             }).ToList();
 
             return result;
 
+
+        }
+
+
+        public bool ChangeTaskDetailStatus(Guid TaskID, TaskStatus taskStatus,Action tranAction = null)
+        {
+            switch (taskStatus)
+            {
+                case TaskStatus.RanToCompletion:
+                    using(var context=new MaindbContext())
+                    {
+                        var transaction = context.Database.BeginTransaction();
+                        _allTasksBlock.UpdateTheTaskStatus(TaskID, BaseAutoAction.TaskExecuteStatusEnum.Completed,context);
+                        _doingTasksBlock.RemoveDoingTask(TaskID,context);
+                        if (tranAction != null)
+                        {
+                            tranAction.Invoke();
+                        }
+                        transaction.Commit();
+                    }
+                    break;
+                case TaskStatus.Faulted:
+                    using (var context = new MaindbContext())
+                    {
+                        var transaction = context.Database.BeginTransaction();
+                        _allTasksBlock.UpdateTheTaskStatus(TaskID, BaseAutoAction.TaskExecuteStatusEnum.Fail, context);
+                        _doingTasksBlock.RemoveDoingTask(TaskID, context);
+                        if (tranAction != null)
+                        {
+                            tranAction.Invoke();
+                        }
+                        transaction.Commit();
+                    }
+                    break;
+                case TaskStatus.Canceled:
+                    using (var context = new MaindbContext())
+                    {
+                        var transaction = context.Database.BeginTransaction();
+                        _allTasksBlock.UpdateTheTaskStatus(TaskID, BaseAutoAction.TaskExecuteStatusEnum.SystemClosure, context);
+                        _doingTasksBlock.RemoveDoingTask(TaskID, context);
+                        if (tranAction != null)
+                        {
+                            tranAction.Invoke();
+                        }
+                        transaction.Commit();
+                    }
+                    break;
+                case TaskStatus.Running:
+                    using (var context = new MaindbContext())
+                    {
+                        var transaction = context.Database.BeginTransaction();
+                        _allTasksBlock.UpdateTheTaskStatus(TaskID, BaseAutoAction.TaskExecuteStatusEnum.Executing, context);
+                        _doingTasksBlock.RemoveDoingTask(TaskID, context);
+                        if (tranAction != null)
+                        {
+                            tranAction.Invoke();
+                        }
+                        transaction.Commit();
+                    }
+                    break;
+                default:
+                    using (var context = new MaindbContext())
+                    {
+                        var transaction = context.Database.BeginTransaction();
+                        _allTasksBlock.UpdateTheTaskStatus(TaskID, BaseAutoAction.TaskExecuteStatusEnum.UnDo, context);
+                        if (tranAction != null)
+                        {
+                            tranAction.Invoke();
+                        }
+                        // _doingTasksBlock.RemoveDoingTask(TaskID, context); 在未开始情况下不需要执行此操作
+                        transaction.Commit();
+                    }
+                    break;
+
+            }
+
+            return true;
+
+        }
+
+
+        public List<TaskDetailOutput> GetAllUndoTasksByTaskLevel(ACMTaskLevelEnum TaskLevel)
+        {
+            List<AllTasks> allTasksList = null;
+            allTasksList = _allTasksBlock.AsyncGetList( s => s.Status == DataStatus.Normal && s.TaskExecuteStatus == TaskExecuteStatusEnum.UnDo
+                     && s.TaskLevel == TaskLevel);
+
+            var result = allTasksList.Select(s => new TaskDetailOutput
+            {
+                CreateDate = s.CreateTime,
+                DoingTaskStatus = DoingTaskStatusEnum.Prepare,
+                TaskExecuteStatus = s.TaskExecuteStatus,
+                TaskID = s.ID,
+                TaskLevel = s.TaskLevel,
+                TaskParams = s.ParamObj,
+                TaskType = s.TaskType,
+                AppID=s.AppID,
+            }).ToList();
+
+            return result;
+
+        }
+
+        public bool DoingPrepareTask(Guid TaskID, Action tranAction = null)
+        {
+            using(var context =new MaindbContext())
+            {
+                var transaction = context.Database.BeginTransaction();
+                _allTasksBlock.UpdateTheTaskStatus(TaskID, TaskExecuteStatusEnum.Executing, context);
+                _doingTasksBlock.UpdateDoingTaskStatus(TaskID, DoingTaskStatusEnum.Doing, context);
+                if (tranAction != null)
+                {
+                    tranAction.Invoke();
+                }
+                transaction.Commit(); // 可能出现transaction已完成的错误提示，说明前面使用context时使用了using 造成了context自动完成
+
+                return true;
+            }
 
         }
 

@@ -2,6 +2,7 @@
 using ACM.MainDatabase;
 using ACM.TaskManager;
 using ACM.TaskManager.Model;
+using Autofac;
 using BoB.ContainManager;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,14 +27,14 @@ namespace ACM.AutoWinService
         private int executionCount = 0;
         private readonly ILogger<ACMAutoService> _logger;
         private Timer _timer;
-        public IServiceProvider CurrentServiceProvider;
+        //public IServiceProvider CurrentServiceProvider;
         private IEnumerable<AutoActionAdapter> _autoActionAdapters;
 
         public ACMAutoService(ILogger<ACMAutoService> logger)
         {
             _logger = logger;
-            CurrentServiceProvider= BoBContainer.ServiceProvider;
-            _autoActionAdapters = CurrentServiceProvider.GetService<IEnumerable<AutoActionAdapter>>();
+            //CurrentServiceProvider= BoBContainer.ServiceContainer;
+            _autoActionAdapters = BoBContainer.ServiceContainer.Resolve<IEnumerable<AutoActionAdapter>>();
         }
 
 
@@ -46,7 +47,7 @@ namespace ACM.AutoWinService
             //_timer = new Timer(DoWork, null, TimeSpan.Zero,
             //    TimeSpan.FromSeconds(5)); // 
             // test
-            _autoActionAdapters.FirstOrDefault(s => s.CommandText == "bilibili")?.DoBrowserRandom(new RandomBrowse());
+            _autoActionAdapters.FirstOrDefault(s => s.CommandText == "bilibili")?.DoBrowserRandom(new RandomBrowse(),new CancellationToken());
 
 
             _timer =new Timer(DoWork,cancellationToken,TimeSpan.Zero,

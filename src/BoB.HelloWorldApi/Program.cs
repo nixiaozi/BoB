@@ -37,6 +37,7 @@ namespace BoB.HelloWorldApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                // 使用单独的autofac注入库，不需要与HostBuild进行集成
                 //.UseServiceProviderFactory(new AutofacServiceProviderFactory()) //添加Autofac 服务提供程序
                 .ConfigureWebHostDefaults(webBuilder =>
                 {

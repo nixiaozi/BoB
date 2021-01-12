@@ -19,6 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ACM.AllTasks\ACM.AllTasksEntities.csproj" />
     <ProjectReference Include="..\ACM.AppAccountList\ACM.AppAccountListEntities.csproj" />
     <ProjectReference Include="..\ACM.AppList\ACM.AppListEntities.csproj" />

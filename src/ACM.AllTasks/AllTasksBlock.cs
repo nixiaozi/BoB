@@ -14,10 +14,10 @@ namespace ACM.AllTasksEntities
             return Insert(new MaindbContext(), theTask);
         }
 
-        public bool UpdateTheTaskStatus(Guid taskID, TaskExecuteStatusEnum taskExecuteStatus)
+        public bool UpdateTheTaskStatus(Guid taskID, TaskExecuteStatusEnum taskExecuteStatus, MaindbContext context = null)
         {
             AllTasks data = new AllTasks { ID = taskID };
-            return Update(new MaindbContext(), data, s =>
+            return Update(context==null?new MaindbContext():context, data, s =>
             {
                 s.TaskExecuteStatus = taskExecuteStatus;
                 return s;
@@ -25,9 +25,9 @@ namespace ACM.AllTasksEntities
 
         }
 
-        public bool DeleteTheTask(Guid taskID)
+        public bool DeleteTheTask(Guid taskID, MaindbContext context = null)
         {
-            return Delete(new MaindbContext(), taskID);
+            return Delete(context==null?new MaindbContext(): context, taskID);
         }
 
         public IQueryable<AllTasks> GetAllTasks(MaindbContext context)

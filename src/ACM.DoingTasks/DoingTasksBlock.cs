@@ -7,29 +7,33 @@ using System.Text;
 
 namespace ACM.DoingTasksEntities
 {
-    public class DoingTasksBlock:BaseBlock<DoingTasks,Guid>,IBaseBlock<DoingTasks,Guid>,IDoingTasksBlock
+    public class DoingTasksBlock:BaseBlock<DoingTasks,int>,IBaseBlock<DoingTasks, int>,IDoingTasksBlock
     {
         public bool AddNewDoingTask(DoingTasks task)
         {
-            return Insert(new MaindbContext(), task);
+            if(Get(s=>s.TaskID==task.TaskID)==null)
+                return Insert(new MaindbContext(), task);
+
+            return true;
         }
-        public bool UpdateDoingTaskStatus(Guid TaskID, DoingTaskStatusEnum doingTaskStatus)
+        public bool UpdateDoingTaskStatus(Guid TaskID, DoingTaskStatusEnum doingTaskStatus,MaindbContext context)
         {
-            DoingTasks data = new DoingTasks { TaskID = TaskID };
-            return Update(new MaindbContext(), data, s =>
+            DoingTasks data = new DoingTasks { ID = Get(context, s => s.TaskID == TaskID).ID };
+            return Update(context, data, s =>
             {
                 s.TaskExecingStatus = doingTaskStatus;
                 return s;
             });
+                
         }
 
-        public bool RemoveDoingTask(Guid TaskID)
+        public bool RemoveDoingTask(Guid TaskID, MaindbContext context)
         {
-            using(var context= new MaindbContext())
-            {
+            //using(context==null? new MaindbContext():context) // update 方法不要在这个级别使用using 
+            //{
                 var task = Get(context, s => s.TaskID == TaskID);
                 return Remove(context, task.ID);
-            }
+            //}
         }
 
         public IQueryable<DoingTasks> GetAllDoingTasks(MaindbContext context)

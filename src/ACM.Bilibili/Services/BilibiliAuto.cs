@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Text;
 using ACM.SeleniumManager;
+using System.Threading;
 
 namespace ACM.Bilibili
 {
@@ -19,47 +20,47 @@ namespace ACM.Bilibili
         }
 
 
-        public void DoBrowserRandom(RandomBrowse paramObj)
+        public void DoBrowserRandom(RandomBrowse paramObj, CancellationToken ct)
         {
             var driver = ChromeDriverHelper.InitDriver().BrowserToUrl(BoBConfiguration.HomePage);
         }
 
-        public void DoBrowserToAttention(AttentionAction paramObj)
+        public void DoBrowserToAttention(AttentionAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToBarrage(BarrageAction paramObj)
+        public void DoBrowserToBarrage(BarrageAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToCollect(CollectAction paramObj)
+        public void DoBrowserToCollect(CollectAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToComment(CommentAction paramObj)
+        public void DoBrowserToComment(CommentAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToGiveLike(GiveLikeAction paramObj)
+        public void DoBrowserToGiveLike(GiveLikeAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToLogin(LoginAction paramObj)
+        public void DoBrowserToLogin(LoginAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToShare(ShareAction paramObj)
+        public void DoBrowserToShare(ShareAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToView(ViewAction paramObj)
+        public void DoBrowserToView(ViewAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }

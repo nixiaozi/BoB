@@ -22,49 +22,49 @@ namespace ACM.BaseAutoAction
             get { return _commandText; }
         }
 
-        public void DoBrowserRandom(RandomBrowse paramObj, CancellationToken ct)
+        public void DoBrowserRandom(Guid userID, RandomBrowse paramObj, CancellationToken ct)
         {
-            _baseAutoAction.DoBrowserRandom(paramObj, ct);
+            _baseAutoAction.DoBrowserRandom(userID, paramObj, ct);
         }
 
-        public void DoBrowserToAttention(AttentionAction paramObj, CancellationToken ct)
+        public void DoBrowserToAttention(Guid userID, AttentionAction paramObj, CancellationToken ct)
         {
-            _baseAutoAction.DoBrowserToAttention(paramObj, ct);
+            _baseAutoAction.DoBrowserToAttention(userID, paramObj, ct);
         }
 
-        public void DoBrowserToBarrage(BarrageAction paramObj, CancellationToken ct)
+        public void DoBrowserToBarrage(Guid userID, BarrageAction paramObj, CancellationToken ct)
         {
-            _baseAutoAction.DoBrowserToBarrage(paramObj, ct);
+            _baseAutoAction.DoBrowserToBarrage(userID, paramObj, ct);
         }
 
-        public void DoBrowserToCollect(CollectAction paramObj, CancellationToken ct)
+        public void DoBrowserToCollect(Guid userID, CollectAction paramObj, CancellationToken ct)
         {
-            _baseAutoAction.DoBrowserToCollect(paramObj, ct);
+            _baseAutoAction.DoBrowserToCollect(userID, paramObj, ct);
         }
 
-        public void DoBrowserToComment(CommentAction paramObj, CancellationToken ct)
+        public void DoBrowserToComment(Guid userID, CommentAction paramObj, CancellationToken ct)
         {
-            _baseAutoAction.DoBrowserToComment(paramObj, ct);
+            _baseAutoAction.DoBrowserToComment(userID, paramObj, ct);
         }
 
-        public void DoBrowserToGiveLike(GiveLikeAction paramObj, CancellationToken ct)
+        public void DoBrowserToGiveLike(Guid userID, GiveLikeAction paramObj, CancellationToken ct)
         {
-            _baseAutoAction.DoBrowserToGiveLike(paramObj, ct);
+            _baseAutoAction.DoBrowserToGiveLike(userID, paramObj, ct);
         }
 
-        public void DoBrowserToLogin(LoginAction paramObj, CancellationToken ct)
+        public void DoBrowserToLogin(Guid userID, LoginAction paramObj, CancellationToken ct)
         {
-            _baseAutoAction.DoBrowserToLogin(paramObj, ct);
+            _baseAutoAction.DoBrowserToLogin(userID, paramObj, ct);
         }
 
-        public void DoBrowserToShare(ShareAction paramObj, CancellationToken ct)
+        public void DoBrowserToShare(Guid userID, ShareAction paramObj, CancellationToken ct)
         {
-            _baseAutoAction.DoBrowserToShare(paramObj, ct);
+            _baseAutoAction.DoBrowserToShare(userID, paramObj, ct);
         }
 
-        public void DoBrowserToView(ViewAction paramObj, CancellationToken ct)
+        public void DoBrowserToView(Guid userID, ViewAction paramObj, CancellationToken ct)
         {
-            _baseAutoAction.DoBrowserToView(paramObj,ct);
+            _baseAutoAction.DoBrowserToView(userID, paramObj,ct);
         }
 
     }

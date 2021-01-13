@@ -8,47 +8,47 @@ namespace ACM.SinaChina
 {
     public class SinaChinaAuto : IBaseAuto
     {
-        public void DoBrowserRandom(RandomBrowse paramObj, CancellationToken ct)
+        public void DoBrowserRandom(Guid userID, RandomBrowse paramObj, CancellationToken ct)
         {
             Console.WriteLine("DoBrowserRandom");
         }
 
-        public void DoBrowserToAttention(AttentionAction paramObj, CancellationToken ct)
+        public void DoBrowserToAttention(Guid userID, AttentionAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToBarrage(BarrageAction paramObj, CancellationToken ct)
+        public void DoBrowserToBarrage(Guid userID, BarrageAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToCollect(CollectAction paramObj, CancellationToken ct)
+        public void DoBrowserToCollect(Guid userID, CollectAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToComment(CommentAction paramObj, CancellationToken ct)
+        public void DoBrowserToComment(Guid userID, CommentAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToGiveLike(GiveLikeAction paramObj, CancellationToken ct)
+        public void DoBrowserToGiveLike(Guid userID, GiveLikeAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToLogin(LoginAction paramObj, CancellationToken ct)
+        public void DoBrowserToLogin(Guid userID, LoginAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToShare(ShareAction paramObj, CancellationToken ct)
+        public void DoBrowserToShare(Guid userID, ShareAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }
 
-        public void DoBrowserToView(ViewAction paramObj, CancellationToken ct)
+        public void DoBrowserToView(Guid userID, ViewAction paramObj, CancellationToken ct)
         {
             throw new NotImplementedException();
         }

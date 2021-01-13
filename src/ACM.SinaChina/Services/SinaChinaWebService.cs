@@ -37,7 +37,7 @@ namespace ACM.SinaChina
             var user = _userBlock.GetUserById(account.UserID);
             Debug.Print("开始自动登录");
 
-            #region InitDriver
+            #region InitDriver 可以自定义Cookies保存目录
             //ChromeOptions chromeOptions = new ChromeOptions();
             //chromeOptions.AddArgument("ignore-certificate-errors");
             //chromeOptions.AddArgument("--ignore-ssl-errors");
@@ -49,7 +49,7 @@ namespace ACM.SinaChina
 
 
             //var driver = new ChromeDriver(chromeOptions);
-            var driver = ChromeDriverHelper.InitDriver();
+            var driver = ChromeDriverHelper.InitDriver(@"D:\publish\chromeProfiles\"+user.ID.ToString().ToUpper());
 
             #endregion
 
@@ -79,12 +79,12 @@ namespace ACM.SinaChina
             driver = driver.BrowserToUrl(BoBConfiguration.HomePage);
             #endregion
 
-            #region CurrentUrlSetCookies
+            #region CurrentUrlSetCookies  没有效用的方法
             // 需要获取用户并且进行登录
             //var cookieCollection = account.Cookie == null ? null : JsonConvert.DeserializeObject<List<Cookie>>(account.Cookie);
             //if (cookieCollection != null)
             //    cookieCollection.ForEach(s => driver.Manage().Cookies.AddCookie(s));
-            driver = driver.CurrentDomainSetCookies(account.Cookie);
+            // driver = driver.CurrentDomainSetCookies(account.Cookie);
             #endregion
 
             //// test lambel status
@@ -238,7 +238,7 @@ namespace ACM.SinaChina
             //driver.ExecuteScript("console.info('{0}')", "已经成功登录了系统");
             string allcookies;
             driver = driver.CurrentDomainGetCookies(out allcookies);
-            _appAccountListBlock.UpdateTheAccountCookie(account.ID, allcookies);
+            // _appAccountListBlock.UpdateTheAccountCookie(account.ID, allcookies);
             #endregion
 
             driver.Quit(); // 退出driver

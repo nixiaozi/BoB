@@ -25,13 +25,17 @@ namespace ACM.SeleniumManager
                 return _random;
             }
         }
-        public static ChromeDriver InitDriver()
+        public static ChromeDriver InitDriver(string localstr=null)
         {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.AddArgument("ignore-certificate-errors");
             chromeOptions.AddArgument("--ignore-ssl-errors");
             chromeOptions.AcceptInsecureCertificates = true; // 准许不安全的证书
 
+            if (localstr!=null)
+            {
+                chromeOptions.AddArgument("user-data-dir="+localstr);
+            }
 
             return new ChromeDriver(chromeOptions);
         }
@@ -70,12 +74,13 @@ namespace ACM.SeleniumManager
             return driver;
         }
 
-        public static ChromeDriver BrowserToUrl(this ChromeDriver driver,string NavigationUrl,Action<int,string> errorAction=null)
+        public static ChromeDriver BrowserToUrl(this ChromeDriver driver,string NavigationUrl,
+            Action<int,string> errorAction=null, CancellationToken? ct = null)
         {
             return driver.HandleError(url =>
             {
                 driver.Navigate().GoToUrl(NavigationUrl);
-            }, errorAction);
+            }, errorAction,ct);
             #region Commited code
             //var waitfor = true;
             //var waitSecond = 10; // 每十秒后再执行一次
@@ -107,20 +112,32 @@ namespace ACM.SeleniumManager
             #endregion
         }
 
-        public static ChromeDriver CurrentDomainSetCookies(this ChromeDriver driver,
-            string CookiesStr, Action<int, string> errorAction=null)
-        {
-            return driver.HandleError(url =>
-            {
-                var cookieCollection = CookiesStr == null ? null : JsonConvert.DeserializeObject<List<Cookie>>(CookiesStr);
-                if (cookieCollection != null)
-                    cookieCollection.ForEach(s => driver.Manage().Cookies.AddCookie(s));
-            }, errorAction);
-        }
+        #region 直接setCookies的方式重写cookies 违反cookies的安全方式，不能达到效果
+        //public static ChromeDriver CurrentDomainSetCookies(this ChromeDriver driver,
+        //    string CookiesStr, Action<int, string> errorAction=null)
+        //{
+        //    return driver.HandleError(url =>
+        //    {
+        //        driver.Manage().Cookies.DeleteAllCookies(); // 首先清除所有cookies
+        //        var cookieCollection = CookiesStr == null ? null : JsonConvert.DeserializeObject<List<Dictionary<string,string>>>(CookiesStr);
+        //        if (cookieCollection != null)
+        //        {
+        //            cookieCollection.ForEach(s => /*driver.Manage().Cookies.AddCookie(s)*/{ 
+        //                foreach(KeyValuePair<string,string> keyValuePair in s)
+        //                {
+        //                    driver.Manage().Cookies.AddCookie(new Cookie(keyValuePair.Key, keyValuePair.Value));
+        //                }
+        //            });
+        //        }
+
+        //    }, errorAction);
+        //}
 
         // 检查元素可用性【用来进行判断的依据】
+        #endregion
+
         public static ChromeDriver CheckElementUseable(this ChromeDriver driver,string xpath, out bool CheckResult, bool IsAllowFalse = false,
-            Action<int, string> errorAction = null)
+            Action<int, string> errorAction = null, CancellationToken? ct = null)
         {
             return driver.HandleCheck(out CheckResult, IsAllowFalse, (url) =>
             {
@@ -130,12 +147,41 @@ namespace ACM.SeleniumManager
                             IWebElement templateEle = driver.FindElement(By.XPath(xpath));
                             return templateEle.Displayed && templateEle.Enabled ? true : false;
                         });
-            }, errorAction);
+            }, errorAction,ct);
         }
+
+        public static ChromeDriver CheckElementIsShow(this ChromeDriver driver, string xpath, out bool CheckResult, bool IsAllowFalse = false,
+            Action<int, string> errorAction = null, CancellationToken? ct = null)
+        {
+            return driver.HandleCheck(out CheckResult, IsAllowFalse, (url) =>
+            {
+                return new WebDriverWait(driver, TimeSpan.FromSeconds(3))
+                        .Until<bool>(div =>
+                        {
+                            IWebElement templateEle = driver.FindElement(By.XPath(xpath));
+                            return templateEle.Displayed ? true : false;
+                        });
+            }, errorAction, ct);
+        }
+
+        public static ChromeDriver CheckElementIsExists(this ChromeDriver driver, string xpath, out bool CheckResult, bool IsAllowFalse = false,
+            Action<int, string> errorAction = null, CancellationToken? ct = null)
+        {
+            return driver.HandleCheck(out CheckResult, IsAllowFalse, (url) =>
+            {
+                return new WebDriverWait(driver, TimeSpan.FromSeconds(3))
+                        .Until<bool>(div =>
+                        {
+                            IWebElement templateEle = driver.FindElement(By.XPath(xpath));
+                            return templateEle!=null? true : false;
+                        });
+            }, errorAction, ct);
+        }
+
 
         // 点击元素
         public static ChromeDriver LeftClickElement(this ChromeDriver driver,string xpath,
-            Action<int, string> errorAction = null)
+            Action<int, string> errorAction = null, CancellationToken? ct = null)
         {
             return driver.HandleError((url) =>
             {
@@ -147,12 +193,13 @@ namespace ACM.SeleniumManager
                         });
                 Actions newAction = new Actions(driver);
                 newAction.Click(element).Build().Perform();
-            }, errorAction);
+            }, errorAction,ct);
         }
 
 
         // 输入内容[模拟人的输入]
-        public static ChromeDriver InputContext(this ChromeDriver driver,string xpath,string inputStr, Action<int, string> errorAction = null)
+        public static ChromeDriver InputContext(this ChromeDriver driver,string xpath,string inputStr, 
+            Action<int, string> errorAction = null, CancellationToken? ct = null)
         {
             return driver.HandleError((url) => {
                 var element= driver.FindElementByXPath(xpath);
@@ -164,12 +211,12 @@ namespace ACM.SeleniumManager
                 }
 
 
-            }, errorAction);
+            }, errorAction,ct);
         }
 
         // 检查Cookie
         public static ChromeDriver CheckExistsCookieName(this ChromeDriver driver, string cookieName, out bool CheckResult, bool IsAllowFalse = false,
-            Action<int, string> errorAction = null)
+            Action<int, string> errorAction = null, CancellationToken? ct = null)
         {
             return driver.HandleCheck(out CheckResult, IsAllowFalse, (url) =>
             {
@@ -179,24 +226,24 @@ namespace ACM.SeleniumManager
                             var element = div.Manage().Cookies.GetCookieNamed(cookieName); 
                             return element != null ? true : false;
                         });
-            }, errorAction);
+            }, errorAction,ct);
         }
 
 
         // 获取cookie
         public static ChromeDriver CurrentDomainGetCookies(this ChromeDriver driver,out string allCookies,
-            Action<int, string> errorAction = null)
+            Action<int, string> errorAction = null, CancellationToken? ct = null)
         {
             return driver.HandleGetContext<string>(out allCookies, (url) =>
             {
                 return JsonConvert.SerializeObject(driver.Manage().Cookies.AllCookies);
-            }, errorAction);
+            }, errorAction,ct);
         }
 
 
 
-        private static ChromeDriver HandleGetContext<T>(this ChromeDriver driver,out T result,
-            Func<string, T> getAction = null, Action<int, string> errorAction = null) 
+        public static ChromeDriver HandleGetContext<T>(this ChromeDriver driver,out T result,
+            Func<string, T> getAction = null, Action<int, string> errorAction = null, CancellationToken? ct = null) 
         {
             result = default(T);
             var url = driver.Url;
@@ -205,6 +252,10 @@ namespace ACM.SeleniumManager
             var perWait = 10;
             while (isWait)
             {
+                if(ct.HasValue && ct.Value.IsCancellationRequested)
+                {
+                    ct.Value.ThrowIfCancellationRequested(); //抛出 RequestCancelled 异常，强行中断循环
+                }
                 try
                 {
                     if (getAction != null)
@@ -237,8 +288,8 @@ namespace ACM.SeleniumManager
             return driver;
         }
 
-        private static ChromeDriver HandleCheck(this ChromeDriver driver,out bool CheckResult,bool IsAllowFalse=false,
-            Func<string,bool> checkAction=null,Action<int,string> errorAction=null)
+        public static ChromeDriver HandleCheck(this ChromeDriver driver,out bool CheckResult,bool IsAllowFalse=false,
+            Func<string,bool> checkAction=null,Action<int,string> errorAction=null, CancellationToken? ct = null)
         {
             CheckResult = false;
             var url = driver.Url;
@@ -247,6 +298,10 @@ namespace ACM.SeleniumManager
             var perWait = 10;
             while (isWait)
             {
+                if (ct.HasValue && ct.Value.IsCancellationRequested)
+                {
+                    ct.Value.ThrowIfCancellationRequested(); //抛出 RequestCancelled 异常，强行中断循环
+                }
                 try
                 {
                     if (checkAction != null)
@@ -278,7 +333,8 @@ namespace ACM.SeleniumManager
 
             return driver;
         }
-        private static ChromeDriver HandleError(this ChromeDriver driver,Action<string> doAction=null,Action<int,string> errorAction=null)
+        public static ChromeDriver HandleError(this ChromeDriver driver,Action<string> doAction=null,
+            Action<int,string> errorAction=null, CancellationToken? ct = null)
         {
             var url = driver.Url;
             var waitfor = true;
@@ -286,6 +342,10 @@ namespace ACM.SeleniumManager
             var perWait = 10;
             while (waitfor)
             {
+                if (ct.HasValue && ct.Value.IsCancellationRequested)
+                {
+                    ct.Value.ThrowIfCancellationRequested(); //抛出 RequestCancelled 异常，强行中断循环
+                }
                 try
                 {
                     // driver.Navigate().GoToUrl(url);

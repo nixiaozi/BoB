@@ -9,10 +9,31 @@ namespace ACM.DoingTasksEntities
 {
     public class DoingTasksBlock:BaseBlock<DoingTasks,int>,IBaseBlock<DoingTasks, int>,IDoingTasksBlock
     {
+        public  override bool Insert(MaindbContext context, DoingTasks data)
+        {
+            if (context == null)
+            {
+                throw new Exception("MaindbContext params Cant be null!");
+            }
+
+            if(Get(s => s.TaskID == data.TaskID) == null)
+            {
+                context.Add<DoingTasks>(data);
+                context.SaveChanges();
+            }
+            return true;
+        }
+
+        // Insert 方法都默认不会使用using 自动关闭 context，单独使用需要自行定义
         public bool AddNewDoingTask(DoingTasks task)
         {
-            if(Get(s=>s.TaskID==task.TaskID)==null)
-                return Insert(new MaindbContext(), task);
+            if (Get(s => s.TaskID == task.TaskID) == null)
+            {
+                using (var context = new MaindbContext())
+                {
+                    return Insert(context, task);
+                }
+            }
 
             return true;
         }
@@ -27,12 +48,21 @@ namespace ACM.DoingTasksEntities
                 
         }
 
+        /// <summary>
+        /// 返回false表示并没有执行删除操作，可能已删除
+        /// </summary>
+        /// <param name="TaskID"></param>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public bool RemoveDoingTask(Guid TaskID, MaindbContext context)
         {
             //using(context==null? new MaindbContext():context) // update 方法不要在这个级别使用using 
             //{
-                var task = Get(context, s => s.TaskID == TaskID);
+            var task = Get(context, s => s.TaskID == TaskID);
+            if(task!=null)
                 return Remove(context, task.ID);
+
+            return false;
             //}
         }
 

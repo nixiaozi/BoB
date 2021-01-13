@@ -55,6 +55,7 @@ namespace ACM.AutoAccountApplication
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            RuntimeContext.Instance.InitTaskBefore();
 
             // DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -88,7 +89,7 @@ namespace ACM.AutoAccountApplication
 
             // 添加最高等级任务
             // 根据情况添加其他等级任务
-            RuntimeContext.Instance.DoingPrepareTask();
+            RuntimeContext.Instance.DoingPrepareTask(null,true); // 这里只需要合并默认的
 
 
 

@@ -46,6 +46,7 @@ namespace ACM.TaskManager
                         TaskParams = x.ParamObj,
                         TaskType = x.TaskType,
                         AppID=x.AppID,
+                        UserID=x.UserID,
                     }).ToList();
 
                 return result;
@@ -74,6 +75,7 @@ namespace ACM.TaskManager
                 TaskParams = s.ParamObj,
                 TaskType = s.TaskType,
                 AppID=s.AppID,
+                UserID=s.UserID,
             }).ToList();
 
             return result;
@@ -82,7 +84,7 @@ namespace ACM.TaskManager
         }
 
 
-        public bool ChangeTaskDetailStatus(Guid TaskID, TaskStatus taskStatus,Action tranAction = null)
+        public bool ChangeTaskDetailStatus(Guid TaskID, TaskStatus taskStatus,DateTime taskStartTime,Action tranAction = null)
         {
             switch (taskStatus)
             {
@@ -90,8 +92,10 @@ namespace ACM.TaskManager
                     using(var context=new MaindbContext())
                     {
                         var transaction = context.Database.BeginTransaction();
-                        _allTasksBlock.UpdateTheTaskStatus(TaskID, BaseAutoAction.TaskExecuteStatusEnum.Completed,context);
-                        _doingTasksBlock.RemoveDoingTask(TaskID,context);
+                        var isDoDel= _doingTasksBlock.RemoveDoingTask(TaskID,context);
+                        if (isDoDel)
+                            _allTasksBlock.DoneTheTask(TaskID, BaseAutoAction.TaskExecuteStatusEnum.Completed, taskStartTime, context);
+
                         if (tranAction != null)
                         {
                             tranAction.Invoke();
@@ -103,8 +107,9 @@ namespace ACM.TaskManager
                     using (var context = new MaindbContext())
                     {
                         var transaction = context.Database.BeginTransaction();
-                        _allTasksBlock.UpdateTheTaskStatus(TaskID, BaseAutoAction.TaskExecuteStatusEnum.Fail, context);
-                        _doingTasksBlock.RemoveDoingTask(TaskID, context);
+                        var isDoDel = _doingTasksBlock.RemoveDoingTask(TaskID, context);
+                        if (isDoDel)
+                            _allTasksBlock.DoneTheTask(TaskID, BaseAutoAction.TaskExecuteStatusEnum.Fail, taskStartTime, context);
                         if (tranAction != null)
                         {
                             tranAction.Invoke();
@@ -116,8 +121,10 @@ namespace ACM.TaskManager
                     using (var context = new MaindbContext())
                     {
                         var transaction = context.Database.BeginTransaction();
-                        _allTasksBlock.UpdateTheTaskStatus(TaskID, BaseAutoAction.TaskExecuteStatusEnum.SystemClosure, context);
-                        _doingTasksBlock.RemoveDoingTask(TaskID, context);
+                        var isDoDel = _doingTasksBlock.RemoveDoingTask(TaskID, context);
+                        if (isDoDel)
+                            _allTasksBlock.DoneTheTask(TaskID, BaseAutoAction.TaskExecuteStatusEnum.SystemClosure, taskStartTime, context);
+
                         if (tranAction != null)
                         {
                             tranAction.Invoke();
@@ -129,8 +136,11 @@ namespace ACM.TaskManager
                     using (var context = new MaindbContext())
                     {
                         var transaction = context.Database.BeginTransaction();
-                        _allTasksBlock.UpdateTheTaskStatus(TaskID, BaseAutoAction.TaskExecuteStatusEnum.Executing, context);
-                        _doingTasksBlock.RemoveDoingTask(TaskID, context);
+                        // 运行中不能删除任务执行表条目！！！
+                        //var isDoDel = _doingTasksBlock.RemoveDoingTask(TaskID, context);
+                        //if (isDoDel)
+                        _allTasksBlock.DoneTheTask(TaskID, BaseAutoAction.TaskExecuteStatusEnum.Executing, taskStartTime, context);
+
                         if (tranAction != null)
                         {
                             tranAction.Invoke();
@@ -175,11 +185,23 @@ namespace ACM.TaskManager
                 TaskParams = s.ParamObj,
                 TaskType = s.TaskType,
                 AppID=s.AppID,
+                UserID=s.UserID,
             }).ToList();
 
             return result;
 
         }
+
+        public bool PrepareTheTask(DoingTasks theTask)
+        {
+            using(var context =new MaindbContext())
+            {
+                return _doingTasksBlock.Insert(context, theTask);
+            }
+
+
+        }
+
 
         public bool DoingPrepareTask(Guid TaskID, Action tranAction = null)
         {
@@ -197,6 +219,36 @@ namespace ACM.TaskManager
                 return true;
             }
 
+        }
+
+
+        public List<TaskDetailOutput> GetBeforeTasks()
+        {
+            List<TaskDetailOutput> result = new List<TaskDetailOutput>();
+
+            using(var context =new MaindbContext())
+            {
+                var  allTasksQuery = _allTasksBlock.GetAllTasks(context);
+                var doingTasksQuery = _doingTasksBlock.GetAllDoingTasks(context);
+
+                result = doingTasksQuery.Join(allTasksQuery, x => x.TaskID, y => y.ID, (x,y) => new TaskDetailOutput
+                {
+                    AppID=y.AppID,
+                    CreateDate=y.CreateTime,
+                    DoingTaskStatus=x.TaskExecingStatus,
+                    TaskExecuteStatus=y.TaskExecuteStatus,
+                    TaskID=x.TaskID,
+                    TaskLevel=y.TaskLevel,
+                    TaskParams=y.ParamObj,
+                    TaskType=y.TaskType,
+                    UserID=y.UserID,
+                }).ToList();
+
+            }
+
+
+
+            return result;
         }
 
     }

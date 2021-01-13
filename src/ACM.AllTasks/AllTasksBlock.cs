@@ -34,5 +34,17 @@ namespace ACM.AllTasksEntities
         {
             return GetList(context, s => s.Status == BoB.EFDbContext.Enums.DataStatus.Normal);
         }
+
+        public bool DoneTheTask(Guid taskID, TaskExecuteStatusEnum taskExecuteStatus, DateTime startTime, MaindbContext context)
+        {
+            AllTasks data = new AllTasks { ID = taskID };
+            return Update(context, data, s =>
+            {
+                s.TaskExecuteStatus = taskExecuteStatus;
+                s.StartTime = startTime;
+                s.DoneTime = DateTime.Now;
+                return s;
+            });
+        }
     }
 }

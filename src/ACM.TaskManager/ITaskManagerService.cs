@@ -1,4 +1,5 @@
 ﻿using ACM.BaseAutoAction;
+using ACM.DoingTasksEntities;
 using ACM.MainDatabase;
 using ACM.TaskManager.Model;
 using System;
@@ -16,12 +17,16 @@ namespace ACM.TaskManager
         public List<TaskDetailOutput> GetUndoneTaskDetail(MaindbContext context = null);
 
 
-        public bool ChangeTaskDetailStatus(Guid TaskID, TaskStatus taskStatus, Action tranAction=null);
+        public bool ChangeTaskDetailStatus(Guid TaskID, TaskStatus taskStatus, DateTime taskStartTime, Action tranAction=null);
 
 
         public List<TaskDetailOutput> GetAllUndoTasksByTaskLevel(ACMTaskLevelEnum TaskLevel);
 
+        public bool PrepareTheTask(DoingTasks theTask);
+
         public bool DoingPrepareTask(Guid TaskID, Action tranAction = null);
+
+        public List<TaskDetailOutput> GetBeforeTasks();
 
     }
 }

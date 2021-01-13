@@ -25,6 +25,8 @@ namespace ACM.TaskManager.Model
 
         public int AppID { get; set; }
 
+        public Guid UserID { get; set; }
+
         public string TheTaskStatus
         {
             get

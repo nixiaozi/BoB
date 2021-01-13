@@ -26,8 +26,9 @@ namespace ACM.AutoAccountApplication
 
         private static ITaskManagerService _taskManagerService;
         private static IEnumerable<AutoActionAdapter> _autoActionAdapters;
-        private static IAllTasksBlock _allTasksBlock;
-        private static IDoingTasksBlock _doingTasksBlock;
+        // 最好使用Manager 进行统一的管理，已确保所有的Context都完成，并且所有task表同步
+        //private static IAllTasksBlock _allTasksBlock;
+        //private static IDoingTasksBlock _doingTasksBlock;
         private static IAppListBlock _appListBlock;
         static RuntimeContext()
         {
@@ -38,8 +39,8 @@ namespace ACM.AutoAccountApplication
             _taskManagerService = BoBContainer.ServiceContainer.Resolve<ITaskManagerService>();
             _autoActionAdapters= BoBContainer.ServiceContainer.Resolve<IEnumerable<AutoActionAdapter>>();
 
-            _allTasksBlock = BoBContainer.ServiceContainer.Resolve<IAllTasksBlock>();
-            _doingTasksBlock = BoBContainer.ServiceContainer.Resolve<IDoingTasksBlock>();
+            //_allTasksBlock = BoBContainer.ServiceContainer.Resolve<IAllTasksBlock>();
+            //_doingTasksBlock = BoBContainer.ServiceContainer.Resolve<IDoingTasksBlock>();
             _appListBlock = BoBContainer.ServiceContainer.Resolve<IAppListBlock>();
 
 
@@ -102,7 +103,7 @@ namespace ACM.AutoAccountApplication
                 //扫描所有的任务，对于已经终止的任务进行完成操作
                 foreach (var taskDetail in resultDoingTasks)
                 {
-                    _taskManagerService.ChangeTaskDetailStatus(taskDetail.TaskDetail.TaskID, taskDetail.TheTask.Status,()=>
+                    _taskManagerService.ChangeTaskDetailStatus(taskDetail.TaskDetail.TaskID, taskDetail.TheTask.Status,taskDetail.CreateTime,()=>
                     {
                         if(taskDetail.TheTask.Status== TaskStatus.RanToCompletion|| taskDetail.TheTask.Status == TaskStatus.Faulted
                             || taskDetail.TheTask.Status == TaskStatus.Canceled)
@@ -145,7 +146,7 @@ namespace ACM.AutoAccountApplication
 
             foreach(var item in AddDoingTasks)
             {
-                _doingTasksBlock.AddNewDoingTask(new DoingTasksEntities.DoingTasks
+                _taskManagerService.PrepareTheTask(new DoingTasksEntities.DoingTasks
                 {
                     ParamObj = item.TaskParams,
                     Status = BoB.EFDbContext.Enums.DataStatus.Normal,
@@ -158,11 +159,20 @@ namespace ACM.AutoAccountApplication
             return AddDoingTasks;
         }
 
-        public void DoingPrepareTask()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ExtendTasks">额外的任务条目</param>
+        /// <param name="IsUnionBase">是否合并默认，默认不合并</param>
+        public void DoingPrepareTask(List<TaskDetailOutput> ExtendTasks=null,bool IsUnionBase=false)
         {
-            var AddDoingTasks = PrepareNewTask();
+            var TheAddDoingTasks = IsUnionBase ? PrepareNewTask() : new List<TaskDetailOutput>();
+            if (ExtendTasks != null)
+            {
+                TheAddDoingTasks.AddRange(ExtendTasks);
+            }
 
-            foreach (var item in AddDoingTasks)
+            foreach (var item in TheAddDoingTasks)
             {
                 
 
@@ -190,37 +200,64 @@ namespace ACM.AutoAccountApplication
             switch (taskDetail.TaskType)
             {
                 case ACMTaskTypeEnum.Attention:
-                    adapter.DoBrowserToAttention(JsonConvert.DeserializeObject<AttentionAction>(taskDetail.TaskParams), ct);
+                    adapter.DoBrowserToAttention(taskDetail.UserID, JsonConvert.DeserializeObject<AttentionAction>(taskDetail.TaskParams), ct);
                     break;
                 case ACMTaskTypeEnum.Barrage:
-                    adapter.DoBrowserToBarrage(JsonConvert.DeserializeObject<BarrageAction>(taskDetail.TaskParams), ct);
+                    adapter.DoBrowserToBarrage(taskDetail.UserID, JsonConvert.DeserializeObject<BarrageAction>(taskDetail.TaskParams), ct);
                     break;
                 case ACMTaskTypeEnum.Collect:
-                    adapter.DoBrowserToCollect(JsonConvert.DeserializeObject<CollectAction>(taskDetail.TaskParams), ct);
+                    adapter.DoBrowserToCollect(taskDetail.UserID, JsonConvert.DeserializeObject<CollectAction>(taskDetail.TaskParams), ct);
                     break;
                 case ACMTaskTypeEnum.Comment:
-                    adapter.DoBrowserToComment(JsonConvert.DeserializeObject<CommentAction>(taskDetail.TaskParams), ct);
+                    adapter.DoBrowserToComment(taskDetail.UserID, JsonConvert.DeserializeObject<CommentAction>(taskDetail.TaskParams), ct);
                     break;
                 case ACMTaskTypeEnum.GiveLike:
-                    adapter.DoBrowserToGiveLike(JsonConvert.DeserializeObject<GiveLikeAction>(taskDetail.TaskParams), ct);
+                    adapter.DoBrowserToGiveLike(taskDetail.UserID, JsonConvert.DeserializeObject<GiveLikeAction>(taskDetail.TaskParams), ct);
                     break;
                 case ACMTaskTypeEnum.GiveReward:
                     // 暂时未定义
                     // adapter.DoBrowserToBarrage(JsonConvert.DeserializeObject<>(t.TaskParams), ct);
                     break;
                 case ACMTaskTypeEnum.Login:
-                    adapter.DoBrowserToLogin(JsonConvert.DeserializeObject<LoginAction>(taskDetail.TaskParams), ct);
+                    adapter.DoBrowserToLogin(taskDetail.UserID, JsonConvert.DeserializeObject<LoginAction>(taskDetail.TaskParams), ct);
                     break;
                 case ACMTaskTypeEnum.RandomBrowse:
-                    adapter.DoBrowserRandom(JsonConvert.DeserializeObject<RandomBrowse>(taskDetail.TaskParams), ct);
+                    adapter.DoBrowserRandom(taskDetail.UserID, JsonConvert.DeserializeObject<RandomBrowse>(taskDetail.TaskParams), ct);
                     break;
                 case ACMTaskTypeEnum.Share:
-                    adapter.DoBrowserToShare(JsonConvert.DeserializeObject<ShareAction>(taskDetail.TaskParams), ct);
+                    adapter.DoBrowserToShare(taskDetail.UserID, JsonConvert.DeserializeObject<ShareAction>(taskDetail.TaskParams), ct);
                     break;
                 case ACMTaskTypeEnum.View:
-                    adapter.DoBrowserToView(JsonConvert.DeserializeObject<ViewAction>(taskDetail.TaskParams), ct);
+                    adapter.DoBrowserToView(taskDetail.UserID, JsonConvert.DeserializeObject<ViewAction>(taskDetail.TaskParams), ct);
                     break;
             }
+
+        }
+
+        // 这个方法用于在程序启动时初始化上次未执行完成的任务
+        public void InitTaskBefore()
+        {
+            var beforeTasks= _taskManagerService.GetBeforeTasks();
+
+            var beforeDoingTasks = beforeTasks.Where(s => s.DoingTaskStatus == DoingTaskStatusEnum.Doing).ToList();
+
+            var beforePerpareTasks = beforeTasks.Where(s => s.DoingTaskStatus == DoingTaskStatusEnum.Prepare).ToList();
+
+            // 处理以前正在执行的任务
+            foreach (var task in beforeDoingTasks)
+            {
+                var newTask = new CancellableTask<TaskDetailOutput>(task, (t, ct) =>
+                {
+                    TaskTypeAuto(t, ct);
+                });
+                AddDoingTask(newTask); // 添加到列表中
+                newTask.DoTask(); // 直接开始任务
+            }
+
+
+            // 处理已经准备的任务
+            DoingPrepareTask(beforePerpareTasks);
+
 
         }
 

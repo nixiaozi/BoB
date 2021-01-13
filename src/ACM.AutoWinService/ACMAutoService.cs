@@ -47,7 +47,7 @@ namespace ACM.AutoWinService
             //_timer = new Timer(DoWork, null, TimeSpan.Zero,
             //    TimeSpan.FromSeconds(5)); // 
             // test
-            _autoActionAdapters.FirstOrDefault(s => s.CommandText == "bilibili")?.DoBrowserRandom(new RandomBrowse(),new CancellationToken());
+            _autoActionAdapters.FirstOrDefault(s => s.CommandText == "bilibili")?.DoBrowserRandom(Guid.NewGuid(),new RandomBrowse(),new CancellationToken());
 
 
             _timer =new Timer(DoWork,cancellationToken,TimeSpan.Zero,

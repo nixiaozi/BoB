@@ -9,8 +9,10 @@
     <ProjectReference Include="..\ACM.BaseAutoAction\ACM.BaseAutoAction.csproj" />
     <ProjectReference Include="..\ACM.MainDatabase\ACM.MainDatabase.csproj" />
     <ProjectReference Include="..\ACM.SeleniumManager\ACM.SeleniumManager.csproj" />
+    <ProjectReference Include="..\ACM.UserEntities\ACM.UserEntities.csproj" />
     <ProjectReference Include="..\BoB.BaseConfiguration\BoB.BoBConfiguration.csproj" />
     <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
+    <ProjectReference Include="..\BoB.EmailManager\BoB.EmailManager.csproj" />
   </ItemGroup>
 
 </Project>

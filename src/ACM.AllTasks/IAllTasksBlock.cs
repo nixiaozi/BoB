@@ -16,5 +16,9 @@ namespace ACM.AllTasksEntities
         public bool DeleteTheTask(Guid taskID, MaindbContext context = null);
 
         public IQueryable<AllTasks> GetAllTasks(MaindbContext context);
+
+
+        public bool DoneTheTask(Guid taskID, TaskExecuteStatusEnum taskExecuteStatus, DateTime startTime, MaindbContext context);
+
     }
 }

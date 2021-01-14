@@ -139,7 +139,13 @@ namespace ACM.TaskManager
                         // 运行中不能删除任务执行表条目！！！
                         //var isDoDel = _doingTasksBlock.RemoveDoingTask(TaskID, context);
                         //if (isDoDel)
-                        _allTasksBlock.DoneTheTask(TaskID, BaseAutoAction.TaskExecuteStatusEnum.Executing, taskStartTime, context);
+                        try
+                        {
+                            _allTasksBlock.DoneTheTask(TaskID, BaseAutoAction.TaskExecuteStatusEnum.Executing, taskStartTime, context);
+                        }catch(Exception ex)
+                        {
+
+                        }
 
                         if (tranAction != null)
                         {

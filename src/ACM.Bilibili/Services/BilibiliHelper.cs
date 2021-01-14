@@ -15,17 +15,6 @@ namespace ACM.Bilibili
 {
     public static class BilibiliHelper
     {
-        public static ChromeDriver InsureUserHasLogin(this ChromeDriver driver, Guid userID, CancellationToken ct, 
-            string StartUrl = null)
-        {
-            driver.BrowserToUrl(String.IsNullOrWhiteSpace(StartUrl) ? BoBConfiguration.HomePage : StartUrl);
-
-
-
-
-
-            return driver;
-        }
 
 
         public static ChromeDriver ToSomeTargetPage(this ChromeDriver driver,CancellationToken ct, ViewAction viewTag = null)

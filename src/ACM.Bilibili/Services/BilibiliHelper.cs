@@ -7,6 +7,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using System.Threading;
 
@@ -14,6 +15,19 @@ namespace ACM.Bilibili
 {
     public static class BilibiliHelper
     {
+        public static ChromeDriver InsureUserHasLogin(this ChromeDriver driver, Guid userID, CancellationToken ct, 
+            string StartUrl = null)
+        {
+            driver.BrowserToUrl(String.IsNullOrWhiteSpace(StartUrl) ? BoBConfiguration.HomePage : StartUrl);
+
+
+
+
+
+            return driver;
+        }
+
+
         public static ChromeDriver ToSomeTargetPage(this ChromeDriver driver,CancellationToken ct, ViewAction viewTag = null)
         {
             if (viewTag != null && !string.IsNullOrWhiteSpace(viewTag.ToViewUrl))
@@ -46,14 +60,21 @@ namespace ACM.Bilibili
 
             },erroAction,ct);
 
+            var availableElements = allVideoElements?.Where(s => s.Displayed && s.Enabled).ToList();
 
             // 然后再点击视频跳到该视频页
-            if(allVideoElements!=null && allVideoElements.Count > 0)
+            if (availableElements != null && availableElements.Count > 0)
             {
+                
                 Random random = new Random();
-                var element = allVideoElements[random.Next(0, allVideoElements.Count)].FindElement(By.XPath(BoBConfiguration.xVideoBlockVideoLink));
-                Actions newAction = new Actions(driver);
-                newAction.Click(element).Build().Perform();
+                var element = availableElements[random.Next(0, availableElements.Count)].FindElement(By.XPath(BoBConfiguration.xVideoBlockVideoLink));
+                //Actions newAction = new Actions(driver);
+                //newAction.Click(element).Build().Perform();
+                var href =  element.GetAttribute("href");
+                // element.Click(); 各种直接点击的方法会报错，原因待查
+
+                driver.BrowserToUrl(href, null, ct);
+
 
             }
 
@@ -101,8 +122,19 @@ namespace ACM.Bilibili
 
             while (!VideoToEnd) // 播放完成打破循环
             {
+                // 对于隐藏的元素想要获取它的text，首先必须让他显示出来
+                var elapsedTimeElement = driver.FindElementByXPath(BoBConfiguration.xVideoPlayHoldTimeDisplay);
+                Actions mouseOverAction = new Actions(driver);
+                mouseOverAction.MoveToElement(elapsedTimeElement).Build().Perform();
+
                 DateTime startTime;
-                var startTimeText =  driver.FindElementByXPath(BoBConfiguration.xVideoPlayCurrentTimeSpan).Text;
+                var startTimeText = driver.FindElementByXPath(BoBConfiguration.xVideoPlayCurrentTimeSpan).Text;
+                var testStartTimeSpan = driver.FindElementByXPath(BoBConfiguration.xVideoPlayCurrentTimeSpan);
+                var testName = testStartTimeSpan.GetAttribute("name");
+                /// 对于隐藏的元素，如果直接使用selenium 读取它的Text属性会显示为空。
+
+
+
                 try
                 {
                     startTime = DateTime.ParseExact(startTimeText, "mm:ss", CultureInfo.InvariantCulture);

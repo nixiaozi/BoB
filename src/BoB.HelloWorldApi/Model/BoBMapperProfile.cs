@@ -22,7 +22,7 @@ namespace BoB.HelloWorldApi.Model
                 .ForMember(dest => dest.nickName, opt => opt.MapFrom(src => src.NickName));
 
             CreateMap<SearchAccountOutput, OptionItem<Guid, string>>()
-                .ForMember(dest => dest.key, opt => opt.MapFrom(s => s.ID))
+                .ForMember(dest => dest.key, opt => opt.MapFrom(s => s.UserID))
                 .ForMember(dest => dest.value, opt => opt.MapFrom(s => s.NickName));
         }
     }

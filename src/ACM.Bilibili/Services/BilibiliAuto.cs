@@ -30,21 +30,28 @@ namespace ACM.Bilibili
 
         }
 
-        private ChromeDriver InsureUserHasLogin(Guid userID, CancellationToken ct, string StartUrl=null)
+        private ChromeDriver ChromeInit(Guid userID)
+        {
+            var driver = ChromeDriverHelper.InitDriver(@"D:\publish\chromeProfiles\" + userID.ToString().ToUpper());
+            return driver;
+        }
+
+
+        private ChromeDriver InsureUserHasLogin(ChromeDriver driver,Guid userID, CancellationToken ct, string StartUrl=null)
         {
             if (userID == Guid.Empty)
             {
                 throw new Exception("用户编号不能为空！");
             }
-            ChromeDriver driver;
 
-            driver = ChromeDriverHelper.InitDriver(@"D:\publish\chromeProfiles\" + userID.ToString().ToUpper())
-                    .BrowserToUrl(String.IsNullOrWhiteSpace(StartUrl) ? BoBConfiguration.HomePage : StartUrl);
+
+
+            driver = driver.BrowserToUrl(String.IsNullOrWhiteSpace(StartUrl) ? BoBConfiguration.HomePage : StartUrl);
 
             bool IsUnLogined;
-            driver.CheckElementUseable(BoBConfiguration.xIdUserUnLogin, out IsUnLogined, true, null, ct);
+            driver = driver.CheckElementUseable(BoBConfiguration.xIdUserUnLogin, out IsUnLogined, true, null, ct);
             bool IsLogined;
-            driver.CheckElementUseable(BoBConfiguration.xIdUserHasLogin, out IsLogined, true, null, ct);
+            driver = driver.CheckElementUseable(BoBConfiguration.xIdUserHasLogin, out IsLogined, true, null, ct);
 
 
             if (IsLogined)
@@ -57,10 +64,10 @@ namespace ACM.Bilibili
                 var user = _userBlock.GetUserById(userID);
                 if (!IsUnLogined) // 不能判断它未登录
                 {
-                    driver.BrowserToUrl(BoBConfiguration.HomePage, null, ct); // 回到首页
+                    driver = driver.BrowserToUrl(BoBConfiguration.HomePage, null, ct); // 回到首页
                 }
                 // 再次判断特征元素
-                driver.CheckElementUseable(BoBConfiguration.xIdUserUnLogin, out IsUnLogined, false, (seconds,url)=> 
+                driver = driver.CheckElementUseable(BoBConfiguration.xIdUserUnLogin, out IsUnLogined, false, (seconds,url)=> 
                 {
                     if (seconds == 100)
                     {
@@ -70,10 +77,14 @@ namespace ACM.Bilibili
                 }, ct);
 
                 // 下面直接访问登录页添加输入用户名和密码进行登录
-                driver.LeftClickElement(BoBConfiguration.xBtnToLoginPage, null, ct);
+                driver = driver.LeftClickElement(BoBConfiguration.xBtnToLoginPage, null, ct);
+
+                // Selenium 不会自动切换页面，需要手动
+                driver = driver.SwitchToNewWindow(ct);
+
 
                 // 输入用户名
-                driver.InputContext(BoBConfiguration.xLoginPageUserName, user.Phone.Trim(), (seconds, url) =>
+                driver = driver.InputContext(BoBConfiguration.xLoginPageUserName, user.Phone.Trim(), (seconds, url) =>
                 {
                     if (seconds == 100)
                     {
@@ -83,7 +94,7 @@ namespace ACM.Bilibili
                 }, ct);
 
                 // 输入密码
-                driver.InputContext(BoBConfiguration.xLoginPagepassword,SecurityHelper.DecryptFromBase64(account.Password,account.Salt), 
+                driver = driver.InputContext(BoBConfiguration.xLoginPagepassword,SecurityHelper.DecryptFromBase64(account.Password,account.Salt), 
                     (seconds, url) =>
                 {
                     if (seconds == 100)
@@ -94,11 +105,11 @@ namespace ACM.Bilibili
                 }, ct);
 
                 // 点击按钮进行登录
-                driver.LeftClickElement(BoBConfiguration.xLoginPageLoginBtn, null, ct);
+                driver = driver.LeftClickElement(BoBConfiguration.xLoginPageLoginBtn, null, ct);
 
                 // 通过查看cookies 确认是否已经登录
                 bool HasUserLoginByCookies;
-                driver.CheckExistsCookieName(BoBConfiguration.xCookiesCheckUserLogin, out HasUserLoginByCookies, false, (seconds, url) =>
+                driver = driver.CheckExistsCookieName(BoBConfiguration.xCookiesCheckUserLogin, out HasUserLoginByCookies, false, (seconds, url) =>
                 {
                     if (seconds == 100)
                     {
@@ -118,11 +129,10 @@ namespace ACM.Bilibili
 
         public void DoBrowserRandom(Guid userID,RandomBrowse paramObj, CancellationToken ct)
         {
-            ChromeDriver driver=new ChromeDriver();
+            ChromeDriver driver = ChromeInit(userID);
             try
             {
-
-                driver = InsureUserHasLogin(userID, ct, paramObj.StartUrl);
+                driver = InsureUserHasLogin(driver, userID, ct, paramObj.StartUrl);
                 // 可以定义几个不同的行为 比如 查看动态 查看热门榜单 首页(栏目随机选取)随机选取  详细页你可能系统 
                 driver = driver.ToSomeTargetPage(ct, new ViewAction()); // 办正事
 
@@ -133,6 +143,8 @@ namespace ACM.Bilibili
                 {
                     driver.PrintBrowserLog("此时的播放区间为 开始时间：" + startTime.ToString("HH:mm:ss") + ";结束时间为：" + endTime.ToString("HH:mm:ss"));
                 }); // 播放当前视频直到播放完成
+
+
             }
             catch (AggregateException e)
             {
@@ -151,49 +163,49 @@ namespace ACM.Bilibili
 
         public void DoBrowserToAttention(Guid userID, AttentionAction paramObj, CancellationToken ct)
         {
-            var driver = InsureUserHasLogin(userID, ct, paramObj.StartUrl);
+            ChromeDriver driver = ChromeInit(userID);
 
         }
 
         public void DoBrowserToBarrage(Guid userID, BarrageAction paramObj, CancellationToken ct)
         {
-            var driver = InsureUserHasLogin(userID, ct, paramObj.StartUrl);
+            ChromeDriver driver = ChromeInit(userID);
 
         }
 
         public void DoBrowserToCollect(Guid userID, CollectAction paramObj, CancellationToken ct)
         {
-            var driver = InsureUserHasLogin(userID, ct, paramObj.StartUrl);
+            ChromeDriver driver = ChromeInit(userID);
 
         }
 
         public void DoBrowserToComment(Guid userID, CommentAction paramObj, CancellationToken ct)
         {
-            var driver = InsureUserHasLogin(userID, ct, paramObj.StartUrl);
+            ChromeDriver driver = ChromeInit(userID);
 
         }
 
         public void DoBrowserToGiveLike(Guid userID, GiveLikeAction paramObj, CancellationToken ct)
         {
-            var driver = InsureUserHasLogin(userID, ct, paramObj.StartUrl);
+            ChromeDriver driver = ChromeInit(userID);
 
         }
 
         public void DoBrowserToLogin(Guid userID, LoginAction paramObj, CancellationToken ct)
         {
-            var driver = InsureUserHasLogin(userID, ct, paramObj.StartUrl);
+            ChromeDriver driver = ChromeInit(userID);
 
         }
 
         public void DoBrowserToShare(Guid userID, ShareAction paramObj, CancellationToken ct)
         {
-            var driver = InsureUserHasLogin(userID, ct, paramObj.StartUrl);
+            ChromeDriver driver = ChromeInit(userID);
 
         }
 
         public void DoBrowserToView(Guid userID, ViewAction paramObj, CancellationToken ct)
         {
-            var driver = InsureUserHasLogin(userID, ct, paramObj.StartUrl);
+            ChromeDriver driver = ChromeInit(userID);
 
         }
     }

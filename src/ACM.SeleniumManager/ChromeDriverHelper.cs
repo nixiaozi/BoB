@@ -41,6 +41,43 @@ namespace ACM.SeleniumManager
         }
 
 
+        public static ChromeDriver SwitchToWindow(this ChromeDriver driver,string WindowHandleStr)
+        {
+            driver.SwitchTo().Window(WindowHandleStr);
+            return driver;
+        }
+
+        public static ChromeDriver SwitchToNewWindow(this ChromeDriver driver, CancellationToken ct)
+        {
+            bool WindowsThanOne;
+            HandleCheck(driver, out WindowsThanOne, true, (url) =>
+            {
+                return new WebDriverWait(driver, TimeSpan.FromSeconds(3))
+                    .Until<bool>(div =>
+                    {
+                        return div.WindowHandles.Count > 1;
+                    });
+            }, null, ct);
+
+            if (WindowsThanOne)
+            {
+                driver.Close();
+                driver.SwitchTo().Window(driver.WindowHandles[0]);
+                //foreach (string window in driver.WindowHandles)
+                //{
+                //    if (originalWindow != window)
+                //    {
+                //        driver.SwitchTo().Window(window);
+                //        break;
+                //    }
+                //}
+            }
+
+            return driver;
+
+        }
+
+
         public static ChromeDriver PrintBrowserLog(this ChromeDriver driver, string logText)
         {
             driver.ExecuteScript("console.info('{"+ logText + "}')");

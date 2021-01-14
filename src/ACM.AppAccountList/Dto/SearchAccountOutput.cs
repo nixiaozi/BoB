@@ -6,7 +6,7 @@ namespace ACM.AppAccountListEntities
 {
     public class SearchAccountOutput
     {
-        public Guid ID { get; set; }
+        public Guid UserID { get; set; }
 
         public string NickName { get; set; }
     }

@@ -82,7 +82,8 @@ namespace ACM.Bilibili
         /// <param name="viewAction">开始时间 结束时间</param>
         /// <param name="errorAction"></param>
         /// <returns></returns>
-        public static ChromeDriver ViewVideoToEnd (this ChromeDriver driver,CancellationToken ct,Action<DateTime,DateTime> viewAction=null, Action<int,string> errorAction=null)
+        public static ChromeDriver ViewVideoToEnd (this ChromeDriver driver,CancellationToken ct,Action<DateTime,DateTime,DateTime> viewAction=null, 
+            Action<int,string> errorAction=null)
         {
             // 首先确认页面存在视频播放器
             bool HasVideoPlay;
@@ -108,6 +109,20 @@ namespace ACM.Bilibili
 
             // 然后监控视频一直到视频播放完毕
             bool VideoToEnd = false;
+
+            var totalTimeElement = driver.FindElementByXPath(BoBConfiguration.xVideoPlayHoldTimeDisplay);
+            Actions totalTimeOverAction = new Actions(driver);
+            totalTimeOverAction.MoveToElement(totalTimeElement).Build().Perform();
+            DateTime totalTime;
+            var TotalTimeStr = driver.FindElementByXPath(BoBConfiguration.xVideoPlayHoldTimeDisplay).Text;
+            try
+            {
+                totalTime = DateTime.ParseExact(TotalTimeStr, "mm:ss", CultureInfo.InvariantCulture);
+            }
+            catch (Exception ex)
+            {
+                totalTime = DateTime.ParseExact(TotalTimeStr, "HH:mm:ss", CultureInfo.InvariantCulture);
+            }
 
             while (!VideoToEnd) // 播放完成打破循环
             {
@@ -142,12 +157,18 @@ namespace ACM.Bilibili
                 }
                 catch (Exception ex)
                 {
-                    endTime = DateTime.ParseExact(endTimeText, "HH:mm:ss", CultureInfo.InvariantCulture);
+                    try
+                    {
+                        endTime = DateTime.ParseExact(endTimeText, "HH:mm:ss", CultureInfo.InvariantCulture);
+                    }catch(Exception eex)
+                    {
+                        endTime = startTime.AddSeconds(5);// 实在不行可以直接增加5秒时间
+                    }
                 }
 
                 if (viewAction!=null)
                 {
-                    viewAction.Invoke(startTime, endTime);
+                    viewAction.Invoke(startTime, endTime,totalTime);
                 }
 
                 VideoToEnd = driver.FindElement(By.XPath(BoBConfiguration.xVideoPlayArea))

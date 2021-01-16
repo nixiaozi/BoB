@@ -125,7 +125,30 @@ namespace ACM.Bilibili
             return driver;
         }
 
-        
+        private ChromeDriver RandomBrowserAction(ChromeDriver driver, CancellationToken ct)
+        {
+            bool DoAgain = true;
+            Random random = new Random();
+            while (DoAgain)
+            {
+
+                // 下面进入随机浏览模式
+                driver.ToSomeTargetPage(ct, null); // 下面进入随机主体页模式
+                driver.JustRandomBowserVideoUrl(ct); // 随机点击进入视频详细
+                driver.ViewVideoToEnd(ct, (startTime, endTime, totalTime) =>
+                {
+                    driver.PrintBrowserLog("此时的播放区间为 开始时间：" + startTime.ToString("HH:mm:ss") + ";结束时间为：" + endTime.ToString("HH:mm:ss"));
+                }); // 播放当前视频直到播放完成
+
+                if (random.Next(0, 100) < 27)
+                {
+                    DoAgain = false;
+                }
+
+            }
+
+            return driver;
+        }
 
         public void DoBrowserRandom(Guid userID,RandomBrowse paramObj, CancellationToken ct)
         {
@@ -139,7 +162,7 @@ namespace ACM.Bilibili
                 // 下面进入随机浏览模式
                 driver = driver.ToSomeTargetPage(ct, null); // 下面进入随机主体页模式
                 driver = driver.JustRandomBowserVideoUrl(ct); // 随机点击进入视频详细
-                driver = driver.ViewVideoToEnd(ct, (startTime, endTime) =>
+                driver = driver.ViewVideoToEnd(ct, (startTime, endTime, totalTime) =>
                 {
                     driver.PrintBrowserLog("此时的播放区间为 开始时间：" + startTime.ToString("HH:mm:ss") + ";结束时间为：" + endTime.ToString("HH:mm:ss"));
                 }); // 播放当前视频直到播放完成
@@ -164,7 +187,43 @@ namespace ACM.Bilibili
         public void DoBrowserToAttention(Guid userID, AttentionAction paramObj, CancellationToken ct)
         {
             ChromeDriver driver = ChromeInit(userID);
+            try
+            {
+               InsureUserHasLogin(driver, userID, ct, paramObj.StartUrl);
+                // 可以定义几个不同的行为 比如 查看动态 查看热门榜单 首页(栏目随机选取)随机选取  详细页你可能系统 
+                driver.ToSomeTargetPage(ct, paramObj); // 办正事 进入页面
+                driver.ViewVideoToEnd(ct, (startTime, endTime,totalTime) => // 看视频办正事
+                {
 
+
+
+                });
+
+
+                // 下面进入随机浏览模式
+
+
+                driver.ToSomeTargetPage(ct, null); // 下面进入随机主体页模式
+                driver.JustRandomBowserVideoUrl(ct); // 随机点击进入视频详细
+                driver.ViewVideoToEnd(ct, (startTime, endTime, totalTime) =>
+                {
+                    driver.PrintBrowserLog("此时的播放区间为 开始时间：" + startTime.ToString("HH:mm:ss") + ";结束时间为：" + endTime.ToString("HH:mm:ss"));
+                }); // 播放当前视频直到播放完成
+
+
+            }
+            catch (AggregateException e)
+            {
+                driver.Close();
+                driver.Quit();
+                throw e; // 抛出自动取消异常
+            }
+            catch (Exception ex)
+            {
+                driver.Close();
+                driver.Quit();
+                throw ex;
+            }
         }
 
         public void DoBrowserToBarrage(Guid userID, BarrageAction paramObj, CancellationToken ct)
@@ -194,19 +253,89 @@ namespace ACM.Bilibili
         public void DoBrowserToLogin(Guid userID, LoginAction paramObj, CancellationToken ct)
         {
             ChromeDriver driver = ChromeInit(userID);
+            try
+            {
+                InsureUserHasLogin(driver, userID, ct, paramObj.StartUrl);
+
+                RandomBrowserAction(driver,ct);
+
+            }
+            catch (AggregateException e)
+            {
+                driver.Close();
+                driver.Quit();
+                throw e; // 抛出自动取消异常
+            }
+            catch (Exception ex)
+            {
+                driver.Close();
+                driver.Quit();
+                throw ex;
+            }
 
         }
 
         public void DoBrowserToShare(Guid userID, ShareAction paramObj, CancellationToken ct)
         {
             ChromeDriver driver = ChromeInit(userID);
+            try
+            {
+                InsureUserHasLogin(driver, userID, ct, paramObj.StartUrl);
+                // 这里做正事
+                driver.ToSomeTargetPage(ct, paramObj); // 转到查看页
+                driver.ViewVideoToEnd(ct, (startTime,endTime,totalTime)=> { 
+                    
+
+                }, null);  
+
+
+                RandomBrowserAction(driver, ct);
+
+            }
+            catch (AggregateException e)
+            {
+                driver.Close();
+                driver.Quit();
+                throw e; // 抛出自动取消异常
+            }
+            catch (Exception ex)
+            {
+                driver.Close();
+                driver.Quit();
+                throw ex;
+            }
 
         }
 
         public void DoBrowserToView(Guid userID, ViewAction paramObj, CancellationToken ct)
         {
             ChromeDriver driver = ChromeInit(userID);
+            try
+            {
+                InsureUserHasLogin(driver, userID, ct, paramObj.StartUrl);
+                // 这里做正事
+                driver.ToSomeTargetPage(ct, paramObj); // 转到查看页
+                driver.ViewVideoToEnd(ct, null, null);  // 开始查看视频
 
+
+                RandomBrowserAction(driver, ct);
+
+            }
+            catch (AggregateException e)
+            {
+                driver.Close();
+                driver.Quit();
+                throw e; // 抛出自动取消异常
+            }
+            catch (Exception ex)
+            {
+                driver.Close();
+                driver.Quit();
+                throw ex;
+            }
         }
+
+
+
     }
 }

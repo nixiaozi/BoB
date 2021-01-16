@@ -32,6 +32,8 @@ namespace ACM.SeleniumManager
             chromeOptions.AddArgument("--ignore-ssl-errors");
             chromeOptions.AcceptInsecureCertificates = true; // 准许不安全的证书
 
+            chromeOptions.AddArgument("--mute-audio");
+
             if (localstr!=null)
             {
                 chromeOptions.AddArgument("user-data-dir="+localstr);

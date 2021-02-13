@@ -255,7 +255,7 @@ namespace BoB.HelloWorldApi.Controllers
                 TaskExecuteStatus = TaskExecuteStatusEnum.UnDo,
                 TaskLevel = model.taskLevel,
                 TaskType = model.taskType,
-                UserID = model.userAccount,
+                UserID = model.userID,
             };
             var result = _allTasksBlock.AddNewTask(data);
 

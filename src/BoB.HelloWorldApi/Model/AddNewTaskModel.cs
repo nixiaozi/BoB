@@ -14,7 +14,7 @@ namespace BoB.HelloWorldApi.Model
 
         public ACMTaskLevelEnum taskLevel { get; set; }
 
-        public Guid userAccount { get; set; }
+        public Guid userID { get; set; }
 
         public string taskParamStr { get; set; }
     }

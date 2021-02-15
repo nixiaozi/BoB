@@ -18,7 +18,7 @@ namespace ACM.AutoAccountApplication
         public static readonly int NormalAllowParallelTaskNum = 4;
 
         [WriteAble]
-        public static readonly int AutoCancelMinutes = 71;
+        public static readonly int AutoCancelMinutes = 101;
 
 
     }

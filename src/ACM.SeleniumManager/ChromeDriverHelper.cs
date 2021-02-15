@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BoB.ExtendAndHelper.Extends;
+using Newtonsoft.Json;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
@@ -48,7 +49,8 @@ namespace ACM.SeleniumManager
                 chromeOptions.AddArgument("user-data-dir="+localstr);
             }
 
-            return new ChromeDriver(chromeOptions);
+            // 修改可执行文件自定义引用路径
+            return new ChromeDriver(System.Reflection.Assembly.GetEntryAssembly().GetAssemblyRoot(), chromeOptions);
         }
 
 

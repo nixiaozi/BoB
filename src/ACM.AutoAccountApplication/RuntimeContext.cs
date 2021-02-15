@@ -237,6 +237,10 @@ namespace ACM.AutoAccountApplication
         // 这个方法用于在程序启动时初始化上次未执行完成的任务
         public void InitTaskBefore()
         {
+            // 添加方法对于已经在执行中但是实际执行完成的条目进行修复处理
+            _taskManagerService.FixHasDoneError();
+
+
             var beforeTasks= _taskManagerService.GetBeforeTasks();
 
             var beforeDoingTasks = beforeTasks.Where(s => s.DoingTaskStatus == DoingTaskStatusEnum.Doing).ToList();

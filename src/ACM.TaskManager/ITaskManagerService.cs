@@ -28,5 +28,8 @@ namespace ACM.TaskManager
 
         public List<TaskDetailOutput> GetBeforeTasks();
 
+
+        public void FixHasDoneError();
+
     }
 }

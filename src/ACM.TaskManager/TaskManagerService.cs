@@ -257,5 +257,28 @@ namespace ACM.TaskManager
             return result;
         }
 
+
+
+        public void FixHasDoneError()
+        {
+            List<AllTasks> data;
+
+            using (var context = new MaindbContext())
+            {
+                var allDoingTaskQuery = _allTasksBlock.GetList(context, s => s.TaskExecuteStatus == TaskExecuteStatusEnum.Executing);
+                var realDoingTaskQuery = _doingTasksBlock.GetAllDoingTasks(context).Select(s=>s.TaskID);
+
+                data = allDoingTaskQuery.Where(x => !realDoingTaskQuery.Contains(x.ID)).ToList();
+
+                foreach(var item in data)
+                {
+                    item.TaskExecuteStatus = TaskExecuteStatusEnum.SystemClosure;
+                }
+
+                context.SaveChanges();
+            }
+
+        }
+
     }
 }

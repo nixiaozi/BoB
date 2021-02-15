@@ -76,7 +76,7 @@ namespace ACM.TaskManager
                 TaskType = s.TaskType,
                 AppID=s.AppID,
                 UserID=s.UserID,
-            }).ToList();
+            }).OrderByDescending(s=>s.CreateDate).ToList();
 
             return result;
 

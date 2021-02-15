@@ -32,7 +32,9 @@ namespace ACM.SeleniumManager
             chromeOptions.AddArgument("--ignore-ssl-errors");
             chromeOptions.AcceptInsecureCertificates = true; // 准许不安全的证书
 
-            chromeOptions.AddArgument("--mute-audio");
+            // 通过开关控制是否静音
+            if(BoBConfiguration.SetMute)
+                chromeOptions.AddArgument("--mute-audio");
 
             if (localstr!=null)
             {

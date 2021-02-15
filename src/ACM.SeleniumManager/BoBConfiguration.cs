@@ -1,4 +1,5 @@
 ﻿using BoB.BoBConfiguration;
+using BoB.ExtendAndHelper.CustomAttributes;
 using System.Reflection;
 
 namespace ACM.SeleniumManager
@@ -10,7 +11,8 @@ namespace ACM.SeleniumManager
             BaseBoBConfiguration.Init(Assembly.GetExecutingAssembly());
         }
 
-
+        [WriteAble]
+        public readonly static bool SetMute = true;
 
     }
 }

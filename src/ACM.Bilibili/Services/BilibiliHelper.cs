@@ -6,6 +6,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -101,9 +102,19 @@ namespace ACM.Bilibili
 
             while (VideoIsPause)
             {
-                element.FindElement(By.XPath(BoBConfiguration.xVideoPlayPlayBtn)).Click();
-                VideoIsPause = driver.FindElement(By.XPath(BoBConfiguration.xVideoPlayArea))
-                    .GetAttribute("class").Contains(BoBConfiguration.sVideoPlayPausedClassTag);
+                try
+                {
+                    // element.FindElement(By.XPath(BoBConfiguration.xVideoPlayPlayBtn)).Click();
+                    // driver.FindElement(By.XPath(BoBConfiguration.xVideoPlayPlayBtn)).Click();
+                    // 解决错误的问题
+                    driver.LeftClickElement(BoBConfiguration.xVideoPlayPlayBtn, null, ct);
+                    VideoIsPause = driver.FindElement(By.XPath(BoBConfiguration.xVideoPlayArea))
+                        .GetAttribute("class").Contains(BoBConfiguration.sVideoPlayPausedClassTag);
+                }
+                catch(Exception ex)
+                {
+                    Debug.Print("element Value:" + element.ToString());
+                }
             }
 
 
@@ -144,7 +155,16 @@ namespace ACM.Bilibili
                     startTime = DateTime.ParseExact(startTimeText, "mm:ss", CultureInfo.InvariantCulture);
                 }catch(Exception ex)
                 {
-                    startTime = DateTime.ParseExact(startTimeText, "HH:mm:ss", CultureInfo.InvariantCulture);
+                    // 出错了就使用默认值就好
+                    try
+                    {
+
+                        startTime = DateTime.ParseExact(startTimeText, "HH:mm:ss", CultureInfo.InvariantCulture);
+                    }
+                    catch
+                    {
+                        startTime = new DateTime();
+                    }
                 }
 
 
@@ -174,7 +194,7 @@ namespace ACM.Bilibili
                 VideoToEnd = driver.FindElement(By.XPath(BoBConfiguration.xVideoPlayArea))
                     .GetAttribute("class").Contains(BoBConfiguration.sVideoPlayEndClassTag);
 
-
+                driver.PrintBrowserLog("现在为视频播放的开始时间:" + startTimeText + "; 结束时间为:" + endTimeText);
 
             }
 

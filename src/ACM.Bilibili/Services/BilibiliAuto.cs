@@ -317,6 +317,15 @@ namespace ACM.Bilibili
                 driver.ToSomeTargetPage(ct, paramObj); // 转到查看页
                 driver.ViewVideoToEnd(ct, null, null);  // 开始查看视频
 
+                // 可以调整重播的次数
+                var time = 3;
+                while (time >= 0)
+                {
+                    driver.LeftClickElement(BoBConfiguration.xVideoReplayBtn, null, ct);
+                    driver.ViewVideoToEnd(ct, null, null);  // 开始查看视频
+
+                    time--;
+                }
 
                 RandomBrowserAction(driver, ct);
 

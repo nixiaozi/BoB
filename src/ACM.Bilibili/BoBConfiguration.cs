@@ -46,6 +46,8 @@ namespace ACM.Bilibili
 
         public static readonly string xVideoPlayPlayBtn = @"//div[@class='bilibili-player-dm-tip-wrap']";
 
+        public static readonly string xVideoReplayBtn = @"//div[@class='bilibili-player-upinfo-span restart']";
+
         public static readonly string sVideoPlayEndClassTag = "video-state-ending-panel-flag";
 
         public static readonly string xVideoPlayCurrentTimeSpan = @"//div[@id='bilibili-player']//span[@class='bilibili-player-video-time-now']";

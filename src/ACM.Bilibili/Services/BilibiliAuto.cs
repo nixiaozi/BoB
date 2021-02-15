@@ -329,6 +329,8 @@ namespace ACM.Bilibili
 
                 RandomBrowserAction(driver, ct);
 
+                driver.ExitDriver(); // 顺利执行完成之后需要退出
+
             }
             catch (AggregateException e)
             {

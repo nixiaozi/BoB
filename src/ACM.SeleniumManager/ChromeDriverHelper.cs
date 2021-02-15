@@ -25,6 +25,13 @@ namespace ACM.SeleniumManager
                 return _random;
             }
         }
+
+        public static void ExitDriver(this ChromeDriver driver)
+        {
+            driver.Close();
+            driver.Quit();
+        }
+
         public static ChromeDriver InitDriver(string localstr=null)
         {
             ChromeOptions chromeOptions = new ChromeOptions();

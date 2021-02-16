@@ -172,9 +172,16 @@ namespace ACM.AutoAccountApplication
                 TheAddDoingTasks.AddRange(ExtendTasks);
             }
 
+            
+
+
             foreach (var item in TheAddDoingTasks)
             {
-                
+                // 需要确认userID不能重复
+                var DoingUsers = this.DoingTasks.Select(s => s.TaskDetail.UserID);
+                if (DoingUsers.Contains(item.UserID))
+                    break;
+
 
                 _taskManagerService.DoingPrepareTask(item.TaskID, () =>
                 {

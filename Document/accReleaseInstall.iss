@@ -3,14 +3,14 @@
 
 #define MyAppName "AccountAutoManager"
 #define MyAppVersion "1.0"
-#define MyAppPublisher "Leo Cheng"
+#define MyAppPublisher "李颖成"
 #define MyAppURL "https://space.bilibili.com/580603654/"
 #define MyAppExeName "ACM.AutoAccountApplication.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{74A15408-1CF3-45D8-A9BA-770ABD9B06B4}
+AppId={{AC7AD8EC-F7C5-4F5C-BB8E-CC33D6862F2E}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -20,10 +20,10 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-; Uncomment the following line to run in non administrative install mode (install for current user only.)
-;PrivilegesRequired=lowest
+; Remove the following line to run in administrative install mode (install for all users.)
+PrivilegesRequired=lowest
 OutputBaseFilename=accReleaseSetup
-SetupIconFile=D:\我的制作\BoB\BoB.Master\Document\smile.ico
+SetupIconFile="D:\我的制作\BoB\BoB.Master\Document\smile.ico"
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern

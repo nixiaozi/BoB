@@ -10,7 +10,7 @@ using System.Text;
 
 namespace ACM.MainDatabase
 {
-    public class BaseBlock<T,K>:IBaseBlock<T,K> where T:class,IBaseEntity<K>,new() where K : IComparable
+    public class BaseBlock<T, K> : IBaseBlock<T, K> where T : class, IBaseEntity<K>, new() where K : IComparable
     {
         protected readonly IContainer CurrentServiceContainer;
 
@@ -27,7 +27,7 @@ namespace ACM.MainDatabase
         {
             using (var context = new MaindbContext())
             {
-                var item =context.Set<T>().FirstOrDefault(s => s.ID.Equals(id));
+                var item = context.Set<T>().FirstOrDefault(s => s.ID.Equals(id));
                 context.Remove<T>(item);
                 context.SaveChanges();
                 return true;
@@ -46,11 +46,11 @@ namespace ACM.MainDatabase
         {
             T data = new T();
             data.ID = id;
-            return Update(context,data, s =>
-            {
-                s.Status = DataStatus.Delete;
-                return s;
-            });
+            return Update(context, data, s =>
+             {
+                 s.Status = DataStatus.Delete;
+                 return s;
+             });
         }
         public bool Delete(K id)
         {
@@ -65,7 +65,7 @@ namespace ACM.MainDatabase
 
 
 
-        public T Get(MaindbContext context, Expression<Func<T,bool>> expression)
+        public T Get(MaindbContext context, Expression<Func<T, bool>> expression)
         {
             return context.Set<T>().FirstOrDefault(expression);
         }
@@ -139,7 +139,7 @@ namespace ACM.MainDatabase
 
         public bool Update(MaindbContext context, T data, Func<T, T> func)
         {
-            return Update(context,data.ID, func);
+            return Update(context, data.ID, func);
         }
         public bool Update(T data, Func<T, T> func)
         {
@@ -148,7 +148,7 @@ namespace ACM.MainDatabase
 
 
 
-        public bool Update(MaindbContext context,K id, Func<T, T> func)
+        public bool Update(MaindbContext context, K id, Func<T, T> func)
         {
             var getData = context.Set<T>().FirstOrDefault(s => s.ID.Equals(id));
             func?.Invoke(getData);
@@ -176,7 +176,7 @@ namespace ACM.MainDatabase
         }
 
 
-         
+
 
 
 

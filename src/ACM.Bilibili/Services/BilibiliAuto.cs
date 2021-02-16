@@ -32,7 +32,7 @@ namespace ACM.Bilibili
 
         private ChromeDriver ChromeInit(Guid userID)
         {
-            var driver = ChromeDriverHelper.InitDriver(@"D:\publish\chromeProfiles\" + userID.ToString().ToUpper());
+            var driver = ChromeDriverHelper.InitDriver(ACM.SeleniumManager.BoBConfiguration.ChromeProfilePath + userID.ToString().ToUpper());
             return driver;
         }
 

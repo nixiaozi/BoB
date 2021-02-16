@@ -49,7 +49,7 @@ namespace ACM.SinaChina
 
 
             //var driver = new ChromeDriver(chromeOptions);
-            var driver = ChromeDriverHelper.InitDriver(@"D:\publish\chromeProfiles\"+user.ID.ToString().ToUpper());
+            var driver = ChromeDriverHelper.InitDriver(ACM.SeleniumManager.BoBConfiguration.ChromeProfilePath + user.ID.ToString().ToUpper());
 
             #endregion
 

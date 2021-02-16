@@ -14,5 +14,8 @@ namespace ACM.SeleniumManager
         [WriteAble]
         public readonly static bool SetMute = true;
 
+        [WriteAble]
+        public readonly static string ChromeProfilePath = @"D:\publish\chromeProfiles\";
+
     }
 }

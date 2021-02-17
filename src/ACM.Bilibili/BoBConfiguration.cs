@@ -21,6 +21,9 @@ namespace ACM.Bilibili
         public static readonly int AppID = 2;
 
         [WriteAble]
+        public static readonly int ReplayTimes = 2;
+
+        [WriteAble]
         public static readonly string xIdUserHasLogin = @"//div[@class='user-con signin']";
 
         [WriteAble]

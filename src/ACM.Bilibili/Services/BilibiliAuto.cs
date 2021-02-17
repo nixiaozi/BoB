@@ -36,6 +36,19 @@ namespace ACM.Bilibili
             return driver;
         }
 
+        private ChromeDriver ChromeReplayVideo(ChromeDriver driver, CancellationToken ct)
+        {
+            var time = BoBConfiguration.ReplayTimes;
+            while (time >= 0)
+            {
+                driver.LeftClickElement(BoBConfiguration.xVideoReplayBtn, null, ct);
+                driver.ViewVideoToEnd(ct, null, null);  // 开始查看视频
+
+                time--;
+            }
+
+            return driver;
+        }
 
         private ChromeDriver InsureUserHasLogin(ChromeDriver driver,Guid userID, CancellationToken ct, string StartUrl=null)
         {
@@ -167,7 +180,7 @@ namespace ACM.Bilibili
                     driver.PrintBrowserLog("此时的播放区间为 开始时间：" + startTime.ToString("HH:mm:ss") + ";结束时间为：" + endTime.ToString("HH:mm:ss"));
                 }); // 播放当前视频直到播放完成
 
-
+                driver.ExitDriver();
             }
             catch (AggregateException e)
             {
@@ -319,14 +332,16 @@ namespace ACM.Bilibili
                 driver.ViewVideoToEnd(ct, null, null);  // 开始查看视频
 
                 // 可以调整重播的次数
-                var time = 3;
-                while (time >= 0)
-                {
-                    driver.LeftClickElement(BoBConfiguration.xVideoReplayBtn, null, ct);
-                    driver.ViewVideoToEnd(ct, null, null);  // 开始查看视频
+                ChromeReplayVideo(driver, ct);
 
-                    time--;
-                }
+                //var time = 3;
+                //while (time >= 0)
+                //{
+                //    driver.LeftClickElement(BoBConfiguration.xVideoReplayBtn, null, ct);
+                //    driver.ViewVideoToEnd(ct, null, null);  // 开始查看视频
+
+                //    time--;
+                //}
 
                 RandomBrowserAction(driver, ct);
 
@@ -337,7 +352,7 @@ namespace ACM.Bilibili
             {
                 driver.Close();
                 driver.Quit();
-                throw e; // 抛出自动取消异常
+                throw e; // 抛出系统自动取消异常
             }
             catch (Exception ex)
             {

@@ -257,8 +257,9 @@ namespace ACM.Bilibili
             {
                 InsureUserHasLogin(driver, userID, ct, paramObj.StartUrl);
 
-                RandomBrowserAction(driver,ct);
-
+                driver.PrintBrowserLog("登录操作已完成，你可以随时的安全退出！");
+                
+                // 登录之后可以自行操作。
             }
             catch (AggregateException e)
             {

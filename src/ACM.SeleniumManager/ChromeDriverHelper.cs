@@ -97,6 +97,28 @@ namespace ACM.SeleniumManager
             return driver;
         }
 
+        public static ChromeDriver ExecuteAjaxPost(this ChromeDriver driver,string url,string dataType,string data,string[] extendData)
+        {
+            List<string> resultData = new List<string>();
+            resultData.Add(@"type:'POST'");
+            resultData.Add(@"url:'" + url+"'");
+            resultData.Add(@"dataType:'" + dataType+"'");
+            resultData.Add(@"data:{
+                "+data+@"
+            }");
+            resultData.AddRange(extendData);
+
+            string execStr = @"$.ajax({
+                "+string.Join(",",resultData)+@"
+            })";
+
+            // 执行JS脚本
+            driver.ExecuteScript(execStr);
+
+
+            return driver;
+        }
+
         /// <summary>
         /// 添加自定义定位
         /// </summary>

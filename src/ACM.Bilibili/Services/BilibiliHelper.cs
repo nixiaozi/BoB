@@ -203,7 +203,81 @@ namespace ACM.Bilibili
             return driver;
         }
 
+        
+        //$.ajax({
+        //type: "POST",
+        //    url: "https://api.bilibili.com/x/v2/reply/action",
+        //    dataType: "json",
+        //    data:
+        //    {
+        //    oid: "671737528",
+        //        type: 1,
+        //        rpid: "4132238479",
+        //        action: 1,
+        //        ordering: "heat",
+        //        jsonp: "jsonp"
+        //    },
+        //    xhrFields:
+        //    {
+        //    withCredentials: !0
+        //    }
+        //})
+        // Comment like test!
 
+        public static ChromeDriver CommentLike(this ChromeDriver driver,string avString,string commentID)
+        {
+            List<string> dataList = new List<string>
+            {
+                "oid: '"+avString+"'",
+                "type: 1",
+                "rpid:'"+commentID+"'",
+                "action: 1",
+                "ordering:'heat'",
+                "jsonp:'jsonp'"
+            };
+
+            List<string> extendList = new List<string>
+            {
+                @"xhrFields: {
+                    withCredentials: !0
+                }"
+            };
+
+            driver.ExecuteAjaxPost(
+                "https://api.bilibili.com/x/v2/reply/action",
+                "json",
+                string.Join(",",dataList.ToArray()),
+                extendList.ToArray());
+
+            return driver;
+        }
+
+
+        public static string GetVideoAVstring(this ChromeDriver driver, CancellationToken ct)
+        {
+            string avString;
+            driver.HandleGetContext<string>(out avString, (url) =>
+            {
+                IWebElement element = new WebDriverWait(driver, TimeSpan.FromSeconds(3))
+                        .Until<IWebElement>(div =>
+                        {
+                            IWebElement templateElements = driver.FindElementByXPath(BoBConfiguration.xVideoAVMeta);
+                            return templateElements;
+                        });
+
+                string avUrl= element.GetAttribute("content");
+
+                var startIndex = avUrl.LastIndexOf("av") + 2;
+                var endIndex = avUrl.Length - 1;
+                var length = endIndex - startIndex;
+
+                return avUrl.Substring(startIndex, length);
+
+
+            }, null, ct);
+
+            return avString;
+        }
 
 
         //public static ChromeDriver CheckBilibiliHaslogin(this ChromeDriver driver,CancellationToken ct,out bool  IsLogined)

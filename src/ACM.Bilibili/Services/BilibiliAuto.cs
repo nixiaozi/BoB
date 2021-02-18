@@ -415,8 +415,12 @@ namespace ACM.Bilibili
                 InsureUserHasLogin(driver, userID, ct, paramObj.StartUrl);
 
                 driver.PrintBrowserLog("登录操作已完成，你可以随时的安全退出！");
-                
+
                 // 登录之后可以自行操作。
+
+                // 一下为测试代码
+                driver.PrintBrowserLog(driver.GetVideoAVstring(ct));
+
             }
             catch (AggregateException e)
             {

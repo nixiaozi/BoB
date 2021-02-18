@@ -91,10 +91,14 @@ namespace ACM.Bilibili
         public static readonly string xVideoLikeBtn = @"//i[@class='van-icon-videodetails_like']";
 
         [WriteAble]
-        public static readonly string vVideoCoinBtn = @"//i[@class='van-icon-videodetails_throw']";
+        public static readonly string xVideoCoinBtn = @"//i[@class='van-icon-videodetails_throw']";
 
         [WriteAble]
-        public static readonly string vVideoShareBtn= @"//i[@class='van-icon-videodetails_throw']";
+        public static readonly string xVideoShareBtn= @"//i[@class='van-icon-videodetails_throw']";
+
+
+        [WriteAble]
+        public static readonly string xVideoAVMeta = @"//meta[@itemprop='url']";
 
     }
 }

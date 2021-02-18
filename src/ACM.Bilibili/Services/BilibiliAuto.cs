@@ -207,22 +207,30 @@ namespace ACM.Bilibili
                 driver.ToSomeTargetPage(ct, paramObj); // 办正事 进入页面
                 driver.ViewVideoToEnd(ct, (startTime, endTime,totalTime) => // 看视频办正事
                 {
+                    // 通过一个比较播放的比例是大于随机数来确认是否进行关注
+                    bool HasAttended;
+                    driver.CheckElementIsExists(BoBConfiguration.xUserFollowBtn, out HasAttended, true, null, ct);
 
+                    if (!HasAttended)
+                    {
+                        Random random = new Random();
+                        var playedPercent = endTime.Ticks / totalTime.Ticks;
+                        var randomPercent = random.NextDouble();
+                        if (randomPercent >= playedPercent)
+                        {
+                            driver.LeftClickElement(BoBConfiguration.xUserFollowBtn, null, ct);
+                        }
 
+                    }
 
                 });
 
 
                 // 下面进入随机浏览模式
+                RandomBrowserAction(driver, ct);
 
 
-                driver.ToSomeTargetPage(ct, null); // 下面进入随机主体页模式
-                driver.JustRandomBowserVideoUrl(ct); // 随机点击进入视频详细
-                driver.ViewVideoToEnd(ct, (startTime, endTime, totalTime) =>
-                {
-                    driver.PrintBrowserLog("此时的播放区间为 开始时间：" + startTime.ToString("HH:mm:ss") + ";结束时间为：" + endTime.ToString("HH:mm:ss"));
-                }); // 播放当前视频直到播放完成
-
+                driver.ExitDriver();
 
             }
             catch (AggregateException e)
@@ -242,25 +250,161 @@ namespace ACM.Bilibili
         public void DoBrowserToBarrage(Guid userID, BarrageAction paramObj, CancellationToken ct)
         {
             ChromeDriver driver = ChromeInit(userID);
+            try
+            {
+                InsureUserHasLogin(driver, userID, ct, paramObj.StartUrl);
+                // 可以定义几个不同的行为 比如 查看动态 查看热门榜单 首页(栏目随机选取)随机选取  详细页你可能系统 
+                driver.ToSomeTargetPage(ct, paramObj); // 办正事 进入页面
 
+                var HasSend = false;
+                driver.ViewVideoToEnd(ct, (startTime, endTime, totalTime) => // 看视频办正事
+                {
+                    if (!HasSend && paramObj.BarrageTime >=startTime && paramObj.BarrageTime <= endTime)
+                    {
+                        // 输入内容
+                        driver.InputContext(BoBConfiguration.xSendDanmuInput, paramObj.BarrageText, null, ct);
+
+                        // 发送弹幕
+                        driver.LeftClickElement(BoBConfiguration.xSendDanmuBtn, null, ct);
+
+                        HasSend = true;
+                    }
+
+                });
+
+
+                // 下面进入随机浏览模式
+                RandomBrowserAction(driver, ct);
+
+
+                driver.ExitDriver();
+
+            }
+            catch (AggregateException e)
+            {
+                driver.Close();
+                driver.Quit();
+                throw e; // 抛出自动取消异常
+            }
+            catch (Exception ex)
+            {
+                driver.Close();
+                driver.Quit();
+                throw ex;
+            }
         }
 
         public void DoBrowserToCollect(Guid userID, CollectAction paramObj, CancellationToken ct)
         {
             ChromeDriver driver = ChromeInit(userID);
+            try
+            {
+                InsureUserHasLogin(driver, userID, ct, paramObj.StartUrl);
+                // 可以定义几个不同的行为 比如 查看动态 查看热门榜单 首页(栏目随机选取)随机选取  详细页你可能系统 
+                driver.ToSomeTargetPage(ct, paramObj); // 办正事 进入页面
+                driver.ViewVideoToEnd(ct, (startTime, endTime, totalTime) => // 看视频办正事
+                {
+                    // 办正事了专用
 
+
+                });
+
+
+                // 下面进入随机浏览模式
+                RandomBrowserAction(driver, ct);
+
+
+                driver.ExitDriver();
+
+            }
+            catch (AggregateException e)
+            {
+                driver.Close();
+                driver.Quit();
+                throw e; // 抛出自动取消异常
+            }
+            catch (Exception ex)
+            {
+                driver.Close();
+                driver.Quit();
+                throw ex;
+            }
         }
 
         public void DoBrowserToComment(Guid userID, CommentAction paramObj, CancellationToken ct)
         {
             ChromeDriver driver = ChromeInit(userID);
+            try
+            {
+                InsureUserHasLogin(driver, userID, ct, paramObj.StartUrl);
+                // 可以定义几个不同的行为 比如 查看动态 查看热门榜单 首页(栏目随机选取)随机选取  详细页你可能系统 
+                driver.ToSomeTargetPage(ct, paramObj); // 办正事 进入页面
+                driver.ViewVideoToEnd(ct, (startTime, endTime, totalTime) => // 看视频办正事
+                {
+                    // 办正事了专用
 
+
+
+                });
+
+
+                // 下面进入随机浏览模式
+                RandomBrowserAction(driver, ct);
+
+
+                driver.ExitDriver();
+
+            }
+            catch (AggregateException e)
+            {
+                driver.Close();
+                driver.Quit();
+                throw e; // 抛出自动取消异常
+            }
+            catch (Exception ex)
+            {
+                driver.Close();
+                driver.Quit();
+                throw ex;
+            }
         }
 
         public void DoBrowserToGiveLike(Guid userID, GiveLikeAction paramObj, CancellationToken ct)
         {
             ChromeDriver driver = ChromeInit(userID);
+            try
+            {
+                InsureUserHasLogin(driver, userID, ct, paramObj.StartUrl);
+                // 可以定义几个不同的行为 比如 查看动态 查看热门榜单 首页(栏目随机选取)随机选取  详细页你可能系统 
+                driver.ToSomeTargetPage(ct, paramObj); // 办正事 进入页面
+                driver.ViewVideoToEnd(ct, (startTime, endTime, totalTime) => // 看视频办正事
+                {
+                    // 办正事了专用
 
+
+
+                });
+
+
+                // 下面进入随机浏览模式
+                RandomBrowserAction(driver, ct);
+
+
+                driver.ExitDriver();
+
+            }
+            catch (AggregateException e)
+            {
+                driver.Close();
+                driver.Quit();
+                throw e; // 抛出自动取消异常
+            }
+            catch (Exception ex)
+            {
+                driver.Close();
+                driver.Quit();
+                throw ex;
+            }
         }
 
         public void DoBrowserToLogin(Guid userID, LoginAction paramObj, CancellationToken ct)
@@ -304,6 +448,7 @@ namespace ACM.Bilibili
 
 
                 RandomBrowserAction(driver, ct);
+                driver.ExitDriver();
 
             }
             catch (AggregateException e)
@@ -334,14 +479,6 @@ namespace ACM.Bilibili
                 // 可以调整重播的次数
                 ChromeReplayVideo(driver, ct);
 
-                //var time = 3;
-                //while (time >= 0)
-                //{
-                //    driver.LeftClickElement(BoBConfiguration.xVideoReplayBtn, null, ct);
-                //    driver.ViewVideoToEnd(ct, null, null);  // 开始查看视频
-
-                //    time--;
-                //}
 
                 RandomBrowserAction(driver, ct);
 

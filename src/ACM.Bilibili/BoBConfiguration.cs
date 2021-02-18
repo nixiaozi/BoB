@@ -75,5 +75,26 @@ namespace ACM.Bilibili
         [WriteAble]
         public static readonly string xVideoPlayHoldTimeDisplay = @"//div[@id='bilibili-player']//span[@class='bilibili-player-video-time-total']";
 
+        [WriteAble]
+        public static readonly string xUserFollowBtn = @"//div[@class='not-follow']";
+
+        [WriteAble]
+        public static readonly string xSendDanmuInput = @"//input[@class='bilibili-player-video-danmaku-input']";
+
+        [WriteAble]
+        public static readonly string xSendDanmuBtn = @"//div[@class='bui-button-blue']";
+
+        [WriteAble]
+        public static readonly string xVideoCollectionBtn = @"//i[@class='van-icon-videodetails_collec']";
+
+        [WriteAble]
+        public static readonly string xVideoLikeBtn = @"//i[@class='van-icon-videodetails_like']";
+
+        [WriteAble]
+        public static readonly string vVideoCoinBtn = @"//i[@class='van-icon-videodetails_throw']";
+
+        [WriteAble]
+        public static readonly string vVideoShareBtn= @"//i[@class='van-icon-videodetails_throw']";
+
     }
 }

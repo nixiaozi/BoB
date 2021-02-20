@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Newtonsoft;
 using Newtonsoft.Json;
 using System.Threading;
+using BoB.ExtendAndHelper.Extends;
 
 namespace ACM.AutoAccountApplication
 {
@@ -73,7 +74,11 @@ namespace ACM.AutoAccountApplication
             if (doingTasks == null)
                 doingTasks = new List<CancellableTask<TaskDetailOutput>>();
 
-            doingTasks.Add(cancellableTask);
+            // 不能添加有相同TaskID的重复任务
+            if(!RuntimeContext.doingTasks.Select(s => s.TaskDetail.TaskID).Contains(cancellableTask.TaskDetail.TaskID))
+            {
+                doingTasks.Add(cancellableTask);
+            }
 
             return DoingTasks;
         }
@@ -124,24 +129,48 @@ namespace ACM.AutoAccountApplication
 
         private List<TaskDetailOutput> PrepareNewTask()
         {
-            // 首先Prepare Very High
-            var AddDoingTasks = _taskManagerService.GetAllUndoTasksByTaskLevel(ACMTaskLevelEnum.VeryHigh);
+            // 需要保证即将执行的任务不能有重复的userID
+            var ExistsTasksUsers = this.DoingTasks.Select(s=>s.TaskDetail.UserID).ToList();
 
+            List<TaskDetailOutput> AddDoingTasks = new List<TaskDetailOutput>();
+            // 首先Prepare Very High
+            var thisDoingTasks = _taskManagerService.GetAllUndoTasksByTaskLevel(ACMTaskLevelEnum.VeryHigh)
+                .Distinct(new ListComparer<TaskDetailOutput>((p1,p2)=>p1.UserID==p2.UserID)) // 查询数据去重
+                .Where(s=>!ExistsTasksUsers.Contains(s.UserID)).ToList(); // 不需要已经存在的UserID
+
+            ExistsTasksUsers.AddRange(thisDoingTasks.Select(s=>s.UserID));
+            AddDoingTasks.AddRange(thisDoingTasks);
 
             // 然后按顺序Prepare 其他等级的数据
             if (BoBConfiguration.NormalAllowParallelTaskNum > AddDoingTasks.Count + DoingTasks.Count)
             {
-                AddDoingTasks.AddRange(_taskManagerService.GetAllUndoTasksByTaskLevel(ACMTaskLevelEnum.Heigh));
+                var theDoingTasks = _taskManagerService.GetAllUndoTasksByTaskLevel(ACMTaskLevelEnum.Heigh)
+                    .Distinct(new ListComparer<TaskDetailOutput>((p1, p2) => p1.UserID == p2.UserID))
+                    .Where(s => !ExistsTasksUsers.Contains(s.UserID)).ToList();
+
+                ExistsTasksUsers.AddRange(theDoingTasks.Select(s => s.UserID));
+                AddDoingTasks.AddRange(theDoingTasks);
+
             }
 
             if (BoBConfiguration.NormalAllowParallelTaskNum > AddDoingTasks.Count + DoingTasks.Count)
             {
-                AddDoingTasks.AddRange(_taskManagerService.GetAllUndoTasksByTaskLevel(ACMTaskLevelEnum.Normal));
+                var theDoingTasks = _taskManagerService.GetAllUndoTasksByTaskLevel(ACMTaskLevelEnum.Normal)
+                    .Distinct(new ListComparer<TaskDetailOutput>((p1, p2) => p1.UserID == p2.UserID))
+                    .Where(s => !ExistsTasksUsers.Contains(s.UserID)).ToList();
+
+                ExistsTasksUsers.AddRange(theDoingTasks.Select(s => s.UserID));
+                AddDoingTasks.AddRange(theDoingTasks);
             }
 
             if (BoBConfiguration.NormalAllowParallelTaskNum > AddDoingTasks.Count + DoingTasks.Count)
             {
-                AddDoingTasks.AddRange(_taskManagerService.GetAllUndoTasksByTaskLevel(ACMTaskLevelEnum.Low));
+                var theDoingTasks = _taskManagerService.GetAllUndoTasksByTaskLevel(ACMTaskLevelEnum.Low)
+                    .Distinct(new ListComparer<TaskDetailOutput>((p1, p2) => p1.UserID == p2.UserID))
+                    .Where(s => !ExistsTasksUsers.Contains(s.UserID)).ToList();
+
+                ExistsTasksUsers.AddRange(theDoingTasks.Select(s => s.UserID));
+                AddDoingTasks.AddRange(theDoingTasks);
             }
 
             foreach(var item in AddDoingTasks)
@@ -180,7 +209,12 @@ namespace ACM.AutoAccountApplication
                 // 需要确认userID不能重复
                 var DoingUsers = this.DoingTasks.Select(s => s.TaskDetail.UserID);
                 if (DoingUsers.Contains(item.UserID))
+                {
+                    // 对于有重复的 userID 的任务需要先删除
+                    // this.DoingTasks.
+                    
                     break;
+                }
 
 
                 _taskManagerService.DoingPrepareTask(item.TaskID, () =>

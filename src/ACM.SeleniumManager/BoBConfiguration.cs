@@ -17,5 +17,8 @@ namespace ACM.SeleniumManager
         [WriteAble]
         public readonly static string ChromeProfilePath = @"D:\publish\chromeProfiles\";
 
+        [WriteAble]
+        public readonly static bool IsCustomizeExecutePath = false;
+
     }
 }

@@ -49,8 +49,11 @@ namespace ACM.SeleniumManager
                 chromeOptions.AddArgument("user-data-dir="+localstr);
             }
 
-            // 修改可执行文件自定义引用路径
-            return new ChromeDriver(System.Reflection.Assembly.GetEntryAssembly().GetAssemblyRoot(), chromeOptions);
+            // 可修改可执行文件自定义引用路径
+            if(BoBConfiguration.IsCustomizeExecutePath)
+                return new ChromeDriver(System.Reflection.Assembly.GetEntryAssembly().GetAssemblyRoot(), chromeOptions);
+            else
+                return new ChromeDriver(chromeOptions);
         }
 
 

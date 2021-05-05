@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="autofac.json" />
+    <None Remove="chromedriver.exe" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,12 +35,6 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="chromedriver.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

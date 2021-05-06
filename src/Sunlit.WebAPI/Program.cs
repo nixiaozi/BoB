@@ -1,8 +1,10 @@
 using Autofac;
+using BoB.ContainManager;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Sunlit.BussinessAssociaterEntities;
 using Sunlit.UseBus;
 using System;
 using System.Collections.Generic;
@@ -17,7 +19,10 @@ namespace Sunlit.WebAPI
         {
             var containerBuilder = new ContainerBuilder();
             BaseRegister.RegisterConfigureContainer(containerBuilder); //添加后台依赖注入
-
+/*  注入服务测试的代码片段
+            var theserver = BoBContainer.ServiceContainer.Resolve<IBussinessAssociaterBlock>();
+            theserver.AsyncGetList(s=>1==1);
+*/
             CreateHostBuilder(args).Build().Run();
         }
 

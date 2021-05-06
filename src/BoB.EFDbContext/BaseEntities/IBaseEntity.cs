@@ -10,5 +10,6 @@ namespace BoB.EFDbContext
         public TKey ID { get; set; }
 
         public DataStatus Status { get; set; }
+
     }
 }

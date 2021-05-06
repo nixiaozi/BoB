@@ -16,7 +16,7 @@ namespace Sunlit.MainDatabase
         //public static readonly string ConnectionStr = "Data Source=.;Initial Catalog=CSNAutoEntityTest;User ID=sa;Password=As412563";
 
         [WriteAble]
-        public static readonly string ConnectionStr = "Data Source=.;Initial Catalog=SMPS.Main;User ID=sa;Password=As412563";
+        public static readonly string ConnectionStr = "Data Source=.;Initial Catalog=SBMS;User ID=sa;Password=As412563";
 
     }
 }

@@ -96,15 +96,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Actions", "Actions", "{EB40
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OTO", "OTO", "{0CDFE7EB-D7A4-473A-A768-A542FFB852C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunlit.MainDatabase", "Sunlit.MainDatabase\Sunlit.MainDatabase.csproj", "{FFFB2D99-2A81-4BA9-88B8-3E44DAEC0DF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunlit.MainDatabase", "Sunlit.MainDatabase\Sunlit.MainDatabase.csproj", "{FFFB2D99-2A81-4BA9-88B8-3E44DAEC0DF7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ACM", "ACM", "{5335CFD2-E2AB-4EE1-93D3-97AD76B11F63}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sunlit", "Sunlit", "{C4578DD4-B4B1-4CA5-8397-C2E8DF27A9B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunlit.UseBus", "Sunlit.UseBus\Sunlit.UseBus.csproj", "{565161A6-8775-447D-870C-F903B91A9314}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunlit.UseBus", "Sunlit.UseBus\Sunlit.UseBus.csproj", "{565161A6-8775-447D-870C-F903B91A9314}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunlit.WebAPI", "Sunlit.WebAPI\Sunlit.WebAPI.csproj", "{741B114B-D072-40FA-A06D-1744261AAAF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunlit.WebAPI", "Sunlit.WebAPI\Sunlit.WebAPI.csproj", "{741B114B-D072-40FA-A06D-1744261AAAF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunlit.BussinessAssociaterEntities", "Sunlit.BussinessAssociater\Sunlit.BussinessAssociaterEntities.csproj", "{547E0685-8F7E-4C93-BF52-4024528714CF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -248,6 +250,10 @@ Global
 		{741B114B-D072-40FA-A06D-1744261AAAF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{741B114B-D072-40FA-A06D-1744261AAAF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{741B114B-D072-40FA-A06D-1744261AAAF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{547E0685-8F7E-4C93-BF52-4024528714CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{547E0685-8F7E-4C93-BF52-4024528714CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{547E0685-8F7E-4C93-BF52-4024528714CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{547E0685-8F7E-4C93-BF52-4024528714CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -297,6 +303,7 @@ Global
 		{C4578DD4-B4B1-4CA5-8397-C2E8DF27A9B1} = {33EAD9FB-7AE9-45DD-A9CB-F89AD2D2DF1F}
 		{565161A6-8775-447D-870C-F903B91A9314} = {C4578DD4-B4B1-4CA5-8397-C2E8DF27A9B1}
 		{741B114B-D072-40FA-A06D-1744261AAAF4} = {C4578DD4-B4B1-4CA5-8397-C2E8DF27A9B1}
+		{547E0685-8F7E-4C93-BF52-4024528714CF} = {0CDFE7EB-D7A4-473A-A768-A542FFB852C5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C2269C5-7CF7-4EC9-8D09-1589D95ECEC4}

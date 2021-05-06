@@ -29,6 +29,11 @@ namespace BoB.BaseModule
                 .Where(t => t.Name.EndsWith("Service") || t.Name.EndsWith("Block"))
                     .AsImplementedInterfaces();
 
+/*  注入服务测试的代码片段          //test
+            var test = builder.RegisterAssemblyTypes(CurrentAssembly != null ? CurrentAssembly : this.ThisAssembly);
+
+            //test*/
+
 
             OnLoad(builder);
         }

@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sunlit.BussinessAssociater\Sunlit.BussinessAssociaterEntities.csproj" />
     <ProjectReference Include="..\Sunlit.UseBus\Sunlit.UseBus.csproj" />
   </ItemGroup>
 

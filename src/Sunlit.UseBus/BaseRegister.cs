@@ -7,6 +7,7 @@ using BoB.ContainManager;
 using BoB.EmailManager;
 using BoB.LanguageManager;
 using Microsoft.Extensions.Configuration;
+using Sunlit.BussinessAssociaterEntities;
 using System;
 using System.IO;
 
@@ -26,6 +27,10 @@ namespace Sunlit.UseBus
             builder.RegisterModule<EmailManagerModule>();
 
             //BoB.Core部分模块注入
+
+
+            // 普通服务模块注入
+            builder.RegisterModule<BussinessAssociaterEntitiesModule>();
 
 
 

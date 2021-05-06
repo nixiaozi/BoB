@@ -7,5 +7,6 @@ namespace Sunlit.MainDatabase
 {
     public interface ISunlitModelCreator : IModelCreator
     {
+
     }
 }

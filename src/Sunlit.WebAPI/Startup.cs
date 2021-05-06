@@ -55,11 +55,11 @@ namespace Sunlit.WebAPI
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Version = "v1",
-                    Title = "Hello World API",
-                    Description = "A simple example BoB Framework API",
+                    Title = "Sunlit Bussiness Relationship Managerment System(SBMS) API",
+                    Description = "Sunlit com.Lit  Bussiness Relationship Managerment System",
                     Contact = new OpenApiContact
                     {
-                        Name = "李颖成",
+                        Name = "李颖成(Leo Cheng)",
                         Email = "776493846@qq.com",
                     },
                     License = new OpenApiLicense

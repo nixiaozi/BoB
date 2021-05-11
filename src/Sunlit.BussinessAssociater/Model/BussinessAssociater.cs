@@ -15,9 +15,9 @@ namespace Sunlit.BussinessAssociaterEntities.Model
         public string Localtion { get; set; }
 
         /// <summary>
-        /// 商业伙伴的电话
+        /// 商业伙伴的联系方式详细
         /// </summary>
-        public string Phone { get; set; }
+        public string ContactDetail { get; set; }
 
         /// <summary>
         /// 联系人姓名

@@ -20,11 +20,11 @@ namespace BoB.UseBus.Startup
         }
 
 
-        public virtual void ConfigureContainer(ContainerBuilder builder)
-        {
-            BaseRegister.RegisterConfigureContainer(builder);
-            //BoBContainer.Container = builder;
-        }
+        //public virtual void ConfigureContainer(ContainerBuilder builder)
+        //{
+        //    BaseRegister.RegisterConfigureContainer(builder);
+        //    //BoBContainer.Container = builder;
+        //}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public virtual void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -41,14 +41,14 @@ namespace BoB.UseBus.Startup
 
 
 
-            app.UseEndpoints(endpoints =>
-            {
+            //app.UseEndpoints(endpoints =>
+            //{
 
-                //endpoints.MapGet("/", async context =>
-                //{
-                //    await context.Response.WriteAsync("Hello World!");
-                //});
-            });
+            //    //endpoints.MapGet("/", async context =>
+            //    //{
+            //    //    await context.Response.WriteAsync("Hello World!");
+            //    //});
+            //});
         }
     }
 }

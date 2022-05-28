@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>smile.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="autofac.json" />
+    <None Remove="chromedriver.exe" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="autofac.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ACM.AllTasks\ACM.AllTasksEntities.csproj" />
+    <ProjectReference Include="..\ACM.AppAccountList\ACM.AppAccountListEntities.csproj" />
+    <ProjectReference Include="..\ACM.AppList\ACM.AppListEntities.csproj" />
+    <ProjectReference Include="..\ACM.Bilibili\ACM.Bilibili.csproj" />
+    <ProjectReference Include="..\ACM.SinaChina\ACM.SinaChina.csproj" />
+    <ProjectReference Include="..\BoB.UseBus\BoB.UseBus.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

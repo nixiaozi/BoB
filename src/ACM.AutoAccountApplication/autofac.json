@@ -1,0 +1,19 @@
+{
+  "modules": [
+    {
+      "type": "ACM.AppListEntities.AppListEntitiesModule, ACM.AppListEntities"
+    },
+    {
+      "type": "ACM.AppAccountListEntities.AppAccountListEntitiesModule, ACM.AppAccountListEntities"
+    },
+    {
+      "type": "ACM.SinaChina.SinaChinaModule, ACM.SinaChina"
+    },
+    {
+      "type": "ACM.AllTasksEntities.AllTasksEntitiesModule, ACM.AllTasksEntities"
+    },
+    {
+      "type": "ACM.DoingTasksEntities.DoingTasksEntitiesModule, ACM.DoingTasksEntities"
+    }
+  ]
+}

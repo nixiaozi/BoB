@@ -8,16 +8,17 @@ using BoB.MainDatabase;
 using System.Linq;
 using System.Linq.Expressions;
 using BoB.EFDbContext.Enums;
+using Autofac;
 
 namespace BoB.PeopleEntities
 {
-    public class PeopleBlock : BaseBlock, IPeopleBlock
+    public class PeopleBlock : InitBlockService, IPeopleBlock
     {
         private IAutoMapperService _autoMapperService;
 
         protected override void Init()
         {
-            _autoMapperService = CurrentServiceProvider.GetService<IAutoMapperService>();
+            _autoMapperService = CurrentServiceContainer.Resolve<IAutoMapperService>();
         }
 
         public int Add(People people)

@@ -15,10 +15,14 @@ using Microsoft.OpenApi.Models;
 
 namespace BoB.HelloWorldApi
 {
+    // Disabling Missing XML Comment Warning   #pragma warning disable CS1591
 #pragma warning disable CS1591
     public class Startup : BaseStartup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
         public Startup(IConfiguration configuration)
+
         {
             Configuration = configuration;
         }
@@ -29,6 +33,17 @@ namespace BoB.HelloWorldApi
         public override void ConfigureServices(IServiceCollection services)
         {
             base.ConfigureServices(services);
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      //builder.WithOrigins("http://localhost:8080",
+                                      //                    "https://localhost:5001");
+                                      builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+                                  });
+            });
+
             services.AddControllers();
 
 
@@ -73,6 +88,8 @@ namespace BoB.HelloWorldApi
             });
 
             base.Configure(app, env);
+            app.UseCors(MyAllowSpecificOrigins); // ÅäÖÃÔÊÐíµÄ¿çÓòÇëÇó
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

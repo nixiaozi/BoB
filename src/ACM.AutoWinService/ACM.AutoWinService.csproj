@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.10" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ACM.AppAccountList\ACM.AppAccountListEntities.csproj" />
+    <ProjectReference Include="..\ACM.AppList\ACM.AppListEntities.csproj" />
+    <ProjectReference Include="..\ACM.SinaChina\ACM.SinaChina.csproj" />
+    <ProjectReference Include="..\BoB.UseBus\BoB.UseBus.csproj" />
+  </ItemGroup>
+
+</Project>

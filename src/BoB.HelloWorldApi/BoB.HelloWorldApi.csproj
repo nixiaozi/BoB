@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <UserSecretsId>8ca32b76-efb1-4442-b4da-c86f2a7efcf0</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,6 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ACM.AllTasks\ACM.AllTasksEntities.csproj" />
+    <ProjectReference Include="..\ACM.AppAccountList\ACM.AppAccountListEntities.csproj" />
+    <ProjectReference Include="..\ACM.AppList\ACM.AppListEntities.csproj" />
+    <ProjectReference Include="..\ACM.SinaChina\ACM.SinaChina.csproj" />
     <ProjectReference Include="..\BoB.Api\BoB.Api.csproj" />
     <ProjectReference Include="..\BoB.UseBus\BoB.UseBus.csproj" />
   </ItemGroup>

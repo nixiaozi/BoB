@@ -7,9 +7,14 @@ namespace BoB.BoBConfiguration
     public static class StaticConfiguration
     {
         /// <summary>
-        /// 当前项目的名称
+        /// 当前项目的名称标识符，使用逗号隔开
         /// </summary>
-        public const string ProjectName = "BoB";
+        public const string ProjectNamesString = "ACM,BoB,Sunlit";
+
+        public static string[] ProjectNameArray()
+        {
+            return ProjectNamesString.Split(',', StringSplitOptions.RemoveEmptyEntries);
+        }
 
         /// <summary>
         /// 当前项目的版本

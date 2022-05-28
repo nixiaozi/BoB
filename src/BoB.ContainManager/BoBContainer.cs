@@ -1,12 +1,12 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Autofac;
 
 namespace BoB.ContainManager
 {
     public static class BoBContainer
     {
-        public static IServiceProvider ServiceProvider;
+        // public static IServiceProvider ServiceProvider;
 
+        public static IContainer ServiceContainer;
 
     }
 }

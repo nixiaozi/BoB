@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ACM.BaseAutoAction\ACM.BaseAutoAction.csproj" />
+    <ProjectReference Include="..\ACM.MainDatabase\ACM.MainDatabase.csproj" />
+    <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
+    <ProjectReference Include="..\BoB.EFDbContext\BoB.EFDbContext.csproj" />
+  </ItemGroup>
+
+</Project>

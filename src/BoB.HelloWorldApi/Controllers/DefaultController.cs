@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
 using BoB.Api;
+using BoB.ContainManager;
 using BoB.PeopleEntities;
 using BoB.WorldAction;
 using Microsoft.AspNetCore.Http;
@@ -16,7 +18,7 @@ namespace BoB.HelloWorldApi.Controllers
     /// <remarks>DefaultController</remarks>
     [Route("[controller]/[action]")]
     [ApiController]
-    public class DefaultController : ControllerBase
+    public class DefaultController : ACMBaseController
     {
         private IPeopleBlock _peopleBlock;
         private IWorldActionBlock _worldActionBlock;
@@ -24,12 +26,10 @@ namespace BoB.HelloWorldApi.Controllers
         /// <summary>
         /// DefaultController Init
         /// </summary>
-        /// <param name="peopleBlock"></param>
-        /// <param name="worldActionBlock"></param>
-        public DefaultController(IPeopleBlock peopleBlock, IWorldActionBlock worldActionBlock)
+        public DefaultController()
         {
-            _peopleBlock = peopleBlock;
-            _worldActionBlock = worldActionBlock;
+            _peopleBlock = BoBContainer.ServiceContainer.Resolve<IPeopleBlock>();
+            _worldActionBlock = BoBContainer.ServiceContainer.Resolve<IWorldActionBlock>();
         }
 
         /// <summary>

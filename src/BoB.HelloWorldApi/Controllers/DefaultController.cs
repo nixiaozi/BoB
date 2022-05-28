@@ -26,9 +26,7 @@ namespace BoB.HelloWorldApi.Controllers
         /// <summary>
         /// DefaultController Init
         /// </summary>
-        /// <param name="peopleBlock"></param>
-        /// <param name="worldActionBlock"></param>
-        public DefaultController(IPeopleBlock peopleBlock, IWorldActionBlock worldActionBlock)
+        public DefaultController()
         {
             _peopleBlock = BoBContainer.ServiceContainer.Resolve<IPeopleBlock>();
             _worldActionBlock = BoBContainer.ServiceContainer.Resolve<IWorldActionBlock>();

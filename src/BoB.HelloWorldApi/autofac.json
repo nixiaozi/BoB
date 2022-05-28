@@ -14,6 +14,12 @@
     },
     {
       "type": "ACM.DoingTasksEntities.DoingTasksEntitiesModule, ACM.DoingTasksEntities"
+    },
+    {
+      "type": "BoB.PeopleEntities.PeopleEntitiesModule, BoB.PeopleEntities"
+    },
+    {
+      "type": "BoB.WorldAction.WorldActionModule, BoB.WorldAction"
     }
   ]
 }

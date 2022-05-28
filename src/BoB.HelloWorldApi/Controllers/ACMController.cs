@@ -12,6 +12,7 @@ using BoB.ContainManager;
 using BoB.ExtendAndHelper.Extends;
 using BoB.ExtendAndHelper.Utilties;
 using BoB.HelloWorldApi.Model;
+using BoB.PeopleEntities;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -33,6 +34,7 @@ namespace BoB.HelloWorldApi.Controllers
         private IAutoMapperService _autoMapperService;
         private IAllTasksBlock _allTasksBlock;
         private ITaskManagerService _taskManagerService;
+        private IPeopleBlock _peopleBlock;
 
 
         public ACMController()
@@ -45,6 +47,7 @@ namespace BoB.HelloWorldApi.Controllers
             _autoMapperService = BoBContainer.ServiceContainer.Resolve<IAutoMapperService>();
             _allTasksBlock = BoBContainer.ServiceContainer.Resolve<IAllTasksBlock>();
             _taskManagerService = BoBContainer.ServiceContainer.Resolve<ITaskManagerService>();
+            _peopleBlock = BoBContainer.ServiceContainer.Resolve<IPeopleBlock>();
         }
 
         [HttpGet]

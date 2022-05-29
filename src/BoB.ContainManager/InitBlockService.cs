@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using System;
 
-namespace BoB.ContainManager
+namespace BoB.BoBContainManager
 {
     public class InitBlockService
     {

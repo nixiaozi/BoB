@@ -38,11 +38,14 @@ namespace BoB.PublishNuget
                         System.Threading.Thread.Sleep(100);
                     }
 
+                    // 添加自定义 Echo 然后
+                    sw.WriteLine("echo ToDo The CMD Output1");
+                    sw.WriteLine(Environment.NewLine);
 
                     // 查看命令输出
                     //Console.WriteLine(p.StandardOutput.ReadLine());
                     //Console.WriteLine(p.StandardOutput.ReadLine());
-                    System.Threading.Thread.Sleep(10000);
+                    System.Threading.Thread.Sleep(300);
                     var outputStr = p.StandardOutput.ReadLine();
                     var falge = true;
                     while (outputStr != null && falge)
@@ -59,6 +62,9 @@ namespace BoB.PublishNuget
                         outputStr = p.StandardOutput.ReadLine();
                     }
 
+
+                    sw.WriteLine(@"del /s D:\MyProject\BoB\src\*.nupkg");
+                    sw.WriteLine(Environment.NewLine);
 
                 }
             }

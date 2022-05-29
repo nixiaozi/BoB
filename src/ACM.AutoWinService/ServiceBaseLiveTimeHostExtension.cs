@@ -23,7 +23,7 @@ namespace ACM.AutoWinService
         {
             
             var builder = hostBuilder.UseServiceBaseLifetime().Build();
-            BoBContainer.ServiceProvider = builder.Services;
+            BoBContainer.ServiceContainer = (Autofac.IContainer)builder.Services;  // 需要进行显式类型转化为autofac类型服务容器
             return builder.RunAsync(cancellationToken);
         }
     }

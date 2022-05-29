@@ -3,7 +3,7 @@
   <PropertyGroup>
     <!-- GenerateDocumentationFile 配置让系统自动生成xml文件以便于swagger使用  -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>

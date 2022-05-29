@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29326.143
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Base", "Base", "{991F6AD8-DE78-4763-B212-51A3F678A9E5}"
 EndProject
@@ -106,7 +106,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunlit.UseBus", "Sunlit.Use
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunlit.WebAPI", "Sunlit.WebAPI\Sunlit.WebAPI.csproj", "{741B114B-D072-40FA-A06D-1744261AAAF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sunlit.BussinessAssociaterEntities", "Sunlit.BussinessAssociater\Sunlit.BussinessAssociaterEntities.csproj", "{547E0685-8F7E-4C93-BF52-4024528714CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunlit.BussinessAssociaterEntities", "Sunlit.BussinessAssociater\Sunlit.BussinessAssociaterEntities.csproj", "{547E0685-8F7E-4C93-BF52-4024528714CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoB.PublishNuget", "BoB.PublishNuget\BoB.PublishNuget.csproj", "{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -254,6 +256,10 @@ Global
 		{547E0685-8F7E-4C93-BF52-4024528714CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{547E0685-8F7E-4C93-BF52-4024528714CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{547E0685-8F7E-4C93-BF52-4024528714CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -304,6 +310,7 @@ Global
 		{565161A6-8775-447D-870C-F903B91A9314} = {C4578DD4-B4B1-4CA5-8397-C2E8DF27A9B1}
 		{741B114B-D072-40FA-A06D-1744261AAAF4} = {C4578DD4-B4B1-4CA5-8397-C2E8DF27A9B1}
 		{547E0685-8F7E-4C93-BF52-4024528714CF} = {0CDFE7EB-D7A4-473A-A768-A542FFB852C5}
+		{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5} = {5335CFD2-E2AB-4EE1-93D3-97AD76B11F63}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C2269C5-7CF7-4EC9-8D09-1589D95ECEC4}

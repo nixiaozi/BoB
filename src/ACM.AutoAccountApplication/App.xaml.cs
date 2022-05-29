@@ -11,7 +11,7 @@ using System.Windows.Threading;
 using ACM.BaseAutoAction;
 using ACM.TaskManager;
 using Autofac;
-using BoB.ContainManager;
+using BoB.BoBContainManager;
 using BoB.UseBus.Register;
 
 namespace ACM.AutoAccountApplication

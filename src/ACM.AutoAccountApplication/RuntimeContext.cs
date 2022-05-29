@@ -5,7 +5,7 @@ using ACM.DoingTasksEntities;
 using ACM.TaskManager;
 using ACM.TaskManager.Model;
 using Autofac;
-using BoB.ContainManager;
+using BoB.BoBContainManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;

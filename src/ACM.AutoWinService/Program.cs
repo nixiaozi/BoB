@@ -2,7 +2,7 @@
 using ACM.MainDatabase;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using BoB.ContainManager;
+using BoB.BoBContainManager;
 using BoB.UseBus.Register;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;

@@ -3,7 +3,7 @@ using BoB.BoBLogger;
 using BoB.ContainManager;
 using System;
 using Microsoft.Extensions.DependencyInjection;
-
+using Autofac;
 
 namespace BoB.BoBExceptions
 {
@@ -41,7 +41,8 @@ namespace BoB.BoBExceptions
 
             if (_logOpend)
             {
-                _log = BoBContainer.ServiceProvider.GetService<IBoBLogService>();
+               //  _log = BoBContainer.ServiceContainer.GetService<IBoBLogService>();
+               _log = BoBContainer.ServiceContainer.Resolve<IBoBLogService>();
 
                 switch (logTypes)
                 {

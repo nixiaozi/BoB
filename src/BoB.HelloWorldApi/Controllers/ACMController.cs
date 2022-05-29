@@ -2,6 +2,7 @@
 using ACM.AppAccountListEntities;
 using ACM.AppListEntities;
 using ACM.BaseAutoAction;
+using ACM.EmailManager;
 using ACM.SinaChina;
 using ACM.TaskManager;
 using ACM.TaskManager.Model;
@@ -35,6 +36,7 @@ namespace BoB.HelloWorldApi.Controllers
         private IAllTasksBlock _allTasksBlock;
         private ITaskManagerService _taskManagerService;
         private IPeopleBlock _peopleBlock;
+        private IEmailService _emailService;
 
 
         public ACMController()
@@ -48,6 +50,15 @@ namespace BoB.HelloWorldApi.Controllers
             _allTasksBlock = BoBContainer.ServiceContainer.Resolve<IAllTasksBlock>();
             _taskManagerService = BoBContainer.ServiceContainer.Resolve<ITaskManagerService>();
             _peopleBlock = BoBContainer.ServiceContainer.Resolve<IPeopleBlock>();
+            _emailService = BoBContainer.ServiceContainer.Resolve<IEmailService>();
+        }
+
+
+        [HttpGet]
+        public ActionResult<string> SendWarnEmail()
+        {
+            _emailService.ACMEmailAutoWarn("用户：测试发送警告邮件！" );
+            return Ok("完成发送邮件！");
         }
 
         [HttpGet]

@@ -110,6 +110,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunlit.BussinessAssociaterE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.PublishNuget", "BoB.PublishNuget\BoB.PublishNuget.csproj", "{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACM.EmailManager", "ACM.EmailManger\ACM.EmailManager.csproj", "{A25BE17B-3DE3-4A2D-B4EE-ADFE9BDC486B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -260,6 +262,10 @@ Global
 		{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A25BE17B-3DE3-4A2D-B4EE-ADFE9BDC486B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A25BE17B-3DE3-4A2D-B4EE-ADFE9BDC486B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A25BE17B-3DE3-4A2D-B4EE-ADFE9BDC486B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A25BE17B-3DE3-4A2D-B4EE-ADFE9BDC486B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -311,6 +317,7 @@ Global
 		{741B114B-D072-40FA-A06D-1744261AAAF4} = {C4578DD4-B4B1-4CA5-8397-C2E8DF27A9B1}
 		{547E0685-8F7E-4C93-BF52-4024528714CF} = {0CDFE7EB-D7A4-473A-A768-A542FFB852C5}
 		{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5} = {5335CFD2-E2AB-4EE1-93D3-97AD76B11F63}
+		{A25BE17B-3DE3-4A2D-B4EE-ADFE9BDC486B} = {88D825B7-9DB4-48B0-8938-9ABAC4CFE526}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C2269C5-7CF7-4EC9-8D09-1589D95ECEC4}

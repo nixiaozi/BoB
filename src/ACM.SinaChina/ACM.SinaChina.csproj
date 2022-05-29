@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ACM.AppAccountList\ACM.AppAccountListEntities.csproj" />
     <ProjectReference Include="..\ACM.BaseAutoAction\ACM.BaseAutoAction.csproj" />
+    <ProjectReference Include="..\ACM.EmailManger\ACM.EmailManager.csproj" />
     <ProjectReference Include="..\ACM.SeleniumManager\ACM.SeleniumManager.csproj" />
     <ProjectReference Include="..\ACM.UserEntities\ACM.UserEntities.csproj" />
     <ProjectReference Include="..\BoB.EmailManager\BoB.EmailManager.csproj" />

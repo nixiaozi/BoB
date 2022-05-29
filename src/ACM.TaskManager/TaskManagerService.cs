@@ -4,7 +4,7 @@ using ACM.DoingTasksEntities;
 using ACM.MainDatabase;
 using ACM.TaskManager.Model;
 using Autofac;
-using BoB.ContainManager;
+using BoB.BoBContainManager;
 using BoB.EFDbContext.Enums;
 using Microsoft.Extensions.DependencyInjection;
 using System;

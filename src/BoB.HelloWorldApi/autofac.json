@@ -20,6 +20,9 @@
     },
     {
       "type": "BoB.WorldAction.WorldActionModule, BoB.WorldAction"
+    },
+    {
+      "type": "ACM.EmailManager.EmailManagerModule, ACM.EmailManager"
     }
   ]
 }

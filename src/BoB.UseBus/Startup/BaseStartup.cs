@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using BoB.ContainManager;
+using BoB.BoBContainManager;
 using BoB.UseBus.Register;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

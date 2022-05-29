@@ -1,11 +1,8 @@
 ﻿using BoB.AutoMapperManager;
-using BoB.ContainManager;
-using System;
 using System.Collections.Generic;
-using Microsoft.Extensions.DependencyInjection;
-using System.Text;
 using BoB.PeopleEntities;
 using Autofac;
+using BoB.BoBContainManager;
 
 namespace BoB.WorldAction
 {

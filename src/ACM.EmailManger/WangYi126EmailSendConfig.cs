@@ -1,9 +1,7 @@
-﻿using MimeKit;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using BoB.EmailManager;
+using MimeKit;
 
-namespace BoB.EmailManager
+namespace ACM.EmailManager
 {
     public class WangYi126EmailSendConfig : ISendMailConfig
     {

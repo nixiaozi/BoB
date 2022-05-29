@@ -1,9 +1,5 @@
 ﻿using ACM.BaseAutoAction;
-using BoB.ContainManager;
 using System;
-using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
-using System.Text;
 using ACM.SeleniumManager;
 using System.Threading;
 using Autofac;
@@ -12,6 +8,8 @@ using ACM.AppAccountListEntities;
 using BoB.EmailManager;
 using ACM.UserEntities;
 using BoB.ExtendAndHelper.Utilties;
+using BoB.BoBContainManager;
+using ACM.EmailManager;
 
 namespace ACM.Bilibili
 {
@@ -19,13 +17,13 @@ namespace ACM.Bilibili
     {
         
         private IAppAccountListBlock _appAccountListBlock;
-        private IEmailManagerService _emailManagerService;
+        private IEmailService _emailService;
         private IUserBlock _userBlock;
 
         protected override void Init()
         {
             _appAccountListBlock= BoBContainer.ServiceContainer.Resolve<IAppAccountListBlock>();
-            _emailManagerService = CurrentServiceContainer.Resolve<IEmailManagerService>();
+            _emailService = CurrentServiceContainer.Resolve<IEmailService>();
             _userBlock = CurrentServiceContainer.Resolve<IUserBlock>();
 
         }
@@ -84,7 +82,7 @@ namespace ACM.Bilibili
                 {
                     if (seconds == 100)
                     {
-                        _emailManagerService.ACMEmailAutoWarn("应用：" + BoBConfiguration.AppName + 
+                        _emailService.ACMEmailAutoWarn("应用：" + BoBConfiguration.AppName + 
                             "; 在用户：" + account.NickName + "，确认登录状况时出现异常。应该没有登录，但是找不到登录按钮");
                     }
                 }, ct);
@@ -101,7 +99,7 @@ namespace ACM.Bilibili
                 {
                     if (seconds == 100)
                     {
-                        _emailManagerService.ACMEmailAutoWarn("应用：" + BoBConfiguration.AppName +
+                        _emailService.ACMEmailAutoWarn("应用：" + BoBConfiguration.AppName +
                             "; 在用户：" + account.NickName + "，登录时出现异常。无法输入用户名");
                     }
                 }, ct);
@@ -112,7 +110,7 @@ namespace ACM.Bilibili
                 {
                     if (seconds == 100)
                     {
-                        _emailManagerService.ACMEmailAutoWarn("应用：" + BoBConfiguration.AppName +
+                        _emailService.ACMEmailAutoWarn("应用：" + BoBConfiguration.AppName +
                             "; 在用户：" + account.NickName + "，登录时出现异常。无法输入密码");
                     }
                 }, ct);
@@ -126,7 +124,7 @@ namespace ACM.Bilibili
                 {
                     if (seconds == 100)
                     {
-                        _emailManagerService.ACMEmailAutoWarn("应用：" + BoBConfiguration.AppName +
+                        _emailService.ACMEmailAutoWarn("应用：" + BoBConfiguration.AppName +
                             "; 在用户：" + account.NickName + "，登录时出现异常。无法成功登录，需要手动处理");
                     }
                 }, ct);

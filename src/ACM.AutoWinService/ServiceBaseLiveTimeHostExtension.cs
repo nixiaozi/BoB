@@ -1,4 +1,4 @@
-﻿using BoB.ContainManager;
+﻿using BoB.BoBContainManager;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;

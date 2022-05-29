@@ -1,6 +1,6 @@
 ﻿using Autofac;
 
-namespace BoB.ContainManager
+namespace BoB.BoBContainManager
 {
     public static class BoBContainer
     {

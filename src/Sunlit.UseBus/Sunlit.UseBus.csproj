@@ -16,7 +16,7 @@
     <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
     <ProjectReference Include="..\BoB.BoBLogger\BoB.BoBLogger.csproj" />
     <ProjectReference Include="..\BoB.CacheManager\BoB.CacheManager.csproj" />
-    <ProjectReference Include="..\BoB.ContainManager\BoB.ContainManager.csproj" />
+    <ProjectReference Include="..\BoB.ContainManager\BoB.BoBContainManager.csproj" />
     <ProjectReference Include="..\BoB.EmailManager\BoB.EmailManager.csproj" />
     <ProjectReference Include="..\BoB.LanguageManager\BoB.LanguageManager.csproj" />
     <ProjectReference Include="..\Sunlit.BussinessAssociater\Sunlit.BussinessAssociaterEntities.csproj" />

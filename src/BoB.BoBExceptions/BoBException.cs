@@ -1,6 +1,6 @@
 ﻿using BoB.BoBConfiguration.BaseEnums;
 using BoB.BoBLogger;
-using BoB.ContainManager;
+using BoB.BoBContainManager;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Autofac;

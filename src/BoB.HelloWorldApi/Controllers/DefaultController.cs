@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using BoB.Api;
-using BoB.ContainManager;
+using BoB.BoBContainManager;
 using BoB.PeopleEntities;
 using BoB.WorldAction;
 using Microsoft.AspNetCore.Http;

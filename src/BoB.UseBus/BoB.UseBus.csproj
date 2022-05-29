@@ -5,15 +5,6 @@
     <Version>1.0.0</Version>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="新文件夹\**" />
-    <EmbeddedResource Remove="新文件夹\**" />
-    <None Remove="新文件夹\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="MiddleWare\" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
@@ -32,7 +23,7 @@
     <ProjectReference Include="..\BoB.AutoMapperManager\BoB.AutoMapperManager.csproj" />
     <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
     <ProjectReference Include="..\BoB.BoBLogger\BoB.BoBLogger.csproj" />
-    <ProjectReference Include="..\BoB.ContainManager\BoB.ContainManager.csproj" />
+    <ProjectReference Include="..\BoB.ContainManager\BoB.BoBContainManager.csproj" />
     <ProjectReference Include="..\BoB.EmailManager\BoB.EmailManager.csproj" />
     <ProjectReference Include="..\BoB.LanguageManager\BoB.LanguageManager.csproj" />
     <ProjectReference Include="..\BoB.WorldAction\BoB.WorldAction.csproj" />

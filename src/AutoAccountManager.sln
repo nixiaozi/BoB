@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.LanguageManager", "BoB.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.CacheManager", "BoB.CacheManager\BoB.CacheManager.csproj", "{934A8B0E-D5D7-4080-8FD7-FE44EEEF8F3B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.ContainManager", "BoB.ContainManager\BoB.ContainManager.csproj", "{F278EF84-E755-4FC9-AB3F-491A34E874C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.BoBContainManager", "BoB.ContainManager\BoB.BoBContainManager.csproj", "{F278EF84-E755-4FC9-AB3F-491A34E874C3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.BoBLogger", "BoB.BoBLogger\BoB.BoBLogger.csproj", "{DDD48530-83EA-470A-951A-5EAE077A732A}"
 EndProject
@@ -108,7 +108,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunlit.WebAPI", "Sunlit.Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sunlit.BussinessAssociaterEntities", "Sunlit.BussinessAssociater\Sunlit.BussinessAssociaterEntities.csproj", "{547E0685-8F7E-4C93-BF52-4024528714CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoB.PublishNuget", "BoB.PublishNuget\BoB.PublishNuget.csproj", "{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoB.PublishNuget", "BoB.PublishNuget\BoB.PublishNuget.csproj", "{79EC08A8-3D53-4C9D-A1DB-9D377E06A2B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

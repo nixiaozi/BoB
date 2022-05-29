@@ -8,7 +8,7 @@ using ACM.TaskManager.Model;
 using ACM.UserEntities;
 using Autofac;
 using BoB.AutoMapperManager;
-using BoB.ContainManager;
+using BoB.BoBContainManager;
 using BoB.ExtendAndHelper.Extends;
 using BoB.ExtendAndHelper.Utilties;
 using BoB.HelloWorldApi.Model;

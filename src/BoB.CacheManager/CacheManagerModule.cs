@@ -14,7 +14,8 @@ namespace BoB.CacheManager
         public override void OnLoad(ContainerBuilder builder)
         {
             //没有自定义的引用可以不填
-
+            builder.RegisterType<ContextData>()
+                .As<IContextData>().InstancePerLifetimeScope(); // 为每个请求添加基于请求的缓存
         }
     }
 }

@@ -6,7 +6,8 @@ namespace BoB.PublishNuget
 {
     internal class Program
     {
-        private static string NugetKey = "oy2p2t7isasv2tvkytza6k4zlbfbdvru3iqqwtkb676mdq";
+        // oy2hzzkl2dhtfdwwelzqsajdbokvwlxevdplqo44lbp5ri
+        private static string NugetKey = "oy2hzzkl2dhtfdwwelzqsajdbokvwlxevdplqo44lbp5ri";
         static void Main(string[] args)
         {
 

@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using BoB.BoBContainManager;
 using BoB.CacheManager;
+using BoB.ExtendAndHelper.Extends;
 using System;
 
 namespace BoB.Api
@@ -47,6 +48,23 @@ namespace BoB.Api
 
 
         public ResultType ResultType { get; set; } = ResultType.Value;
+
+
+        public string ResultTypeStr
+        {
+            get
+            {
+                return ResultType.ToString();
+            }
+        }
+
+        public string ResultTypeDisplay
+        {
+            get
+            {
+                return ResultType.DisplayName();
+            }
+        }
 
         /// <summary>
         /// 数据为数组时的长度

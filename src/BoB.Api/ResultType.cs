@@ -20,9 +20,13 @@ namespace BoB.Api
         [Display(Name = "重定向到URL")]
         RedirectUrl = 301,// 返回的一个重定向的URL
         [Display(Name = "重定向到流程步骤列表页面")]
-        ProcessStepList = 302,
-        [Display(Name = "重定向要流程步骤行为")]
-        ProcessStepItemAction = 303, // 一般都是直接创建的行为
+        RedirectProcessList = 302,
+        [Display(Name = "重定向到流程步骤行为")]
+        RedirectProcessStepAction = 303, // 一般都是直接创建的行为 
+        [Display(Name = "重定向到未登录")]
+        RedirectLogout = 304,
+        [Display(Name = "重定向到系统初始化页面")]
+        RedirectInitSystem = 305,// 返回的一个重定向的URL
         [Display(Name = "错误")]
         Error =400,
     }

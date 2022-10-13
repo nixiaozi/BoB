@@ -14,21 +14,20 @@ namespace BoB.AutoMapperManager
         public static readonly Mapper mapper;
         static AutoMapperService()
         {
-            var ProjectNamesList = StaticConfiguration.ProjectNameArray().ToList();
+            var NotProjectNamesList = StaticConfiguration.NotProjectNameArray().ToList();
             //扫描所有加载的程序集，获取所有添加的映射
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies()
                 //.Where(s => s.FullName.Contains(StaticConfiguration.ProjectName) || s.FullName.Contains("BoB.HelloWorldApi")).ToArray();
                 .Where(s =>
                 {
-                    for (var i = 0; i < ProjectNamesList.Count; i++)
+                    bool flag = true;
+                    int i = 0;
+                    while(flag&&i< NotProjectNamesList.Count)
                     {
-                        if (s.FullName.Contains(ProjectNamesList[i]))
-                        {
-                            return true;
-                        }
-
+                        flag = !s.FullName.StartsWith(NotProjectNamesList[i]);
+                        i++;
                     }
-                    return false;
+                    return flag;
                 }).ToArray();
 
             configuration = new MapperConfiguration(cfg => {

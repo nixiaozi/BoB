@@ -12,7 +12,8 @@ namespace BoB.EFDbContext
         public DateTime ModifiedTime { get; set; }
 
         [Display(Name = "数据当前版本")]
-        public byte[] Version { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
 
     }
 }

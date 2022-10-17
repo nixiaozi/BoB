@@ -32,7 +32,8 @@ namespace BoB.EFDbContext
 
 
         [Display(Name = "数据当前版本")]
-        public byte[] Version { get; set; }
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
 
     }
 }

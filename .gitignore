@@ -339,3 +339,4 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 /Document/Output
+/src/BoB.PublishNuget/app.config

@@ -10,5 +10,9 @@ namespace BoB.AutoMapperManager
             where T:new() 
             where S:new();
 
+        public T DoInsMap<S, T>(S s,T t)
+            where T : new()
+            where S : new();
+
     }
 }

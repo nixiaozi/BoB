@@ -82,9 +82,14 @@ namespace BoB.HelloWorldApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult<string> UpdateUser(Users users)
+        public ActionResult<string> UpdateUser(UserInput users)
         {
-            bool result = _userBlock.UpdateUser(users);
+            users.Phone = null;
+            var oldUser = _userBlock.GetUserById(users.ID);
+            var updateUser = _autoMapperService.DoInsMap<UserInput, Users>(users, oldUser);
+
+
+            bool result = _userBlock.UpdateUser(updateUser);
             return result ? Ok("修改用户信息成功") : Problem("修改用户信息失败");
         }
 

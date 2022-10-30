@@ -59,5 +59,30 @@ namespace BoB.CacheManager
         }
 
 
+        private Guid _userCompanyID { get; set; }
+
+        public Guid UserCompanyID
+        {
+            get { return _userCompanyID; }
+            set { this._userCompanyID = value; }
+        }
+
+        private string _userCompanyCode { get; set; }
+
+        public string UserCompanyCode
+        {
+            get { return _userCompanyCode; }
+            set { this._userCompanyCode = value; }
+        }
+
+        private int _userRange { get; set; }
+
+        public int UserRange
+        {
+            get { return _userRange; }
+            set { _userRange = value; }
+        }
+
+
     }
 }

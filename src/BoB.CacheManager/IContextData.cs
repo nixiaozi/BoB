@@ -20,6 +20,11 @@ namespace BoB.CacheManager
             get;
         }
 
+        public Guid UserCompanyID { get; set; }
+
+        public string UserCompanyCode { get; set; }
+
+        public int UserRange { get; set; }
 
     }
 }

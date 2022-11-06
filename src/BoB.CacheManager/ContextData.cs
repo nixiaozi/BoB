@@ -83,6 +83,25 @@ namespace BoB.CacheManager
             set { _userRange = value; }
         }
 
+        private string _UserCompanyName;
+        public string UserCompanyName
+        {
+            get { return _UserCompanyName; }
+            set { this._UserCompanyName = value; }
+        }
 
+        private string _BaseUrl;
+        public string BaseUrl
+        {
+            get { return _BaseUrl; }
+            set { this._BaseUrl = value; }
+        }
+
+        private Dictionary<string, string> _HeaderDic;
+        public Dictionary<string, string> HeaderDic
+        {
+            get { return _HeaderDic; }
+            set { this._HeaderDic = value; }
+        }
     }
 }

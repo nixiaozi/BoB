@@ -36,6 +36,7 @@ namespace BoB.Api
             Opreator = _contextData.UserID;
         }
 
+        public ApiResult() { }
        
         public string ControlFuncDefine { get; set; }
 

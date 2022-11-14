@@ -75,6 +75,14 @@ namespace BoB.CacheManager
             set { this._userCompanyCode = value; }
         }
 
+        private bool _isCompanyOwner { get; set; }
+
+        public bool IsCompanyOwner
+        {
+            get { return _isCompanyOwner; }
+            set { this._isCompanyOwner = value; }
+        }
+
         private int _userRange { get; set; }
 
         public int UserRange

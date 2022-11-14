@@ -52,6 +52,11 @@ namespace BoB.CacheManager
         public string UserCompanyName { get; set; }
 
         /// <summary>
+        /// 是否是公司的所有者
+        /// </summary>
+        public bool IsCompanyOwner { get; set; }
+
+        /// <summary>
         /// 用户所属的公司等级
         /// </summary>
         public int UserRange { get; set; }

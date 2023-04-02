@@ -38,8 +38,14 @@ namespace BoB.Api
 
         public ApiResult() { }
        
+        /// <summary>
+        /// 控制器和方法的定义
+        /// </summary>
         public string ControlFuncDefine { get; set; }
 
+        /// <summary>
+        /// 操作人员
+        /// </summary>
         public Guid Opreator { get; set; }
 
         /// <summary>

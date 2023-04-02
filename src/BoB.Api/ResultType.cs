@@ -27,7 +27,11 @@ namespace BoB.Api
         RedirectLogout = 304,
         [Display(Name = "重定向到系统初始化页面")]
         RedirectInitSystem = 305,// 返回的一个重定向的URL
-        [Display(Name = "错误")]
-        Error =400,
+        [Display(Name = "通知消息")]
+        MsgNotity = 400,
+        [Display(Name = "警告消息")]
+        MsgWarn = 401,
+        [Display(Name = "消息记录")]
+        MsgInfo = 402,
     }
 }

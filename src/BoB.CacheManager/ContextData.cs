@@ -111,5 +111,13 @@ namespace BoB.CacheManager
             get { return _HeaderDic; }
             set { this._HeaderDic = value; }
         }
+
+        private string _UseProcessActionName;
+        public string UseProcessActionName
+        {
+            get { return _UseProcessActionName; }
+            set { this._UseProcessActionName = value; }   
+        }
+
     }
 }

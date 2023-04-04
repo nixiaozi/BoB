@@ -71,5 +71,10 @@ namespace BoB.CacheManager
         /// </summary>
         public Dictionary<string, string> HeaderDic { get; set; }
 
+        /// <summary>
+        /// 使用的流程名称定义
+        /// </summary>
+        public string UseProcessActionName { get; set; }
+
     }
 }

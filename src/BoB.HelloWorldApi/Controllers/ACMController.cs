@@ -16,6 +16,7 @@ using BoB.HelloWorldApi.Model;
 using BoB.PeopleEntities;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -64,6 +65,35 @@ namespace BoB.HelloWorldApi.Controllers
         [HttpGet]
         public ActionResult<string> Hello()
         {
+            JArray jArry = JArray.FromObject(new List<JObject>
+            {
+                JObject.FromObject(new {
+                    Name = "aaa",
+                    HoldVals = new List<string>
+                    {
+                        "app","add"
+                    }
+                }),
+                JObject.FromObject(new {
+                    Name = "bbb",
+                    HoldVals = new List<string>
+                    {
+                        "big","bad"
+                    }
+                }),
+
+            });
+
+            JObject jObj = JObject.FromObject(new
+            {
+                Name = "big"
+            });
+
+            var result = new JArray(jArry.Where(s => s["HoldVals"].TokenStrContains(jObj["Name"])));
+
+            
+
+
             return Ok("你好,欢迎！");
         }
 

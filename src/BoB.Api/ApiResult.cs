@@ -46,7 +46,7 @@ namespace BoB.Api
         /// <summary>
         /// 操作人员
         /// </summary>
-        public Guid Opreator { get; set; }
+        public string Opreator { get; set; }
 
         /// <summary>
         /// 请求成功还是失败

@@ -3,7 +3,7 @@ using ACM.MainDatabase;
 using ACM.TaskManager;
 using ACM.TaskManager.Model;
 using Autofac;
-using BoB.ContainManager;
+using BoB.BoBContainManager;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;

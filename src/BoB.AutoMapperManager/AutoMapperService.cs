@@ -14,25 +14,28 @@ namespace BoB.AutoMapperManager
         public static readonly Mapper mapper;
         static AutoMapperService()
         {
-            var ProjectNamesList = StaticConfiguration.ProjectNameArray().ToList();
+            var NotProjectNamesList = StaticConfiguration.NotProjectNameArray().ToList();
             //扫描所有加载的程序集，获取所有添加的映射
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies()
                 //.Where(s => s.FullName.Contains(StaticConfiguration.ProjectName) || s.FullName.Contains("BoB.HelloWorldApi")).ToArray();
                 .Where(s =>
                 {
-                    for (var i = 0; i < ProjectNamesList.Count; i++)
+                    bool flag = true;
+                    int i = 0;
+                    while(flag&&i< NotProjectNamesList.Count)
                     {
-                        if (s.FullName.Contains(ProjectNamesList[i]))
-                        {
-                            return true;
-                        }
-
+                        flag = !s.FullName.StartsWith(NotProjectNamesList[i]);
+                        i++;
                     }
-                    return false;
+                    return flag;
                 }).ToArray();
 
             configuration = new MapperConfiguration(cfg => {
-                foreach(var assembly in assemblies)
+                // 添加全局配置—— 不要映射所有为null的属性
+                cfg.ForAllMaps((typeMap, map) =>
+                    map.ForAllMembers(option => 
+                        option.Condition((source, destination, sourceMember) => sourceMember != null)));
+                foreach (var assembly in assemblies)
                 {
                     cfg.AddMaps(assembly);
                 }
@@ -48,5 +51,11 @@ namespace BoB.AutoMapperManager
             return mapper.Map<T>(s);
         }
 
+        public T DoInsMap<S, T>(S s, T t)
+            where S : new()
+            where T : new()
+        {
+            return mapper.Map<S,T>(s,t);
+        }
     }
 }

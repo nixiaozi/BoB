@@ -1,5 +1,4 @@
 ﻿using BoB.AutoMapperManager;
-using BoB.ContainManager;
 using System;
 using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using BoB.EFDbContext.Enums;
 using Autofac;
+using BoB.BoBContainManager;
 
 namespace BoB.PeopleEntities
 {

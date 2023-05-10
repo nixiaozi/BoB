@@ -8,6 +8,6 @@ namespace BoB.EmailManager
     {
         public bool SendEmail(ISendMailConfig config);
 
-        public bool ACMEmailAutoWarn(string WarnStr);
+        
     }
 }

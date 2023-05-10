@@ -1,10 +1,12 @@
 ﻿using Autofac;
 using BoB.BaseModule;
 using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace BoB.CacheManager
+namespace ACM.EmailManager
 {
-    public class CacheManagerModule : BoBModule, IBoBModule
+    public class EmailManagerModule:BoBModule, IBoBModule
     {
         public override void Init(ContainerBuilder builder)
         {
@@ -14,8 +16,10 @@ namespace BoB.CacheManager
         public override void OnLoad(ContainerBuilder builder)
         {
             //没有自定义的引用可以不填
-            //builder.RegisterType<ContextData>()
-            //    .As<IContextData>().InstancePerLifetimeScope(); // 为每个请求添加基于请求的缓存
+
+
+
+
         }
     }
 }

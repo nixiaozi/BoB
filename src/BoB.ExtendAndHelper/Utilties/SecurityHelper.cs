@@ -135,17 +135,15 @@ namespace BoB.ExtendAndHelper.Utilties
 
         #endregion
 
-
-        private static readonly byte[] DefaultSalt =new byte[] { 10, 20, 30, 40, 50, 60, 70, 80 };
-
-        private static byte[] CreateKey(string password, int keyBytes = 32)
+        public static string BCryptEncrypt(string PlainText)
         {
-            const int Iterations = 10;
-            var keyGenerator = new Rfc2898DeriveBytes(password, DefaultSalt, Iterations);
-            return keyGenerator.GetBytes(keyBytes);
+            return BCrypt.Net.BCrypt.HashPassword(PlainText);
         }
 
-
+        public static bool BCryptVerify(string PlainText,string hashText)
+        {
+            return BCrypt.Net.BCrypt.Verify(PlainText, hashText);
+        }
 
     }
 }

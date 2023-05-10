@@ -2,7 +2,7 @@
   "ACM.MainDatabase": {
     "ConnectionStr": "Data Source=.;Initial Catalog=ACM.Main;User ID=sa;Password=As412563"
   },
-  "BoB.EmailManager": {
-    "DoEmailWarnConfig": "{\"LoginUsername\":\"nixiaozi01@126.com\",\"LoginPassword\":\"SSTQDRCILQUPBDQB\",\"SendNickName\":\"ACM Auto\",\"SendMailAddress\":\"nixiaozi01@126.com\",\"ConnectedServer\":\"smtp.126.com\",\"ConnectedPort\":465,\"ConnectedIsSecurity\":true,\"EmailSubject\":\"ACM 系统自动发出的警告邮件，请立即处理!\",\"EmailContent\":null,\"ReceiverNickName\":\"Leo\",\"ReveiverMailAddress\":\"776493846@qq.com\"}"
+  "ACM.EmailManager": {
+    "DoEmailWarnConfig": "{\"LoginUsername\":\"nixiaozi01@126.com\",\"LoginPassword\":\"SSTQDRCILQUPBDQB\",\"SendNickName\":\"test@126.com\",\"SendMailAddress\":\"nixiaozi01@126.com\",\"ConnectedServer\":\"smtp.126.com\",\"ConnectedPort\":465,\"ConnectedIsSecurity\":true,\"EmailSubject\":\"ACM 系统自动发出的警告邮件，请立即处理!\",\"EmailContent\":null,\"ReceiverNickName\":\"Leo\",\"ReveiverMailAddress\":\"776493846@qq.com\"}"
   }
 }

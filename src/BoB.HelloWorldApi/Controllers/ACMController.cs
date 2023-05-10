@@ -2,6 +2,7 @@
 using ACM.AppAccountListEntities;
 using ACM.AppListEntities;
 using ACM.BaseAutoAction;
+using ACM.EmailManager;
 using ACM.SinaChina;
 using ACM.TaskManager;
 using ACM.TaskManager.Model;
@@ -15,6 +16,7 @@ using BoB.HelloWorldApi.Model;
 using BoB.PeopleEntities;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +37,7 @@ namespace BoB.HelloWorldApi.Controllers
         private IAllTasksBlock _allTasksBlock;
         private ITaskManagerService _taskManagerService;
         private IPeopleBlock _peopleBlock;
+        private IEmailService _emailService;
 
 
         public ACMController()
@@ -48,11 +51,49 @@ namespace BoB.HelloWorldApi.Controllers
             _allTasksBlock = BoBContainer.ServiceContainer.Resolve<IAllTasksBlock>();
             _taskManagerService = BoBContainer.ServiceContainer.Resolve<ITaskManagerService>();
             _peopleBlock = BoBContainer.ServiceContainer.Resolve<IPeopleBlock>();
+            _emailService = BoBContainer.ServiceContainer.Resolve<IEmailService>();
+        }
+
+
+        [HttpGet]
+        public ActionResult<string> SendWarnEmail()
+        {
+            _emailService.ACMEmailAutoWarn("用户：测试发送警告邮件！" );
+            return Ok("完成发送邮件！");
         }
 
         [HttpGet]
         public ActionResult<string> Hello()
         {
+            JArray jArry = JArray.FromObject(new List<JObject>
+            {
+                JObject.FromObject(new {
+                    Name = "aaa",
+                    HoldVals = new List<string>
+                    {
+                        "app","add"
+                    }
+                }),
+                JObject.FromObject(new {
+                    Name = "bbb",
+                    HoldVals = new List<string>
+                    {
+                        "big","bad"
+                    }
+                }),
+
+            });
+
+            JObject jObj = JObject.FromObject(new
+            {
+                Name = "big"
+            });
+
+            var result = new JArray(jArry.Where(s => s["HoldVals"].TokenStrContains(jObj["Name"])));
+
+            
+
+
             return Ok("你好,欢迎！");
         }
 
@@ -64,15 +105,21 @@ namespace BoB.HelloWorldApi.Controllers
             {
                 return Problem("用户手机不能为空");
             }
+           
 
             bool result = _userBlock.AddUser(userInput);
             return result ? Ok("添加用户成功") : Problem("添加用户失败");
         }
 
         [HttpPost]
-        public ActionResult<string> UpdateUser(Users users)
+        public ActionResult<string> UpdateUser(UserInput users)
         {
-            bool result = _userBlock.UpdateUser(users);
+            users.Phone = null;
+            var oldUser = _userBlock.GetUserById(users.ID);
+            var updateUser = _autoMapperService.DoInsMap<UserInput, Users>(users, oldUser);
+
+
+            bool result = _userBlock.UpdateUser(updateUser);
             return result ? Ok("修改用户信息成功") : Problem("修改用户信息失败");
         }
 

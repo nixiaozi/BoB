@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using BoB.ContainManager;
+using BoB.BoBContainManager;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sunlit.BussinessAssociaterEntities;

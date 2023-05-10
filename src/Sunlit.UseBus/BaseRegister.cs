@@ -1,9 +1,9 @@
 ﻿using Autofac;
 using Autofac.Configuration;
 using BoB.AutoMapperManager;
+using BoB.BoBContainManager;
 using BoB.BoBLogger;
 using BoB.CacheManager;
-using BoB.ContainManager;
 using BoB.EmailManager;
 using BoB.LanguageManager;
 using Microsoft.Extensions.Configuration;

@@ -14,8 +14,8 @@ using ACM.BaseAutoAction;
 using ACM.SinaChina;
 using ACM.Bilibili;
 using ACM.TaskManager;
-using BoB.ContainManager;
 using Microsoft.Extensions.Configuration;
+using BoB.BoBContainManager;
 
 namespace BoB.UseBus.Register
 {

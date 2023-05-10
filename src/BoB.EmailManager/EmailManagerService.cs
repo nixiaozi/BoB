@@ -33,13 +33,7 @@ namespace BoB.EmailManager
         }
 
 
-        public bool ACMEmailAutoWarn(string WarnStr)
-        {
-            var config = BoBConfiguration.DoEmailWarnConfig;
-            config.EmailContent = new TextPart() { Text = WarnStr };
-            return SendEmail(config);
-        }
-
+        
 
     }
 }

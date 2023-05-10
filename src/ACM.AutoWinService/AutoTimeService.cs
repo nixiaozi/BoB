@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ACM.AppListEntities;
-using BoB.ContainManager;
+using BoB.BoBContainManager;
 using ACM.MainDatabase;
 using System.Linq;
 using Autofac;

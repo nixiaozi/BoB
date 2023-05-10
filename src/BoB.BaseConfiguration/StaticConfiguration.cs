@@ -9,11 +9,11 @@ namespace BoB.BoBConfiguration
         /// <summary>
         /// 当前项目的名称标识符，使用逗号隔开
         /// </summary>
-        public const string ProjectNamesString = "ACM,BoB,Sunlit";
+        public const string NotProjectNamesString = "System,Microsoft,Swashbuckle,Autofac,netstandard,AutoMapper,Anonymously,MimeKit";
 
-        public static string[] ProjectNameArray()
+        public static string[] NotProjectNameArray()
         {
-            return ProjectNamesString.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            return NotProjectNamesString.Split(',', StringSplitOptions.RemoveEmptyEntries);
         }
 
         /// <summary>

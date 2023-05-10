@@ -1,9 +1,15 @@
-﻿using System;
+﻿using Autofac;
+using BoB.BoBContainManager;
+using BoB.CacheManager;
+using BoB.ExtendAndHelper.Extends;
+using System;
 
 namespace BoB.Api
 {
     public class ApiResult<R> : IApiResult
     {
+        private IContextData _contextData;
+
         /// <summary>
         /// 构造函数初始化
         /// </summary>
@@ -18,14 +24,28 @@ namespace BoB.Api
         /// </summary>
         /// <param name="success">操作成功还是失败</param>
         /// <param name="controlFuncDefine">控制器预定义方法</param>
-        public ApiResult(bool success, string controlFuncDefine)
+        /// <param name="theResultType"></param>
+        public ApiResult(bool success, string controlFuncDefine, ResultType theResultType= ResultType.Value)
         {
             Success = success;
             ControlFuncDefine = controlFuncDefine;
+            ResultType = theResultType;
+
+            _contextData = BoBContainer.ServiceContainer.Resolve<IContextData>();
+
+            Opreator = _contextData.UserID;
         }
 
+        public ApiResult() { }
+       
+        /// <summary>
+        /// 控制器和方法的定义
+        /// </summary>
         public string ControlFuncDefine { get; set; }
 
+        /// <summary>
+        /// 操作人员
+        /// </summary>
         public Guid Opreator { get; set; }
 
         /// <summary>
@@ -33,13 +53,33 @@ namespace BoB.Api
         /// </summary>
         public bool Success { get; set; }
 
+
+        public ResultType ResultType { get; set; } = ResultType.Value;
+
+
+        public string ResultTypeStr
+        {
+            get
+            {
+                return ResultType.ToString();
+            }
+        }
+
+        public string ResultTypeDisplay
+        {
+            get
+            {
+                return ResultType.DisplayName();
+            }
+        }
+
         /// <summary>
         /// 数据为数组时的长度
         /// </summary>
         public int DataCount { get; set; }
 
         /// <summary>
-        /// 返回的数据类型为K
+        /// 返回的数据类型为R
         /// </summary>
         public R Data { get; set; }
 
@@ -52,6 +92,11 @@ namespace BoB.Api
         /// 数据有分页显示当前分页数
         /// </summary>
         public int PageIndex { get; set; }
+
+        /// <summary>
+        /// 可分页数据总共的数据条目数
+        /// </summary>
+        public int TotalDataCount { get; set; }
 
         /// <summary>
         /// 显示给客户端的信息

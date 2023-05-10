@@ -2,23 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-	  <Version>1.3.3</Version>
-    <Authors>李颖成</Authors>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.9.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\BoB.BaseConfiguration\BoB.BoBConfiguration.csproj" />
     <ProjectReference Include="..\BoB.BaseModule\BoB.BaseModule.csproj" />
+    <ProjectReference Include="..\BoB.EmailManager\BoB.EmailManager.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="MailKit">
-      <HintPath>..\Lib\MailKit.dll</HintPath>
-    </Reference>
     <Reference Include="MimeKit">
       <HintPath>..\Lib\MimeKit.dll</HintPath>
     </Reference>

@@ -1,22 +1,12 @@
 ﻿using ACM.AppAccountListEntities;
 using ACM.UserEntities;
-using BoB.ContainManager;
-using Newtonsoft.Json;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
-using System.Text;
-using Microsoft.Extensions.DependencyInjection;
 using BoB.ExtendAndHelper.Utilties;
-using System.Threading;
 using BoB.EmailManager;
 using ACM.SeleniumManager;
 using Autofac;
+using BoB.BoBContainManager;
+using ACM.EmailManager;
 
 namespace ACM.SinaChina
 {
@@ -24,12 +14,12 @@ namespace ACM.SinaChina
     {
         private IUserBlock _userBlock;
         private IAppAccountListBlock _appAccountListBlock;
-        private IEmailManagerService _emailManagerService;
+        private IEmailService _emailService;
         protected override void Init()
         {
             _userBlock = CurrentServiceContainer.Resolve<IUserBlock>();
             _appAccountListBlock = CurrentServiceContainer.Resolve<IAppAccountListBlock>();
-            _emailManagerService = CurrentServiceContainer.Resolve<IEmailManagerService>();
+            _emailService = CurrentServiceContainer.Resolve<IEmailService>();
         }
 
         public bool ToLogin(AppAccountList account)
@@ -225,7 +215,7 @@ namespace ACM.SinaChina
             driver = driver.CheckExistsCookieName("SUB", out HasLogin,false, (seconds, url) =>
             {
                 if(seconds==100)
-                    _emailManagerService.ACMEmailAutoWarn("用户：" + account.NickName + ",在执行新浪网登陆操作时出现意外请手动处理。/n/t "
+                    _emailService.ACMEmailAutoWarn("用户：" + account.NickName + ",在执行新浪网登陆操作时出现意外请手动处理。/n/t "
                         +"停在了Url："+url);
             });
 

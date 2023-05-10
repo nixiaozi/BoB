@@ -16,20 +16,19 @@ namespace BoB.EFDbContext
         /// <param name="type">所选类型</param>
         public static void Init(ModelBuilder modelBuilder,Type type)
         {
-            var ProjectNamesList = StaticConfiguration.ProjectNameArray().ToList();
+            var NotProjectNamesList = StaticConfiguration.NotProjectNameArray().ToList();
 
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies()
                 .Where(s =>
                     {
-                        for(var i = 0; i < ProjectNamesList.Count; i++)
+                        bool flag = true;
+                        int i = 0;
+                        while (flag && i < NotProjectNamesList.Count)
                         {
-                            if (s.FullName.Contains(ProjectNamesList[i]))
-                            {
-                                return true;
-                            }
-
+                            flag = !s.FullName.StartsWith(NotProjectNamesList[i]);
+                            i++;
                         }
-                        return false;
+                        return flag;
                     }).ToArray();
 
             List<Type> typesToRegister = new List<Type>();
